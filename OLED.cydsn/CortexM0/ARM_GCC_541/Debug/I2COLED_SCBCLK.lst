@@ -1,0 +1,1002 @@
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"I2COLED_SCBCLK.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.I2COLED_SCBCLK_Start,"ax",%progbits
+  20              		.align	2
+  21              		.global	I2COLED_SCBCLK_Start
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	I2COLED_SCBCLK_Start, %function
+  25              	I2COLED_SCBCLK_Start:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC4\\I2COLED_SCBCLK.c"
+   1:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * File Name: I2COLED_SCBCLK.c
+   3:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Version 2.20
+   4:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+   5:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Description:
+   6:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *   Provides system API for the clocking, interrupts and watchdog timer.
+   7:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+   8:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Note:
+   9:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *   Documentation of the API's in this file is located in the
+  10:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *   System Reference Guide provided with PSoC Creator.
+  11:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  12:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** ********************************************************************************
+  13:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *******************************************************************************/
+  18:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  19:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #include <cydevice_trm.h>
+  20:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #include "I2COLED_SCBCLK.h"
+  21:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  22:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #if defined CYREG_PERI_DIV_CMD
+  23:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  24:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** /*******************************************************************************
+  25:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Function Name: I2COLED_SCBCLK_StartEx
+  26:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** ********************************************************************************
+  27:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  28:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Summary:
+  29:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Starts the clock, aligned to the specified running clock.
+  30:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 2
+
+
+  31:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Parameters:
+  32:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  alignClkDiv:  The divider to which phase alignment is performed when the
+  33:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *    clock is started.
+  34:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  35:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Returns:
+  36:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  None
+  37:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  38:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *******************************************************************************/
+  39:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** void I2COLED_SCBCLK_StartEx(uint32 alignClkDiv)
+  40:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** {
+  41:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     /* Make sure any previous start command has finished. */
+  42:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     while((I2COLED_SCBCLK_CMD_REG & I2COLED_SCBCLK_CMD_ENABLE_MASK) != 0u)
+  43:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     {
+  44:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     }
+  45:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     
+  46:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     /* Specify the target divider and it's alignment divider, and enable. */
+  47:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     I2COLED_SCBCLK_CMD_REG =
+  48:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****         ((uint32)I2COLED_SCBCLK__DIV_ID << I2COLED_SCBCLK_CMD_DIV_SHIFT)|
+  49:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****         (alignClkDiv << I2COLED_SCBCLK_CMD_PA_DIV_SHIFT) |
+  50:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****         (uint32)I2COLED_SCBCLK_CMD_ENABLE_MASK;
+  51:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** }
+  52:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  53:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #else
+  54:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  55:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** /*******************************************************************************
+  56:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Function Name: I2COLED_SCBCLK_Start
+  57:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** ********************************************************************************
+  58:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  59:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Summary:
+  60:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Starts the clock.
+  61:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  62:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Parameters:
+  63:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  None
+  64:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  65:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Returns:
+  66:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  None
+  67:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  68:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *******************************************************************************/
+  69:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  70:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** void I2COLED_SCBCLK_Start(void)
+  71:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** {
+  28              		.loc 1 71 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 80B5     		push	{r7, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  72:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     /* Set the bit to enable the clock. */
+  73:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     I2COLED_SCBCLK_ENABLE_REG |= I2COLED_SCBCLK__ENABLE_MASK;
+  38              		.loc 1 73 0
+  39 0004 044B     		ldr	r3, .L2
+  40 0006 044A     		ldr	r2, .L2
+  41 0008 1268     		ldr	r2, [r2]
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 3
+
+
+  42 000a 8021     		movs	r1, #128
+  43 000c 0906     		lsls	r1, r1, #24
+  44 000e 0A43     		orrs	r2, r1
+  45 0010 1A60     		str	r2, [r3]
+  74:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** }
+  46              		.loc 1 74 0
+  47 0012 C046     		nop
+  48 0014 BD46     		mov	sp, r7
+  49              		@ sp needed
+  50 0016 80BD     		pop	{r7, pc}
+  51              	.L3:
+  52              		.align	2
+  53              	.L2:
+  54 0018 00000240 		.word	1073872896
+  55              		.cfi_endproc
+  56              	.LFE0:
+  57              		.size	I2COLED_SCBCLK_Start, .-I2COLED_SCBCLK_Start
+  58              		.section	.text.I2COLED_SCBCLK_Stop,"ax",%progbits
+  59              		.align	2
+  60              		.global	I2COLED_SCBCLK_Stop
+  61              		.code	16
+  62              		.thumb_func
+  63              		.type	I2COLED_SCBCLK_Stop, %function
+  64              	I2COLED_SCBCLK_Stop:
+  65              	.LFB1:
+  75:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  76:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #endif /* CYREG_PERI_DIV_CMD */
+  77:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  78:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  79:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** /*******************************************************************************
+  80:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Function Name: I2COLED_SCBCLK_Stop
+  81:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** ********************************************************************************
+  82:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  83:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Summary:
+  84:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Stops the clock and returns immediately. This API does not require the
+  85:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  source clock to be running but may return before the hardware is actually
+  86:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  disabled.
+  87:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  88:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Parameters:
+  89:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  None
+  90:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  91:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Returns:
+  92:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  None
+  93:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+  94:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *******************************************************************************/
+  95:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** void I2COLED_SCBCLK_Stop(void)
+  96:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** {
+  66              		.loc 1 96 0
+  67              		.cfi_startproc
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 1, uses_anonymous_args = 0
+  70 0000 80B5     		push	{r7, lr}
+  71              		.cfi_def_cfa_offset 8
+  72              		.cfi_offset 7, -8
+  73              		.cfi_offset 14, -4
+  74 0002 00AF     		add	r7, sp, #0
+  75              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 4
+
+
+  97:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #if defined CYREG_PERI_DIV_CMD
+  98:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+  99:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     /* Make sure any previous start command has finished. */
+ 100:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     while((I2COLED_SCBCLK_CMD_REG & I2COLED_SCBCLK_CMD_ENABLE_MASK) != 0u)
+ 101:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     {
+ 102:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     }
+ 103:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     
+ 104:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     /* Specify the target divider and it's alignment divider, and disable. */
+ 105:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     I2COLED_SCBCLK_CMD_REG =
+ 106:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****         ((uint32)I2COLED_SCBCLK__DIV_ID << I2COLED_SCBCLK_CMD_DIV_SHIFT)|
+ 107:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****         ((uint32)I2COLED_SCBCLK_CMD_DISABLE_MASK);
+ 108:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+ 109:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #else
+ 110:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+ 111:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     /* Clear the bit to disable the clock. */
+ 112:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     I2COLED_SCBCLK_ENABLE_REG &= (uint32)(~I2COLED_SCBCLK__ENABLE_MASK);
+  76              		.loc 1 112 0
+  77 0004 044B     		ldr	r3, .L5
+  78 0006 044A     		ldr	r2, .L5
+  79 0008 1268     		ldr	r2, [r2]
+  80 000a 5200     		lsls	r2, r2, #1
+  81 000c 5208     		lsrs	r2, r2, #1
+  82 000e 1A60     		str	r2, [r3]
+ 113:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     
+ 114:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #endif /* CYREG_PERI_DIV_CMD */
+ 115:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** }
+  83              		.loc 1 115 0
+  84 0010 C046     		nop
+  85 0012 BD46     		mov	sp, r7
+  86              		@ sp needed
+  87 0014 80BD     		pop	{r7, pc}
+  88              	.L6:
+  89 0016 C046     		.align	2
+  90              	.L5:
+  91 0018 00000240 		.word	1073872896
+  92              		.cfi_endproc
+  93              	.LFE1:
+  94              		.size	I2COLED_SCBCLK_Stop, .-I2COLED_SCBCLK_Stop
+  95              		.section	.text.I2COLED_SCBCLK_SetFractionalDividerRegister,"ax",%progbits
+  96              		.align	2
+  97              		.global	I2COLED_SCBCLK_SetFractionalDividerRegister
+  98              		.code	16
+  99              		.thumb_func
+ 100              		.type	I2COLED_SCBCLK_SetFractionalDividerRegister, %function
+ 101              	I2COLED_SCBCLK_SetFractionalDividerRegister:
+ 102              	.LFB2:
+ 116:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+ 117:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+ 118:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** /*******************************************************************************
+ 119:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Function Name: I2COLED_SCBCLK_SetFractionalDividerRegister
+ 120:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** ********************************************************************************
+ 121:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 122:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Summary:
+ 123:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Modifies the clock divider and the fractional divider.
+ 124:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 125:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Parameters:
+ 126:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  clkDivider:  Divider register value (0-65535). This value is NOT the
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 5
+
+
+ 127:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *    divider; the clock hardware divides by clkDivider plus one. For example,
+ 128:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *    to divide the clock by 2, this parameter should be set to 1.
+ 129:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  fracDivider:  Fractional Divider register value (0-31).
+ 130:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Returns:
+ 131:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  None
+ 132:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 133:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *******************************************************************************/
+ 134:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** void I2COLED_SCBCLK_SetFractionalDividerRegister(uint16 clkDivider, uint8 clkFractional)
+ 135:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** {
+ 103              		.loc 1 135 0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 16
+ 106              		@ frame_needed = 1, uses_anonymous_args = 0
+ 107 0000 80B5     		push	{r7, lr}
+ 108              		.cfi_def_cfa_offset 8
+ 109              		.cfi_offset 7, -8
+ 110              		.cfi_offset 14, -4
+ 111 0002 84B0     		sub	sp, sp, #16
+ 112              		.cfi_def_cfa_offset 24
+ 113 0004 00AF     		add	r7, sp, #0
+ 114              		.cfi_def_cfa_register 7
+ 115 0006 0200     		movs	r2, r0
+ 116 0008 BB1D     		adds	r3, r7, #6
+ 117 000a 1A80     		strh	r2, [r3]
+ 118 000c 7B1D     		adds	r3, r7, #5
+ 119 000e 0A1C     		adds	r2, r1, #0
+ 120 0010 1A70     		strb	r2, [r3]
+ 136:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     uint32 maskVal;
+ 137:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     uint32 regVal;
+ 138:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     
+ 139:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #if defined (I2COLED_SCBCLK__FRAC_MASK) || defined (CYREG_PERI_DIV_CMD)
+ 140:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     
+ 141:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 	/* get all but divider bits */
+ 142:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     maskVal = I2COLED_SCBCLK_DIV_REG & 
+ 143:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****                     (uint32)(~(uint32)(I2COLED_SCBCLK_DIV_INT_MASK | I2COLED_SCBCLK_DIV_FRAC_MASK))
+ 144:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 	/* combine mask and new divider vals into 32-bit value */
+ 145:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     regVal = maskVal |
+ 146:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****         ((uint32)((uint32)clkDivider <<  I2COLED_SCBCLK_DIV_INT_SHIFT) & I2COLED_SCBCLK_DIV_INT_MAS
+ 147:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****         ((uint32)((uint32)clkFractional << I2COLED_SCBCLK_DIV_FRAC_SHIFT) & I2COLED_SCBCLK_DIV_FRAC
+ 148:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     
+ 149:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #else
+ 150:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     /* get all but integer divider bits */
+ 151:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     maskVal = I2COLED_SCBCLK_DIV_REG & (uint32)(~(uint32)I2COLED_SCBCLK__DIVIDER_MASK);
+ 121              		.loc 1 151 0
+ 122 0012 084B     		ldr	r3, .L8
+ 123 0014 1B68     		ldr	r3, [r3]
+ 124 0016 1B0C     		lsrs	r3, r3, #16
+ 125 0018 1B04     		lsls	r3, r3, #16
+ 126 001a FB60     		str	r3, [r7, #12]
+ 152:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     /* combine mask and new divider val into 32-bit value */
+ 153:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     regVal = clkDivider | maskVal;
+ 127              		.loc 1 153 0
+ 128 001c BB1D     		adds	r3, r7, #6
+ 129 001e 1A88     		ldrh	r2, [r3]
+ 130 0020 FB68     		ldr	r3, [r7, #12]
+ 131 0022 1343     		orrs	r3, r2
+ 132 0024 BB60     		str	r3, [r7, #8]
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 6
+
+
+ 154:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     
+ 155:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #endif /* I2COLED_SCBCLK__FRAC_MASK || CYREG_PERI_DIV_CMD */
+ 156:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+ 157:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     I2COLED_SCBCLK_DIV_REG = regVal;
+ 133              		.loc 1 157 0
+ 134 0026 034B     		ldr	r3, .L8
+ 135 0028 BA68     		ldr	r2, [r7, #8]
+ 136 002a 1A60     		str	r2, [r3]
+ 158:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** }
+ 137              		.loc 1 158 0
+ 138 002c C046     		nop
+ 139 002e BD46     		mov	sp, r7
+ 140 0030 04B0     		add	sp, sp, #16
+ 141              		@ sp needed
+ 142 0032 80BD     		pop	{r7, pc}
+ 143              	.L9:
+ 144              		.align	2
+ 145              	.L8:
+ 146 0034 00000240 		.word	1073872896
+ 147              		.cfi_endproc
+ 148              	.LFE2:
+ 149              		.size	I2COLED_SCBCLK_SetFractionalDividerRegister, .-I2COLED_SCBCLK_SetFractionalDividerRegister
+ 150              		.section	.text.I2COLED_SCBCLK_GetDividerRegister,"ax",%progbits
+ 151              		.align	2
+ 152              		.global	I2COLED_SCBCLK_GetDividerRegister
+ 153              		.code	16
+ 154              		.thumb_func
+ 155              		.type	I2COLED_SCBCLK_GetDividerRegister, %function
+ 156              	I2COLED_SCBCLK_GetDividerRegister:
+ 157              	.LFB3:
+ 159:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+ 160:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+ 161:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** /*******************************************************************************
+ 162:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Function Name: I2COLED_SCBCLK_GetDividerRegister
+ 163:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** ********************************************************************************
+ 164:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 165:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Summary:
+ 166:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Gets the clock divider register value.
+ 167:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 168:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Parameters:
+ 169:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  None
+ 170:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 171:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Returns:
+ 172:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Divide value of the clock minus 1. For example, if the clock is set to
+ 173:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  divide by 2, the return value will be 1.
+ 174:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 175:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *******************************************************************************/
+ 176:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** uint16 I2COLED_SCBCLK_GetDividerRegister(void)
+ 177:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** {
+ 158              		.loc 1 177 0
+ 159              		.cfi_startproc
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 1, uses_anonymous_args = 0
+ 162 0000 80B5     		push	{r7, lr}
+ 163              		.cfi_def_cfa_offset 8
+ 164              		.cfi_offset 7, -8
+ 165              		.cfi_offset 14, -4
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 7
+
+
+ 166 0002 00AF     		add	r7, sp, #0
+ 167              		.cfi_def_cfa_register 7
+ 178:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     return (uint16)((I2COLED_SCBCLK_DIV_REG & I2COLED_SCBCLK_DIV_INT_MASK)
+ 168              		.loc 1 178 0
+ 169 0004 024B     		ldr	r3, .L12
+ 170 0006 1B68     		ldr	r3, [r3]
+ 171 0008 9BB2     		uxth	r3, r3
+ 179:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****         >> I2COLED_SCBCLK_DIV_INT_SHIFT);
+ 180:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** }
+ 172              		.loc 1 180 0
+ 173 000a 1800     		movs	r0, r3
+ 174 000c BD46     		mov	sp, r7
+ 175              		@ sp needed
+ 176 000e 80BD     		pop	{r7, pc}
+ 177              	.L13:
+ 178              		.align	2
+ 179              	.L12:
+ 180 0010 00000240 		.word	1073872896
+ 181              		.cfi_endproc
+ 182              	.LFE3:
+ 183              		.size	I2COLED_SCBCLK_GetDividerRegister, .-I2COLED_SCBCLK_GetDividerRegister
+ 184              		.section	.text.I2COLED_SCBCLK_GetFractionalDividerRegister,"ax",%progbits
+ 185              		.align	2
+ 186              		.global	I2COLED_SCBCLK_GetFractionalDividerRegister
+ 187              		.code	16
+ 188              		.thumb_func
+ 189              		.type	I2COLED_SCBCLK_GetFractionalDividerRegister, %function
+ 190              	I2COLED_SCBCLK_GetFractionalDividerRegister:
+ 191              	.LFB4:
+ 181:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+ 182:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** 
+ 183:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** /*******************************************************************************
+ 184:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Function Name: I2COLED_SCBCLK_GetFractionalDividerRegister
+ 185:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** ********************************************************************************
+ 186:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 187:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Summary:
+ 188:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Gets the clock fractional divider register value.
+ 189:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 190:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Parameters:
+ 191:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  None
+ 192:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 193:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** * Returns:
+ 194:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  Fractional Divide value of the clock
+ 195:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *  0 if the fractional divider is not in use.
+ 196:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *
+ 197:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** *******************************************************************************/
+ 198:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** uint8 I2COLED_SCBCLK_GetFractionalDividerRegister(void)
+ 199:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** {
+ 192              		.loc 1 199 0
+ 193              		.cfi_startproc
+ 194              		@ args = 0, pretend = 0, frame = 0
+ 195              		@ frame_needed = 1, uses_anonymous_args = 0
+ 196 0000 80B5     		push	{r7, lr}
+ 197              		.cfi_def_cfa_offset 8
+ 198              		.cfi_offset 7, -8
+ 199              		.cfi_offset 14, -4
+ 200 0002 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 8
+
+
+ 201              		.cfi_def_cfa_register 7
+ 200:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #if defined (I2COLED_SCBCLK__FRAC_MASK)
+ 201:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     /* return fractional divider bits */
+ 202:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     return (uint8)((I2COLED_SCBCLK_DIV_REG & I2COLED_SCBCLK_DIV_FRAC_MASK)
+ 203:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****         >> I2COLED_SCBCLK_DIV_FRAC_SHIFT);
+ 204:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #else
+ 205:Generated_Source\PSoC4/I2COLED_SCBCLK.c ****     return 0u;
+ 202              		.loc 1 205 0
+ 203 0004 0023     		movs	r3, #0
+ 206:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** #endif /* I2COLED_SCBCLK__FRAC_MASK */
+ 207:Generated_Source\PSoC4/I2COLED_SCBCLK.c **** }
+ 204              		.loc 1 207 0
+ 205 0006 1800     		movs	r0, r3
+ 206 0008 BD46     		mov	sp, r7
+ 207              		@ sp needed
+ 208 000a 80BD     		pop	{r7, pc}
+ 209              		.cfi_endproc
+ 210              	.LFE4:
+ 211              		.size	I2COLED_SCBCLK_GetFractionalDividerRegister, .-I2COLED_SCBCLK_GetFractionalDividerRegister
+ 212              		.text
+ 213              	.Letext0:
+ 214              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 215              		.section	.debug_info,"",%progbits
+ 216              	.Ldebug_info0:
+ 217 0000 49010000 		.4byte	0x149
+ 218 0004 0400     		.2byte	0x4
+ 219 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 220 000a 04       		.byte	0x4
+ 221 000b 01       		.uleb128 0x1
+ 222 000c BE000000 		.4byte	.LASF24
+ 223 0010 0C       		.byte	0xc
+ 224 0011 D1010000 		.4byte	.LASF25
+ 225 0015 07020000 		.4byte	.LASF26
+ 226 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 227 001d 00000000 		.4byte	0
+ 228 0021 00000000 		.4byte	.Ldebug_line0
+ 229 0025 02       		.uleb128 0x2
+ 230 0026 01       		.byte	0x1
+ 231 0027 06       		.byte	0x6
+ 232 0028 63020000 		.4byte	.LASF0
+ 233 002c 02       		.uleb128 0x2
+ 234 002d 01       		.byte	0x1
+ 235 002e 08       		.byte	0x8
+ 236 002f 69000000 		.4byte	.LASF1
+ 237 0033 02       		.uleb128 0x2
+ 238 0034 02       		.byte	0x2
+ 239 0035 05       		.byte	0x5
+ 240 0036 4A020000 		.4byte	.LASF2
+ 241 003a 02       		.uleb128 0x2
+ 242 003b 02       		.byte	0x2
+ 243 003c 07       		.byte	0x7
+ 244 003d AB000000 		.4byte	.LASF3
+ 245 0041 02       		.uleb128 0x2
+ 246 0042 04       		.byte	0x4
+ 247 0043 05       		.byte	0x5
+ 248 0044 5A020000 		.4byte	.LASF4
+ 249 0048 02       		.uleb128 0x2
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 9
+
+
+ 250 0049 04       		.byte	0x4
+ 251 004a 07       		.byte	0x7
+ 252 004b 99000000 		.4byte	.LASF5
+ 253 004f 02       		.uleb128 0x2
+ 254 0050 08       		.byte	0x8
+ 255 0051 05       		.byte	0x5
+ 256 0052 F9010000 		.4byte	.LASF6
+ 257 0056 02       		.uleb128 0x2
+ 258 0057 08       		.byte	0x8
+ 259 0058 07       		.byte	0x7
+ 260 0059 BA010000 		.4byte	.LASF7
+ 261 005d 03       		.uleb128 0x3
+ 262 005e 04       		.byte	0x4
+ 263 005f 05       		.byte	0x5
+ 264 0060 696E7400 		.ascii	"int\000"
+ 265 0064 02       		.uleb128 0x2
+ 266 0065 04       		.byte	0x4
+ 267 0066 07       		.byte	0x7
+ 268 0067 AD010000 		.4byte	.LASF8
+ 269 006b 04       		.uleb128 0x4
+ 270 006c 54020000 		.4byte	.LASF9
+ 271 0070 02       		.byte	0x2
+ 272 0071 A1       		.byte	0xa1
+ 273 0072 2C000000 		.4byte	0x2c
+ 274 0076 04       		.uleb128 0x4
+ 275 0077 9F010000 		.4byte	.LASF10
+ 276 007b 02       		.byte	0x2
+ 277 007c A2       		.byte	0xa2
+ 278 007d 3A000000 		.4byte	0x3a
+ 279 0081 04       		.uleb128 0x4
+ 280 0082 A6010000 		.4byte	.LASF11
+ 281 0086 02       		.byte	0x2
+ 282 0087 A3       		.byte	0xa3
+ 283 0088 48000000 		.4byte	0x48
+ 284 008c 02       		.uleb128 0x2
+ 285 008d 04       		.byte	0x4
+ 286 008e 04       		.byte	0x4
+ 287 008f 4F000000 		.4byte	.LASF12
+ 288 0093 02       		.uleb128 0x2
+ 289 0094 08       		.byte	0x8
+ 290 0095 04       		.byte	0x4
+ 291 0096 57010000 		.4byte	.LASF13
+ 292 009a 02       		.uleb128 0x2
+ 293 009b 01       		.byte	0x1
+ 294 009c 08       		.byte	0x8
+ 295 009d 45020000 		.4byte	.LASF14
+ 296 00a1 05       		.uleb128 0x5
+ 297 00a2 00000000 		.4byte	.LASF15
+ 298 00a6 02       		.byte	0x2
+ 299 00a7 4D01     		.2byte	0x14d
+ 300 00a9 AD000000 		.4byte	0xad
+ 301 00ad 06       		.uleb128 0x6
+ 302 00ae 81000000 		.4byte	0x81
+ 303 00b2 07       		.uleb128 0x7
+ 304 00b3 3A000000 		.4byte	.LASF16
+ 305 00b7 01       		.byte	0x1
+ 306 00b8 46       		.byte	0x46
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 10
+
+
+ 307 00b9 00000000 		.4byte	.LFB0
+ 308 00bd 1C000000 		.4byte	.LFE0-.LFB0
+ 309 00c1 01       		.uleb128 0x1
+ 310 00c2 9C       		.byte	0x9c
+ 311 00c3 07       		.uleb128 0x7
+ 312 00c4 55000000 		.4byte	.LASF17
+ 313 00c8 01       		.byte	0x1
+ 314 00c9 5F       		.byte	0x5f
+ 315 00ca 00000000 		.4byte	.LFB1
+ 316 00ce 1C000000 		.4byte	.LFE1-.LFB1
+ 317 00d2 01       		.uleb128 0x1
+ 318 00d3 9C       		.byte	0x9c
+ 319 00d4 08       		.uleb128 0x8
+ 320 00d5 0E000000 		.4byte	.LASF27
+ 321 00d9 01       		.byte	0x1
+ 322 00da 86       		.byte	0x86
+ 323 00db 00000000 		.4byte	.LFB2
+ 324 00df 38000000 		.4byte	.LFE2-.LFB2
+ 325 00e3 01       		.uleb128 0x1
+ 326 00e4 9C       		.byte	0x9c
+ 327 00e5 22010000 		.4byte	0x122
+ 328 00e9 09       		.uleb128 0x9
+ 329 00ea 4C010000 		.4byte	.LASF18
+ 330 00ee 01       		.byte	0x1
+ 331 00ef 86       		.byte	0x86
+ 332 00f0 76000000 		.4byte	0x76
+ 333 00f4 02       		.uleb128 0x2
+ 334 00f5 91       		.byte	0x91
+ 335 00f6 6E       		.sleb128 -18
+ 336 00f7 09       		.uleb128 0x9
+ 337 00f8 65010000 		.4byte	.LASF19
+ 338 00fc 01       		.byte	0x1
+ 339 00fd 86       		.byte	0x86
+ 340 00fe 6B000000 		.4byte	0x6b
+ 341 0102 02       		.uleb128 0x2
+ 342 0103 91       		.byte	0x91
+ 343 0104 6D       		.sleb128 -19
+ 344 0105 0A       		.uleb128 0xa
+ 345 0106 06000000 		.4byte	.LASF20
+ 346 010a 01       		.byte	0x1
+ 347 010b 88       		.byte	0x88
+ 348 010c 81000000 		.4byte	0x81
+ 349 0110 02       		.uleb128 0x2
+ 350 0111 91       		.byte	0x91
+ 351 0112 74       		.sleb128 -12
+ 352 0113 0A       		.uleb128 0xa
+ 353 0114 5E010000 		.4byte	.LASF21
+ 354 0118 01       		.byte	0x1
+ 355 0119 89       		.byte	0x89
+ 356 011a 81000000 		.4byte	0x81
+ 357 011e 02       		.uleb128 0x2
+ 358 011f 91       		.byte	0x91
+ 359 0120 70       		.sleb128 -16
+ 360 0121 00       		.byte	0
+ 361 0122 0B       		.uleb128 0xb
+ 362 0123 77000000 		.4byte	.LASF22
+ 363 0127 01       		.byte	0x1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 11
+
+
+ 364 0128 B0       		.byte	0xb0
+ 365 0129 76000000 		.4byte	0x76
+ 366 012d 00000000 		.4byte	.LFB3
+ 367 0131 14000000 		.4byte	.LFE3-.LFB3
+ 368 0135 01       		.uleb128 0x1
+ 369 0136 9C       		.byte	0x9c
+ 370 0137 0B       		.uleb128 0xb
+ 371 0138 73010000 		.4byte	.LASF23
+ 372 013c 01       		.byte	0x1
+ 373 013d C6       		.byte	0xc6
+ 374 013e 6B000000 		.4byte	0x6b
+ 375 0142 00000000 		.4byte	.LFB4
+ 376 0146 0C000000 		.4byte	.LFE4-.LFB4
+ 377 014a 01       		.uleb128 0x1
+ 378 014b 9C       		.byte	0x9c
+ 379 014c 00       		.byte	0
+ 380              		.section	.debug_abbrev,"",%progbits
+ 381              	.Ldebug_abbrev0:
+ 382 0000 01       		.uleb128 0x1
+ 383 0001 11       		.uleb128 0x11
+ 384 0002 01       		.byte	0x1
+ 385 0003 25       		.uleb128 0x25
+ 386 0004 0E       		.uleb128 0xe
+ 387 0005 13       		.uleb128 0x13
+ 388 0006 0B       		.uleb128 0xb
+ 389 0007 03       		.uleb128 0x3
+ 390 0008 0E       		.uleb128 0xe
+ 391 0009 1B       		.uleb128 0x1b
+ 392 000a 0E       		.uleb128 0xe
+ 393 000b 55       		.uleb128 0x55
+ 394 000c 17       		.uleb128 0x17
+ 395 000d 11       		.uleb128 0x11
+ 396 000e 01       		.uleb128 0x1
+ 397 000f 10       		.uleb128 0x10
+ 398 0010 17       		.uleb128 0x17
+ 399 0011 00       		.byte	0
+ 400 0012 00       		.byte	0
+ 401 0013 02       		.uleb128 0x2
+ 402 0014 24       		.uleb128 0x24
+ 403 0015 00       		.byte	0
+ 404 0016 0B       		.uleb128 0xb
+ 405 0017 0B       		.uleb128 0xb
+ 406 0018 3E       		.uleb128 0x3e
+ 407 0019 0B       		.uleb128 0xb
+ 408 001a 03       		.uleb128 0x3
+ 409 001b 0E       		.uleb128 0xe
+ 410 001c 00       		.byte	0
+ 411 001d 00       		.byte	0
+ 412 001e 03       		.uleb128 0x3
+ 413 001f 24       		.uleb128 0x24
+ 414 0020 00       		.byte	0
+ 415 0021 0B       		.uleb128 0xb
+ 416 0022 0B       		.uleb128 0xb
+ 417 0023 3E       		.uleb128 0x3e
+ 418 0024 0B       		.uleb128 0xb
+ 419 0025 03       		.uleb128 0x3
+ 420 0026 08       		.uleb128 0x8
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 12
+
+
+ 421 0027 00       		.byte	0
+ 422 0028 00       		.byte	0
+ 423 0029 04       		.uleb128 0x4
+ 424 002a 16       		.uleb128 0x16
+ 425 002b 00       		.byte	0
+ 426 002c 03       		.uleb128 0x3
+ 427 002d 0E       		.uleb128 0xe
+ 428 002e 3A       		.uleb128 0x3a
+ 429 002f 0B       		.uleb128 0xb
+ 430 0030 3B       		.uleb128 0x3b
+ 431 0031 0B       		.uleb128 0xb
+ 432 0032 49       		.uleb128 0x49
+ 433 0033 13       		.uleb128 0x13
+ 434 0034 00       		.byte	0
+ 435 0035 00       		.byte	0
+ 436 0036 05       		.uleb128 0x5
+ 437 0037 16       		.uleb128 0x16
+ 438 0038 00       		.byte	0
+ 439 0039 03       		.uleb128 0x3
+ 440 003a 0E       		.uleb128 0xe
+ 441 003b 3A       		.uleb128 0x3a
+ 442 003c 0B       		.uleb128 0xb
+ 443 003d 3B       		.uleb128 0x3b
+ 444 003e 05       		.uleb128 0x5
+ 445 003f 49       		.uleb128 0x49
+ 446 0040 13       		.uleb128 0x13
+ 447 0041 00       		.byte	0
+ 448 0042 00       		.byte	0
+ 449 0043 06       		.uleb128 0x6
+ 450 0044 35       		.uleb128 0x35
+ 451 0045 00       		.byte	0
+ 452 0046 49       		.uleb128 0x49
+ 453 0047 13       		.uleb128 0x13
+ 454 0048 00       		.byte	0
+ 455 0049 00       		.byte	0
+ 456 004a 07       		.uleb128 0x7
+ 457 004b 2E       		.uleb128 0x2e
+ 458 004c 00       		.byte	0
+ 459 004d 3F       		.uleb128 0x3f
+ 460 004e 19       		.uleb128 0x19
+ 461 004f 03       		.uleb128 0x3
+ 462 0050 0E       		.uleb128 0xe
+ 463 0051 3A       		.uleb128 0x3a
+ 464 0052 0B       		.uleb128 0xb
+ 465 0053 3B       		.uleb128 0x3b
+ 466 0054 0B       		.uleb128 0xb
+ 467 0055 27       		.uleb128 0x27
+ 468 0056 19       		.uleb128 0x19
+ 469 0057 11       		.uleb128 0x11
+ 470 0058 01       		.uleb128 0x1
+ 471 0059 12       		.uleb128 0x12
+ 472 005a 06       		.uleb128 0x6
+ 473 005b 40       		.uleb128 0x40
+ 474 005c 18       		.uleb128 0x18
+ 475 005d 9742     		.uleb128 0x2117
+ 476 005f 19       		.uleb128 0x19
+ 477 0060 00       		.byte	0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 13
+
+
+ 478 0061 00       		.byte	0
+ 479 0062 08       		.uleb128 0x8
+ 480 0063 2E       		.uleb128 0x2e
+ 481 0064 01       		.byte	0x1
+ 482 0065 3F       		.uleb128 0x3f
+ 483 0066 19       		.uleb128 0x19
+ 484 0067 03       		.uleb128 0x3
+ 485 0068 0E       		.uleb128 0xe
+ 486 0069 3A       		.uleb128 0x3a
+ 487 006a 0B       		.uleb128 0xb
+ 488 006b 3B       		.uleb128 0x3b
+ 489 006c 0B       		.uleb128 0xb
+ 490 006d 27       		.uleb128 0x27
+ 491 006e 19       		.uleb128 0x19
+ 492 006f 11       		.uleb128 0x11
+ 493 0070 01       		.uleb128 0x1
+ 494 0071 12       		.uleb128 0x12
+ 495 0072 06       		.uleb128 0x6
+ 496 0073 40       		.uleb128 0x40
+ 497 0074 18       		.uleb128 0x18
+ 498 0075 9742     		.uleb128 0x2117
+ 499 0077 19       		.uleb128 0x19
+ 500 0078 01       		.uleb128 0x1
+ 501 0079 13       		.uleb128 0x13
+ 502 007a 00       		.byte	0
+ 503 007b 00       		.byte	0
+ 504 007c 09       		.uleb128 0x9
+ 505 007d 05       		.uleb128 0x5
+ 506 007e 00       		.byte	0
+ 507 007f 03       		.uleb128 0x3
+ 508 0080 0E       		.uleb128 0xe
+ 509 0081 3A       		.uleb128 0x3a
+ 510 0082 0B       		.uleb128 0xb
+ 511 0083 3B       		.uleb128 0x3b
+ 512 0084 0B       		.uleb128 0xb
+ 513 0085 49       		.uleb128 0x49
+ 514 0086 13       		.uleb128 0x13
+ 515 0087 02       		.uleb128 0x2
+ 516 0088 18       		.uleb128 0x18
+ 517 0089 00       		.byte	0
+ 518 008a 00       		.byte	0
+ 519 008b 0A       		.uleb128 0xa
+ 520 008c 34       		.uleb128 0x34
+ 521 008d 00       		.byte	0
+ 522 008e 03       		.uleb128 0x3
+ 523 008f 0E       		.uleb128 0xe
+ 524 0090 3A       		.uleb128 0x3a
+ 525 0091 0B       		.uleb128 0xb
+ 526 0092 3B       		.uleb128 0x3b
+ 527 0093 0B       		.uleb128 0xb
+ 528 0094 49       		.uleb128 0x49
+ 529 0095 13       		.uleb128 0x13
+ 530 0096 02       		.uleb128 0x2
+ 531 0097 18       		.uleb128 0x18
+ 532 0098 00       		.byte	0
+ 533 0099 00       		.byte	0
+ 534 009a 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 14
+
+
+ 535 009b 2E       		.uleb128 0x2e
+ 536 009c 00       		.byte	0
+ 537 009d 3F       		.uleb128 0x3f
+ 538 009e 19       		.uleb128 0x19
+ 539 009f 03       		.uleb128 0x3
+ 540 00a0 0E       		.uleb128 0xe
+ 541 00a1 3A       		.uleb128 0x3a
+ 542 00a2 0B       		.uleb128 0xb
+ 543 00a3 3B       		.uleb128 0x3b
+ 544 00a4 0B       		.uleb128 0xb
+ 545 00a5 27       		.uleb128 0x27
+ 546 00a6 19       		.uleb128 0x19
+ 547 00a7 49       		.uleb128 0x49
+ 548 00a8 13       		.uleb128 0x13
+ 549 00a9 11       		.uleb128 0x11
+ 550 00aa 01       		.uleb128 0x1
+ 551 00ab 12       		.uleb128 0x12
+ 552 00ac 06       		.uleb128 0x6
+ 553 00ad 40       		.uleb128 0x40
+ 554 00ae 18       		.uleb128 0x18
+ 555 00af 9742     		.uleb128 0x2117
+ 556 00b1 19       		.uleb128 0x19
+ 557 00b2 00       		.byte	0
+ 558 00b3 00       		.byte	0
+ 559 00b4 00       		.byte	0
+ 560              		.section	.debug_aranges,"",%progbits
+ 561 0000 3C000000 		.4byte	0x3c
+ 562 0004 0200     		.2byte	0x2
+ 563 0006 00000000 		.4byte	.Ldebug_info0
+ 564 000a 04       		.byte	0x4
+ 565 000b 00       		.byte	0
+ 566 000c 0000     		.2byte	0
+ 567 000e 0000     		.2byte	0
+ 568 0010 00000000 		.4byte	.LFB0
+ 569 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 570 0018 00000000 		.4byte	.LFB1
+ 571 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 572 0020 00000000 		.4byte	.LFB2
+ 573 0024 38000000 		.4byte	.LFE2-.LFB2
+ 574 0028 00000000 		.4byte	.LFB3
+ 575 002c 14000000 		.4byte	.LFE3-.LFB3
+ 576 0030 00000000 		.4byte	.LFB4
+ 577 0034 0C000000 		.4byte	.LFE4-.LFB4
+ 578 0038 00000000 		.4byte	0
+ 579 003c 00000000 		.4byte	0
+ 580              		.section	.debug_ranges,"",%progbits
+ 581              	.Ldebug_ranges0:
+ 582 0000 00000000 		.4byte	.LFB0
+ 583 0004 1C000000 		.4byte	.LFE0
+ 584 0008 00000000 		.4byte	.LFB1
+ 585 000c 1C000000 		.4byte	.LFE1
+ 586 0010 00000000 		.4byte	.LFB2
+ 587 0014 38000000 		.4byte	.LFE2
+ 588 0018 00000000 		.4byte	.LFB3
+ 589 001c 14000000 		.4byte	.LFE3
+ 590 0020 00000000 		.4byte	.LFB4
+ 591 0024 0C000000 		.4byte	.LFE4
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 15
+
+
+ 592 0028 00000000 		.4byte	0
+ 593 002c 00000000 		.4byte	0
+ 594              		.section	.debug_line,"",%progbits
+ 595              	.Ldebug_line0:
+ 596 0000 B1000000 		.section	.debug_str,"MS",%progbits,1
+ 596      02004B00 
+ 596      00000201 
+ 596      FB0E0D00 
+ 596      01010101 
+ 597              	.LASF15:
+ 598 0000 72656733 		.ascii	"reg32\000"
+ 598      3200
+ 599              	.LASF20:
+ 600 0006 6D61736B 		.ascii	"maskVal\000"
+ 600      56616C00 
+ 601              	.LASF27:
+ 602 000e 4932434F 		.ascii	"I2COLED_SCBCLK_SetFractionalDividerRegister\000"
+ 602      4C45445F 
+ 602      53434243 
+ 602      4C4B5F53 
+ 602      65744672 
+ 603              	.LASF16:
+ 604 003a 4932434F 		.ascii	"I2COLED_SCBCLK_Start\000"
+ 604      4C45445F 
+ 604      53434243 
+ 604      4C4B5F53 
+ 604      74617274 
+ 605              	.LASF12:
+ 606 004f 666C6F61 		.ascii	"float\000"
+ 606      7400
+ 607              	.LASF17:
+ 608 0055 4932434F 		.ascii	"I2COLED_SCBCLK_Stop\000"
+ 608      4C45445F 
+ 608      53434243 
+ 608      4C4B5F53 
+ 608      746F7000 
+ 609              	.LASF1:
+ 610 0069 756E7369 		.ascii	"unsigned char\000"
+ 610      676E6564 
+ 610      20636861 
+ 610      7200
+ 611              	.LASF22:
+ 612 0077 4932434F 		.ascii	"I2COLED_SCBCLK_GetDividerRegister\000"
+ 612      4C45445F 
+ 612      53434243 
+ 612      4C4B5F47 
+ 612      65744469 
+ 613              	.LASF5:
+ 614 0099 6C6F6E67 		.ascii	"long unsigned int\000"
+ 614      20756E73 
+ 614      69676E65 
+ 614      6420696E 
+ 614      7400
+ 615              	.LASF3:
+ 616 00ab 73686F72 		.ascii	"short unsigned int\000"
+ 616      7420756E 
+ 616      7369676E 
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 16
+
+
+ 616      65642069 
+ 616      6E7400
+ 617              	.LASF24:
+ 618 00be 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 618      43313120 
+ 618      352E342E 
+ 618      31203230 
+ 618      31363036 
+ 619 00f1 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 619      20726576 
+ 619      6973696F 
+ 619      6E203233 
+ 619      37373135 
+ 620 0124 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 620      66756E63 
+ 620      74696F6E 
+ 620      2D736563 
+ 620      74696F6E 
+ 621              	.LASF18:
+ 622 014c 636C6B44 		.ascii	"clkDivider\000"
+ 622      69766964 
+ 622      657200
+ 623              	.LASF13:
+ 624 0157 646F7562 		.ascii	"double\000"
+ 624      6C6500
+ 625              	.LASF21:
+ 626 015e 72656756 		.ascii	"regVal\000"
+ 626      616C00
+ 627              	.LASF19:
+ 628 0165 636C6B46 		.ascii	"clkFractional\000"
+ 628      72616374 
+ 628      696F6E61 
+ 628      6C00
+ 629              	.LASF23:
+ 630 0173 4932434F 		.ascii	"I2COLED_SCBCLK_GetFractionalDividerRegister\000"
+ 630      4C45445F 
+ 630      53434243 
+ 630      4C4B5F47 
+ 630      65744672 
+ 631              	.LASF10:
+ 632 019f 75696E74 		.ascii	"uint16\000"
+ 632      313600
+ 633              	.LASF11:
+ 634 01a6 75696E74 		.ascii	"uint32\000"
+ 634      333200
+ 635              	.LASF8:
+ 636 01ad 756E7369 		.ascii	"unsigned int\000"
+ 636      676E6564 
+ 636      20696E74 
+ 636      00
+ 637              	.LASF7:
+ 638 01ba 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 638      206C6F6E 
+ 638      6720756E 
+ 638      7369676E 
+ 638      65642069 
+ 639              	.LASF25:
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccIQ0Pfc.s 			page 17
+
+
+ 640 01d1 47656E65 		.ascii	"Generated_Source\\PSoC4\\I2COLED_SCBCLK.c\000"
+ 640      72617465 
+ 640      645F536F 
+ 640      75726365 
+ 640      5C50536F 
+ 641              	.LASF6:
+ 642 01f9 6C6F6E67 		.ascii	"long long int\000"
+ 642      206C6F6E 
+ 642      6720696E 
+ 642      7400
+ 643              	.LASF26:
+ 644 0207 443A5C4E 		.ascii	"D:\\Nico\\Archivos\\lib_psoc\\Cypress-PSOC-OLED-mas"
+ 644      69636F5C 
+ 644      41726368 
+ 644      69766F73 
+ 644      5C6C6962 
+ 645 0236 7465725C 		.ascii	"ter\\OLED.cydsn\000"
+ 645      4F4C4544 
+ 645      2E637964 
+ 645      736E00
+ 646              	.LASF14:
+ 647 0245 63686172 		.ascii	"char\000"
+ 647      00
+ 648              	.LASF2:
+ 649 024a 73686F72 		.ascii	"short int\000"
+ 649      7420696E 
+ 649      7400
+ 650              	.LASF9:
+ 651 0254 75696E74 		.ascii	"uint8\000"
+ 651      3800
+ 652              	.LASF4:
+ 653 025a 6C6F6E67 		.ascii	"long int\000"
+ 653      20696E74 
+ 653      00
+ 654              	.LASF0:
+ 655 0263 7369676E 		.ascii	"signed char\000"
+ 655      65642063 
+ 655      68617200 
+ 656              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,9 @@
+dont_use_io iocell 1 0
+dont_use_io iocell 1 1
+set_location "\I2COLED:I2C_FF\" i2ccell -1 -1 0
+# Note: port 12 is the logical name for port 7
+set_io "Scl(0)" iocell 12 0
+# Note: port 12 is the logical name for port 7
+set_io "Sda(0)" iocell 12 1
+set_location "\I2COLED:I2C_IRQ\" interrupt -1 -1 15
+set_location "ClockBlock" clockblockcell -1 -1 0

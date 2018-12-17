@@ -1,0 +1,7 @@
+D:\Nico\Archivos\lib_psoc\Cypress-PSOC-OLED-master\OLED.cydsn\OLED.cyprj|199ad4f6-e9fd-4625-be4f-7b1f8e66b3b8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|a126b82b-cee5-42b2-8306-3edb569d0ed5
+C:\Users\jdrd3\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|b407653a-c665-4d2d-8b2a-c85b9b06a9f6
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|cf4b28e9-0da2-4155-8583-9676744caae9
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|8627a9a3-739e-44f7-b366-3562c8c488ba
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|21ba9b6b-b9ab-4ee3-9b2b-a0a89ac998d3
+C:\Users\jdrd3\Documents\PSoC Creator\Ejemplos\OLED.cydsn\OLED.cyprj|e7d7afc1-df99-483d-8f89-7fe7e98264ca

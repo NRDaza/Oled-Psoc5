@@ -1,0 +1,806 @@
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"I2COLED_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	I2COLED_backup
+  20              		.bss
+  21              		.align	2
+  22              		.type	I2COLED_backup, %object
+  23              		.size	I2COLED_backup, 1
+  24              	I2COLED_backup:
+  25 0000 00       		.space	1
+  26              		.section	.text.I2COLED_Sleep,"ax",%progbits
+  27              		.align	2
+  28              		.global	I2COLED_Sleep
+  29              		.code	16
+  30              		.thumb_func
+  31              		.type	I2COLED_Sleep, %function
+  32              	I2COLED_Sleep:
+  33              	.LFB0:
+  34              		.file 1 "Generated_Source\\PSoC4\\I2COLED_PM.c"
+   1:Generated_Source\PSoC4/I2COLED_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC4/I2COLED_PM.c **** * File Name: I2COLED_PM.c
+   3:Generated_Source\PSoC4/I2COLED_PM.c **** * Version 2.0
+   4:Generated_Source\PSoC4/I2COLED_PM.c **** *
+   5:Generated_Source\PSoC4/I2COLED_PM.c **** * Description:
+   6:Generated_Source\PSoC4/I2COLED_PM.c **** *  This file provides the source code to the Power Management support for
+   7:Generated_Source\PSoC4/I2COLED_PM.c **** *  the SCB Component.
+   8:Generated_Source\PSoC4/I2COLED_PM.c **** *
+   9:Generated_Source\PSoC4/I2COLED_PM.c **** * Note:
+  10:Generated_Source\PSoC4/I2COLED_PM.c **** *
+  11:Generated_Source\PSoC4/I2COLED_PM.c **** ********************************************************************************
+  12:Generated_Source\PSoC4/I2COLED_PM.c **** * Copyright 2013-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC4/I2COLED_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:Generated_Source\PSoC4/I2COLED_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:Generated_Source\PSoC4/I2COLED_PM.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC4/I2COLED_PM.c **** *******************************************************************************/
+  17:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  18:Generated_Source\PSoC4/I2COLED_PM.c **** #include "I2COLED.h"
+  19:Generated_Source\PSoC4/I2COLED_PM.c **** #include "I2COLED_PVT.h"
+  20:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  21:Generated_Source\PSoC4/I2COLED_PM.c **** #if(I2COLED_SCB_MODE_I2C_INC)
+  22:Generated_Source\PSoC4/I2COLED_PM.c ****     #include "I2COLED_I2C_PVT.h"
+  23:Generated_Source\PSoC4/I2COLED_PM.c **** #endif /* (I2COLED_SCB_MODE_I2C_INC) */
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 2
+
+
+  24:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  25:Generated_Source\PSoC4/I2COLED_PM.c **** #if(I2COLED_SCB_MODE_EZI2C_INC)
+  26:Generated_Source\PSoC4/I2COLED_PM.c ****     #include "I2COLED_EZI2C_PVT.h"
+  27:Generated_Source\PSoC4/I2COLED_PM.c **** #endif /* (I2COLED_SCB_MODE_EZI2C_INC) */
+  28:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  29:Generated_Source\PSoC4/I2COLED_PM.c **** #if(I2COLED_SCB_MODE_SPI_INC || I2COLED_SCB_MODE_UART_INC)
+  30:Generated_Source\PSoC4/I2COLED_PM.c ****     #include "I2COLED_SPI_UART_PVT.h"
+  31:Generated_Source\PSoC4/I2COLED_PM.c **** #endif /* (I2COLED_SCB_MODE_SPI_INC || I2COLED_SCB_MODE_UART_INC) */
+  32:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  33:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  34:Generated_Source\PSoC4/I2COLED_PM.c **** /***************************************
+  35:Generated_Source\PSoC4/I2COLED_PM.c **** *   Backup Structure declaration
+  36:Generated_Source\PSoC4/I2COLED_PM.c **** ***************************************/
+  37:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  38:Generated_Source\PSoC4/I2COLED_PM.c **** #if(I2COLED_SCB_MODE_UNCONFIG_CONST_CFG || \
+  39:Generated_Source\PSoC4/I2COLED_PM.c ****    (I2COLED_SCB_MODE_I2C_CONST_CFG   && (!I2COLED_I2C_WAKE_ENABLE_CONST))   || \
+  40:Generated_Source\PSoC4/I2COLED_PM.c ****    (I2COLED_SCB_MODE_EZI2C_CONST_CFG && (!I2COLED_EZI2C_WAKE_ENABLE_CONST)) || \
+  41:Generated_Source\PSoC4/I2COLED_PM.c ****    (I2COLED_SCB_MODE_SPI_CONST_CFG   && (!I2COLED_SPI_WAKE_ENABLE_CONST))   || \
+  42:Generated_Source\PSoC4/I2COLED_PM.c ****    (I2COLED_SCB_MODE_UART_CONST_CFG  && (!I2COLED_UART_WAKE_ENABLE_CONST)))
+  43:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  44:Generated_Source\PSoC4/I2COLED_PM.c ****     I2COLED_BACKUP_STRUCT I2COLED_backup =
+  45:Generated_Source\PSoC4/I2COLED_PM.c ****     {
+  46:Generated_Source\PSoC4/I2COLED_PM.c ****         0u, /* enableState */
+  47:Generated_Source\PSoC4/I2COLED_PM.c ****     };
+  48:Generated_Source\PSoC4/I2COLED_PM.c **** #endif
+  49:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  50:Generated_Source\PSoC4/I2COLED_PM.c **** 
+  51:Generated_Source\PSoC4/I2COLED_PM.c **** /*******************************************************************************
+  52:Generated_Source\PSoC4/I2COLED_PM.c **** * Function Name: I2COLED_Sleep
+  53:Generated_Source\PSoC4/I2COLED_PM.c **** ********************************************************************************
+  54:Generated_Source\PSoC4/I2COLED_PM.c **** *
+  55:Generated_Source\PSoC4/I2COLED_PM.c **** * Summary:
+  56:Generated_Source\PSoC4/I2COLED_PM.c **** *  Prepares the component to enter Deep Sleep.
+  57:Generated_Source\PSoC4/I2COLED_PM.c **** *  The "Enable wakeup from Sleep Mode" selection has an influence on
+  58:Generated_Source\PSoC4/I2COLED_PM.c **** *  this function implementation.
+  59:Generated_Source\PSoC4/I2COLED_PM.c **** *
+  60:Generated_Source\PSoC4/I2COLED_PM.c **** * Parameters:
+  61:Generated_Source\PSoC4/I2COLED_PM.c **** *  None
+  62:Generated_Source\PSoC4/I2COLED_PM.c **** *
+  63:Generated_Source\PSoC4/I2COLED_PM.c **** * Return:
+  64:Generated_Source\PSoC4/I2COLED_PM.c **** *  None
+  65:Generated_Source\PSoC4/I2COLED_PM.c **** *
+  66:Generated_Source\PSoC4/I2COLED_PM.c **** *******************************************************************************/
+  67:Generated_Source\PSoC4/I2COLED_PM.c **** void I2COLED_Sleep(void)
+  68:Generated_Source\PSoC4/I2COLED_PM.c **** {
+  35              		.loc 1 68 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 1, uses_anonymous_args = 0
+  39 0000 80B5     		push	{r7, lr}
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 00AF     		add	r7, sp, #0
+  44              		.cfi_def_cfa_register 7
+  69:Generated_Source\PSoC4/I2COLED_PM.c **** #if(I2COLED_SCB_MODE_UNCONFIG_CONST_CFG)
+  70:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 3
+
+
+  71:Generated_Source\PSoC4/I2COLED_PM.c ****     if(I2COLED_SCB_WAKE_ENABLE_CHECK)
+  72:Generated_Source\PSoC4/I2COLED_PM.c ****     {
+  73:Generated_Source\PSoC4/I2COLED_PM.c ****         if(I2COLED_SCB_MODE_I2C_RUNTM_CFG)
+  74:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+  75:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_I2CSaveConfig();
+  76:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+  77:Generated_Source\PSoC4/I2COLED_PM.c ****         else if(I2COLED_SCB_MODE_EZI2C_RUNTM_CFG)
+  78:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+  79:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_EzI2CSaveConfig();
+  80:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+  81:Generated_Source\PSoC4/I2COLED_PM.c ****     #if(!I2COLED_CY_SCBIP_V1)
+  82:Generated_Source\PSoC4/I2COLED_PM.c ****         else if(I2COLED_SCB_MODE_SPI_RUNTM_CFG)
+  83:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+  84:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_SpiSaveConfig();
+  85:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+  86:Generated_Source\PSoC4/I2COLED_PM.c ****         else if(I2COLED_SCB_MODE_UART_RUNTM_CFG)
+  87:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+  88:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_UartSaveConfig();
+  89:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+  90:Generated_Source\PSoC4/I2COLED_PM.c ****     #endif /* (!I2COLED_CY_SCBIP_V1) */
+  91:Generated_Source\PSoC4/I2COLED_PM.c ****         else
+  92:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+  93:Generated_Source\PSoC4/I2COLED_PM.c ****             /* Unknown mode */
+  94:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+  95:Generated_Source\PSoC4/I2COLED_PM.c ****     }
+  96:Generated_Source\PSoC4/I2COLED_PM.c ****     else
+  97:Generated_Source\PSoC4/I2COLED_PM.c ****     {
+  98:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_backup.enableState = (uint8) I2COLED_GET_CTRL_ENABLED;
+  99:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 100:Generated_Source\PSoC4/I2COLED_PM.c ****         if(0u != I2COLED_backup.enableState)
+ 101:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+ 102:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_Stop();
+ 103:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+ 104:Generated_Source\PSoC4/I2COLED_PM.c ****     }
+ 105:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 106:Generated_Source\PSoC4/I2COLED_PM.c **** #else
+ 107:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 108:Generated_Source\PSoC4/I2COLED_PM.c ****     #if (I2COLED_SCB_MODE_I2C_CONST_CFG && I2COLED_I2C_WAKE_ENABLE_CONST)
+ 109:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_I2CSaveConfig();
+ 110:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 111:Generated_Source\PSoC4/I2COLED_PM.c ****     #elif (I2COLED_SCB_MODE_EZI2C_CONST_CFG && I2COLED_EZI2C_WAKE_ENABLE_CONST)
+ 112:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_EzI2CSaveConfig();
+ 113:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 114:Generated_Source\PSoC4/I2COLED_PM.c ****     #elif (I2COLED_SCB_MODE_SPI_CONST_CFG && I2COLED_SPI_WAKE_ENABLE_CONST)
+ 115:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_SpiSaveConfig();
+ 116:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 117:Generated_Source\PSoC4/I2COLED_PM.c ****     #elif (I2COLED_SCB_MODE_UART_CONST_CFG && I2COLED_UART_WAKE_ENABLE_CONST)
+ 118:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_UartSaveConfig();
+ 119:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 120:Generated_Source\PSoC4/I2COLED_PM.c ****     #else
+ 121:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 122:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_backup.enableState = (uint8) I2COLED_GET_CTRL_ENABLED;
+  45              		.loc 1 122 0
+  46 0004 074B     		ldr	r3, .L4
+  47 0006 1B68     		ldr	r3, [r3]
+  48 0008 DB0F     		lsrs	r3, r3, #31
+  49 000a DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 4
+
+
+  50 000c 1A00     		movs	r2, r3
+  51 000e 064B     		ldr	r3, .L4+4
+  52 0010 1A70     		strb	r2, [r3]
+ 123:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 124:Generated_Source\PSoC4/I2COLED_PM.c ****         if(0u != I2COLED_backup.enableState)
+  53              		.loc 1 124 0
+  54 0012 054B     		ldr	r3, .L4+4
+  55 0014 1B78     		ldrb	r3, [r3]
+  56 0016 002B     		cmp	r3, #0
+  57 0018 01D0     		beq	.L3
+ 125:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+ 126:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_Stop();
+  58              		.loc 1 126 0
+  59 001a FFF7FEFF 		bl	I2COLED_Stop
+  60              	.L3:
+ 127:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+ 128:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 129:Generated_Source\PSoC4/I2COLED_PM.c ****     #endif /* defined (I2COLED_SCB_MODE_I2C_CONST_CFG) && (I2COLED_I2C_WAKE_ENABLE_CONST) */
+ 130:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 131:Generated_Source\PSoC4/I2COLED_PM.c **** #endif /* (I2COLED_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 132:Generated_Source\PSoC4/I2COLED_PM.c **** }
+  61              		.loc 1 132 0
+  62 001e C046     		nop
+  63 0020 BD46     		mov	sp, r7
+  64              		@ sp needed
+  65 0022 80BD     		pop	{r7, pc}
+  66              	.L5:
+  67              		.align	2
+  68              	.L4:
+  69 0024 00000740 		.word	1074200576
+  70 0028 00000000 		.word	I2COLED_backup
+  71              		.cfi_endproc
+  72              	.LFE0:
+  73              		.size	I2COLED_Sleep, .-I2COLED_Sleep
+  74              		.section	.text.I2COLED_Wakeup,"ax",%progbits
+  75              		.align	2
+  76              		.global	I2COLED_Wakeup
+  77              		.code	16
+  78              		.thumb_func
+  79              		.type	I2COLED_Wakeup, %function
+  80              	I2COLED_Wakeup:
+  81              	.LFB1:
+ 133:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 134:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 135:Generated_Source\PSoC4/I2COLED_PM.c **** /*******************************************************************************
+ 136:Generated_Source\PSoC4/I2COLED_PM.c **** * Function Name: I2COLED_Wakeup
+ 137:Generated_Source\PSoC4/I2COLED_PM.c **** ********************************************************************************
+ 138:Generated_Source\PSoC4/I2COLED_PM.c **** *
+ 139:Generated_Source\PSoC4/I2COLED_PM.c **** * Summary:
+ 140:Generated_Source\PSoC4/I2COLED_PM.c **** *  Prepares the component for the Active mode operation after exiting
+ 141:Generated_Source\PSoC4/I2COLED_PM.c **** *  Deep Sleep. The "Enable wakeup from Sleep Mode" option has an influence
+ 142:Generated_Source\PSoC4/I2COLED_PM.c **** *  on this function implementation.
+ 143:Generated_Source\PSoC4/I2COLED_PM.c **** *  This function should not be called after exiting Sleep.
+ 144:Generated_Source\PSoC4/I2COLED_PM.c **** *
+ 145:Generated_Source\PSoC4/I2COLED_PM.c **** * Parameters:
+ 146:Generated_Source\PSoC4/I2COLED_PM.c **** *  None
+ 147:Generated_Source\PSoC4/I2COLED_PM.c **** *
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 5
+
+
+ 148:Generated_Source\PSoC4/I2COLED_PM.c **** * Return:
+ 149:Generated_Source\PSoC4/I2COLED_PM.c **** *  None
+ 150:Generated_Source\PSoC4/I2COLED_PM.c **** *
+ 151:Generated_Source\PSoC4/I2COLED_PM.c **** *******************************************************************************/
+ 152:Generated_Source\PSoC4/I2COLED_PM.c **** void I2COLED_Wakeup(void)
+ 153:Generated_Source\PSoC4/I2COLED_PM.c **** {
+  82              		.loc 1 153 0
+  83              		.cfi_startproc
+  84              		@ args = 0, pretend = 0, frame = 0
+  85              		@ frame_needed = 1, uses_anonymous_args = 0
+  86 0000 80B5     		push	{r7, lr}
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 7, -8
+  89              		.cfi_offset 14, -4
+  90 0002 00AF     		add	r7, sp, #0
+  91              		.cfi_def_cfa_register 7
+ 154:Generated_Source\PSoC4/I2COLED_PM.c **** #if(I2COLED_SCB_MODE_UNCONFIG_CONST_CFG)
+ 155:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 156:Generated_Source\PSoC4/I2COLED_PM.c ****     if(I2COLED_SCB_WAKE_ENABLE_CHECK)
+ 157:Generated_Source\PSoC4/I2COLED_PM.c ****     {
+ 158:Generated_Source\PSoC4/I2COLED_PM.c ****         if(I2COLED_SCB_MODE_I2C_RUNTM_CFG)
+ 159:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+ 160:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_I2CRestoreConfig();
+ 161:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+ 162:Generated_Source\PSoC4/I2COLED_PM.c ****         else if(I2COLED_SCB_MODE_EZI2C_RUNTM_CFG)
+ 163:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+ 164:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_EzI2CRestoreConfig();
+ 165:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+ 166:Generated_Source\PSoC4/I2COLED_PM.c ****     #if(!I2COLED_CY_SCBIP_V1)
+ 167:Generated_Source\PSoC4/I2COLED_PM.c ****         else if(I2COLED_SCB_MODE_SPI_RUNTM_CFG)
+ 168:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+ 169:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_SpiRestoreConfig();
+ 170:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+ 171:Generated_Source\PSoC4/I2COLED_PM.c ****         else if(I2COLED_SCB_MODE_UART_RUNTM_CFG)
+ 172:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+ 173:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_UartRestoreConfig();
+ 174:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+ 175:Generated_Source\PSoC4/I2COLED_PM.c ****     #endif /* (!I2COLED_CY_SCBIP_V1) */
+ 176:Generated_Source\PSoC4/I2COLED_PM.c ****         else
+ 177:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+ 178:Generated_Source\PSoC4/I2COLED_PM.c ****             /* Unknown mode */
+ 179:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+ 180:Generated_Source\PSoC4/I2COLED_PM.c ****     }
+ 181:Generated_Source\PSoC4/I2COLED_PM.c ****     else
+ 182:Generated_Source\PSoC4/I2COLED_PM.c ****     {
+ 183:Generated_Source\PSoC4/I2COLED_PM.c ****         if(0u != I2COLED_backup.enableState)
+ 184:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+ 185:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_Enable();
+ 186:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+ 187:Generated_Source\PSoC4/I2COLED_PM.c ****     }
+ 188:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 189:Generated_Source\PSoC4/I2COLED_PM.c **** #else
+ 190:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 191:Generated_Source\PSoC4/I2COLED_PM.c ****     #if (I2COLED_SCB_MODE_I2C_CONST_CFG  && I2COLED_I2C_WAKE_ENABLE_CONST)
+ 192:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_I2CRestoreConfig();
+ 193:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 194:Generated_Source\PSoC4/I2COLED_PM.c ****     #elif (I2COLED_SCB_MODE_EZI2C_CONST_CFG && I2COLED_EZI2C_WAKE_ENABLE_CONST)
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 6
+
+
+ 195:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_EzI2CRestoreConfig();
+ 196:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 197:Generated_Source\PSoC4/I2COLED_PM.c ****     #elif (I2COLED_SCB_MODE_SPI_CONST_CFG && I2COLED_SPI_WAKE_ENABLE_CONST)
+ 198:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_SpiRestoreConfig();
+ 199:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 200:Generated_Source\PSoC4/I2COLED_PM.c ****     #elif (I2COLED_SCB_MODE_UART_CONST_CFG && I2COLED_UART_WAKE_ENABLE_CONST)
+ 201:Generated_Source\PSoC4/I2COLED_PM.c ****         I2COLED_UartRestoreConfig();
+ 202:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 203:Generated_Source\PSoC4/I2COLED_PM.c ****     #else
+ 204:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 205:Generated_Source\PSoC4/I2COLED_PM.c ****         if(0u != I2COLED_backup.enableState)
+  92              		.loc 1 205 0
+  93 0004 044B     		ldr	r3, .L9
+  94 0006 1B78     		ldrb	r3, [r3]
+  95 0008 002B     		cmp	r3, #0
+  96 000a 01D0     		beq	.L8
+ 206:Generated_Source\PSoC4/I2COLED_PM.c ****         {
+ 207:Generated_Source\PSoC4/I2COLED_PM.c ****             I2COLED_Enable();
+  97              		.loc 1 207 0
+  98 000c FFF7FEFF 		bl	I2COLED_Enable
+  99              	.L8:
+ 208:Generated_Source\PSoC4/I2COLED_PM.c ****         }
+ 209:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 210:Generated_Source\PSoC4/I2COLED_PM.c ****     #endif /* (I2COLED_I2C_WAKE_ENABLE_CONST) */
+ 211:Generated_Source\PSoC4/I2COLED_PM.c **** 
+ 212:Generated_Source\PSoC4/I2COLED_PM.c **** #endif /* (I2COLED_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 213:Generated_Source\PSoC4/I2COLED_PM.c **** }
+ 100              		.loc 1 213 0
+ 101 0010 C046     		nop
+ 102 0012 BD46     		mov	sp, r7
+ 103              		@ sp needed
+ 104 0014 80BD     		pop	{r7, pc}
+ 105              	.L10:
+ 106 0016 C046     		.align	2
+ 107              	.L9:
+ 108 0018 00000000 		.word	I2COLED_backup
+ 109              		.cfi_endproc
+ 110              	.LFE1:
+ 111              		.size	I2COLED_Wakeup, .-I2COLED_Wakeup
+ 112              		.text
+ 113              	.Letext0:
+ 114              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 115              		.file 3 "Generated_Source\\PSoC4\\I2COLED.h"
+ 116              		.section	.debug_info,"",%progbits
+ 117              	.Ldebug_info0:
+ 118 0000 05010000 		.4byte	0x105
+ 119 0004 0400     		.2byte	0x4
+ 120 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 121 000a 04       		.byte	0x4
+ 122 000b 01       		.uleb128 0x1
+ 123 000c 62010000 		.4byte	.LASF20
+ 124 0010 0C       		.byte	0xc
+ 125 0011 B9000000 		.4byte	.LASF21
+ 126 0015 11010000 		.4byte	.LASF22
+ 127 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 128 001d 00000000 		.4byte	0
+ 129 0021 00000000 		.4byte	.Ldebug_line0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 7
+
+
+ 130 0025 02       		.uleb128 0x2
+ 131 0026 01       		.byte	0x1
+ 132 0027 06       		.byte	0x6
+ 133 0028 F0010000 		.4byte	.LASF0
+ 134 002c 02       		.uleb128 0x2
+ 135 002d 01       		.byte	0x1
+ 136 002e 08       		.byte	0x8
+ 137 002f 96000000 		.4byte	.LASF1
+ 138 0033 02       		.uleb128 0x2
+ 139 0034 02       		.byte	0x2
+ 140 0035 05       		.byte	0x5
+ 141 0036 58010000 		.4byte	.LASF2
+ 142 003a 02       		.uleb128 0x2
+ 143 003b 02       		.byte	0x2
+ 144 003c 07       		.byte	0x7
+ 145 003d E3000000 		.4byte	.LASF3
+ 146 0041 02       		.uleb128 0x2
+ 147 0042 04       		.byte	0x4
+ 148 0043 05       		.byte	0x5
+ 149 0044 A9000000 		.4byte	.LASF4
+ 150 0048 02       		.uleb128 0x2
+ 151 0049 04       		.byte	0x4
+ 152 004a 07       		.byte	0x7
+ 153 004b 51000000 		.4byte	.LASF5
+ 154 004f 02       		.uleb128 0x2
+ 155 0050 08       		.byte	0x8
+ 156 0051 05       		.byte	0x5
+ 157 0052 00000000 		.4byte	.LASF6
+ 158 0056 02       		.uleb128 0x2
+ 159 0057 08       		.byte	0x8
+ 160 0058 07       		.byte	0x7
+ 161 0059 63000000 		.4byte	.LASF7
+ 162 005d 03       		.uleb128 0x3
+ 163 005e 04       		.byte	0x4
+ 164 005f 05       		.byte	0x5
+ 165 0060 696E7400 		.ascii	"int\000"
+ 166 0064 02       		.uleb128 0x2
+ 167 0065 04       		.byte	0x4
+ 168 0066 07       		.byte	0x7
+ 169 0067 21000000 		.4byte	.LASF8
+ 170 006b 04       		.uleb128 0x4
+ 171 006c 4B000000 		.4byte	.LASF9
+ 172 0070 02       		.byte	0x2
+ 173 0071 A1       		.byte	0xa1
+ 174 0072 2C000000 		.4byte	0x2c
+ 175 0076 04       		.uleb128 0x4
+ 176 0077 0E000000 		.4byte	.LASF10
+ 177 007b 02       		.byte	0x2
+ 178 007c A3       		.byte	0xa3
+ 179 007d 48000000 		.4byte	0x48
+ 180 0081 02       		.uleb128 0x2
+ 181 0082 04       		.byte	0x4
+ 182 0083 04       		.byte	0x4
+ 183 0084 90000000 		.4byte	.LASF11
+ 184 0088 02       		.uleb128 0x2
+ 185 0089 08       		.byte	0x8
+ 186 008a 04       		.byte	0x4
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 8
+
+
+ 187 008b B2000000 		.4byte	.LASF12
+ 188 008f 02       		.uleb128 0x2
+ 189 0090 01       		.byte	0x1
+ 190 0091 08       		.byte	0x8
+ 191 0092 A4000000 		.4byte	.LASF13
+ 192 0096 05       		.uleb128 0x5
+ 193 0097 DD000000 		.4byte	.LASF14
+ 194 009b 02       		.byte	0x2
+ 195 009c 4D01     		.2byte	0x14d
+ 196 009e A2000000 		.4byte	0xa2
+ 197 00a2 06       		.uleb128 0x6
+ 198 00a3 76000000 		.4byte	0x76
+ 199 00a7 02       		.uleb128 0x2
+ 200 00a8 08       		.byte	0x8
+ 201 00a9 04       		.byte	0x4
+ 202 00aa 05010000 		.4byte	.LASF15
+ 203 00ae 02       		.uleb128 0x2
+ 204 00af 04       		.byte	0x4
+ 205 00b0 07       		.byte	0x7
+ 206 00b1 4F010000 		.4byte	.LASF16
+ 207 00b5 07       		.uleb128 0x7
+ 208 00b6 01       		.byte	0x1
+ 209 00b7 03       		.byte	0x3
+ 210 00b8 58       		.byte	0x58
+ 211 00b9 CA000000 		.4byte	0xca
+ 212 00bd 08       		.uleb128 0x8
+ 213 00be 15000000 		.4byte	.LASF23
+ 214 00c2 03       		.byte	0x3
+ 215 00c3 5A       		.byte	0x5a
+ 216 00c4 6B000000 		.4byte	0x6b
+ 217 00c8 00       		.byte	0
+ 218 00c9 00       		.byte	0
+ 219 00ca 04       		.uleb128 0x4
+ 220 00cb 7A000000 		.4byte	.LASF17
+ 221 00cf 03       		.byte	0x3
+ 222 00d0 5B       		.byte	0x5b
+ 223 00d1 B5000000 		.4byte	0xb5
+ 224 00d5 09       		.uleb128 0x9
+ 225 00d6 2E000000 		.4byte	.LASF18
+ 226 00da 01       		.byte	0x1
+ 227 00db 43       		.byte	0x43
+ 228 00dc 00000000 		.4byte	.LFB0
+ 229 00e0 2C000000 		.4byte	.LFE0-.LFB0
+ 230 00e4 01       		.uleb128 0x1
+ 231 00e5 9C       		.byte	0x9c
+ 232 00e6 09       		.uleb128 0x9
+ 233 00e7 3C000000 		.4byte	.LASF19
+ 234 00eb 01       		.byte	0x1
+ 235 00ec 98       		.byte	0x98
+ 236 00ed 00000000 		.4byte	.LFB1
+ 237 00f1 1C000000 		.4byte	.LFE1-.LFB1
+ 238 00f5 01       		.uleb128 0x1
+ 239 00f6 9C       		.byte	0x9c
+ 240 00f7 0A       		.uleb128 0xa
+ 241 00f8 F6000000 		.4byte	.LASF24
+ 242 00fc 01       		.byte	0x1
+ 243 00fd 2C       		.byte	0x2c
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 9
+
+
+ 244 00fe CA000000 		.4byte	0xca
+ 245 0102 05       		.uleb128 0x5
+ 246 0103 03       		.byte	0x3
+ 247 0104 00000000 		.4byte	I2COLED_backup
+ 248 0108 00       		.byte	0
+ 249              		.section	.debug_abbrev,"",%progbits
+ 250              	.Ldebug_abbrev0:
+ 251 0000 01       		.uleb128 0x1
+ 252 0001 11       		.uleb128 0x11
+ 253 0002 01       		.byte	0x1
+ 254 0003 25       		.uleb128 0x25
+ 255 0004 0E       		.uleb128 0xe
+ 256 0005 13       		.uleb128 0x13
+ 257 0006 0B       		.uleb128 0xb
+ 258 0007 03       		.uleb128 0x3
+ 259 0008 0E       		.uleb128 0xe
+ 260 0009 1B       		.uleb128 0x1b
+ 261 000a 0E       		.uleb128 0xe
+ 262 000b 55       		.uleb128 0x55
+ 263 000c 17       		.uleb128 0x17
+ 264 000d 11       		.uleb128 0x11
+ 265 000e 01       		.uleb128 0x1
+ 266 000f 10       		.uleb128 0x10
+ 267 0010 17       		.uleb128 0x17
+ 268 0011 00       		.byte	0
+ 269 0012 00       		.byte	0
+ 270 0013 02       		.uleb128 0x2
+ 271 0014 24       		.uleb128 0x24
+ 272 0015 00       		.byte	0
+ 273 0016 0B       		.uleb128 0xb
+ 274 0017 0B       		.uleb128 0xb
+ 275 0018 3E       		.uleb128 0x3e
+ 276 0019 0B       		.uleb128 0xb
+ 277 001a 03       		.uleb128 0x3
+ 278 001b 0E       		.uleb128 0xe
+ 279 001c 00       		.byte	0
+ 280 001d 00       		.byte	0
+ 281 001e 03       		.uleb128 0x3
+ 282 001f 24       		.uleb128 0x24
+ 283 0020 00       		.byte	0
+ 284 0021 0B       		.uleb128 0xb
+ 285 0022 0B       		.uleb128 0xb
+ 286 0023 3E       		.uleb128 0x3e
+ 287 0024 0B       		.uleb128 0xb
+ 288 0025 03       		.uleb128 0x3
+ 289 0026 08       		.uleb128 0x8
+ 290 0027 00       		.byte	0
+ 291 0028 00       		.byte	0
+ 292 0029 04       		.uleb128 0x4
+ 293 002a 16       		.uleb128 0x16
+ 294 002b 00       		.byte	0
+ 295 002c 03       		.uleb128 0x3
+ 296 002d 0E       		.uleb128 0xe
+ 297 002e 3A       		.uleb128 0x3a
+ 298 002f 0B       		.uleb128 0xb
+ 299 0030 3B       		.uleb128 0x3b
+ 300 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 10
+
+
+ 301 0032 49       		.uleb128 0x49
+ 302 0033 13       		.uleb128 0x13
+ 303 0034 00       		.byte	0
+ 304 0035 00       		.byte	0
+ 305 0036 05       		.uleb128 0x5
+ 306 0037 16       		.uleb128 0x16
+ 307 0038 00       		.byte	0
+ 308 0039 03       		.uleb128 0x3
+ 309 003a 0E       		.uleb128 0xe
+ 310 003b 3A       		.uleb128 0x3a
+ 311 003c 0B       		.uleb128 0xb
+ 312 003d 3B       		.uleb128 0x3b
+ 313 003e 05       		.uleb128 0x5
+ 314 003f 49       		.uleb128 0x49
+ 315 0040 13       		.uleb128 0x13
+ 316 0041 00       		.byte	0
+ 317 0042 00       		.byte	0
+ 318 0043 06       		.uleb128 0x6
+ 319 0044 35       		.uleb128 0x35
+ 320 0045 00       		.byte	0
+ 321 0046 49       		.uleb128 0x49
+ 322 0047 13       		.uleb128 0x13
+ 323 0048 00       		.byte	0
+ 324 0049 00       		.byte	0
+ 325 004a 07       		.uleb128 0x7
+ 326 004b 13       		.uleb128 0x13
+ 327 004c 01       		.byte	0x1
+ 328 004d 0B       		.uleb128 0xb
+ 329 004e 0B       		.uleb128 0xb
+ 330 004f 3A       		.uleb128 0x3a
+ 331 0050 0B       		.uleb128 0xb
+ 332 0051 3B       		.uleb128 0x3b
+ 333 0052 0B       		.uleb128 0xb
+ 334 0053 01       		.uleb128 0x1
+ 335 0054 13       		.uleb128 0x13
+ 336 0055 00       		.byte	0
+ 337 0056 00       		.byte	0
+ 338 0057 08       		.uleb128 0x8
+ 339 0058 0D       		.uleb128 0xd
+ 340 0059 00       		.byte	0
+ 341 005a 03       		.uleb128 0x3
+ 342 005b 0E       		.uleb128 0xe
+ 343 005c 3A       		.uleb128 0x3a
+ 344 005d 0B       		.uleb128 0xb
+ 345 005e 3B       		.uleb128 0x3b
+ 346 005f 0B       		.uleb128 0xb
+ 347 0060 49       		.uleb128 0x49
+ 348 0061 13       		.uleb128 0x13
+ 349 0062 38       		.uleb128 0x38
+ 350 0063 0B       		.uleb128 0xb
+ 351 0064 00       		.byte	0
+ 352 0065 00       		.byte	0
+ 353 0066 09       		.uleb128 0x9
+ 354 0067 2E       		.uleb128 0x2e
+ 355 0068 00       		.byte	0
+ 356 0069 3F       		.uleb128 0x3f
+ 357 006a 19       		.uleb128 0x19
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 11
+
+
+ 358 006b 03       		.uleb128 0x3
+ 359 006c 0E       		.uleb128 0xe
+ 360 006d 3A       		.uleb128 0x3a
+ 361 006e 0B       		.uleb128 0xb
+ 362 006f 3B       		.uleb128 0x3b
+ 363 0070 0B       		.uleb128 0xb
+ 364 0071 27       		.uleb128 0x27
+ 365 0072 19       		.uleb128 0x19
+ 366 0073 11       		.uleb128 0x11
+ 367 0074 01       		.uleb128 0x1
+ 368 0075 12       		.uleb128 0x12
+ 369 0076 06       		.uleb128 0x6
+ 370 0077 40       		.uleb128 0x40
+ 371 0078 18       		.uleb128 0x18
+ 372 0079 9642     		.uleb128 0x2116
+ 373 007b 19       		.uleb128 0x19
+ 374 007c 00       		.byte	0
+ 375 007d 00       		.byte	0
+ 376 007e 0A       		.uleb128 0xa
+ 377 007f 34       		.uleb128 0x34
+ 378 0080 00       		.byte	0
+ 379 0081 03       		.uleb128 0x3
+ 380 0082 0E       		.uleb128 0xe
+ 381 0083 3A       		.uleb128 0x3a
+ 382 0084 0B       		.uleb128 0xb
+ 383 0085 3B       		.uleb128 0x3b
+ 384 0086 0B       		.uleb128 0xb
+ 385 0087 49       		.uleb128 0x49
+ 386 0088 13       		.uleb128 0x13
+ 387 0089 3F       		.uleb128 0x3f
+ 388 008a 19       		.uleb128 0x19
+ 389 008b 02       		.uleb128 0x2
+ 390 008c 18       		.uleb128 0x18
+ 391 008d 00       		.byte	0
+ 392 008e 00       		.byte	0
+ 393 008f 00       		.byte	0
+ 394              		.section	.debug_aranges,"",%progbits
+ 395 0000 24000000 		.4byte	0x24
+ 396 0004 0200     		.2byte	0x2
+ 397 0006 00000000 		.4byte	.Ldebug_info0
+ 398 000a 04       		.byte	0x4
+ 399 000b 00       		.byte	0
+ 400 000c 0000     		.2byte	0
+ 401 000e 0000     		.2byte	0
+ 402 0010 00000000 		.4byte	.LFB0
+ 403 0014 2C000000 		.4byte	.LFE0-.LFB0
+ 404 0018 00000000 		.4byte	.LFB1
+ 405 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 406 0020 00000000 		.4byte	0
+ 407 0024 00000000 		.4byte	0
+ 408              		.section	.debug_ranges,"",%progbits
+ 409              	.Ldebug_ranges0:
+ 410 0000 00000000 		.4byte	.LFB0
+ 411 0004 2C000000 		.4byte	.LFE0
+ 412 0008 00000000 		.4byte	.LFB1
+ 413 000c 1C000000 		.4byte	.LFE1
+ 414 0010 00000000 		.4byte	0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 12
+
+
+ 415 0014 00000000 		.4byte	0
+ 416              		.section	.debug_line,"",%progbits
+ 417              	.Ldebug_line0:
+ 418 0000 85000000 		.section	.debug_str,"MS",%progbits,1
+ 418      02005400 
+ 418      00000201 
+ 418      FB0E0D00 
+ 418      01010101 
+ 419              	.LASF6:
+ 420 0000 6C6F6E67 		.ascii	"long long int\000"
+ 420      206C6F6E 
+ 420      6720696E 
+ 420      7400
+ 421              	.LASF10:
+ 422 000e 75696E74 		.ascii	"uint32\000"
+ 422      333200
+ 423              	.LASF23:
+ 424 0015 656E6162 		.ascii	"enableState\000"
+ 424      6C655374 
+ 424      61746500 
+ 425              	.LASF8:
+ 426 0021 756E7369 		.ascii	"unsigned int\000"
+ 426      676E6564 
+ 426      20696E74 
+ 426      00
+ 427              	.LASF18:
+ 428 002e 4932434F 		.ascii	"I2COLED_Sleep\000"
+ 428      4C45445F 
+ 428      536C6565 
+ 428      7000
+ 429              	.LASF19:
+ 430 003c 4932434F 		.ascii	"I2COLED_Wakeup\000"
+ 430      4C45445F 
+ 430      57616B65 
+ 430      757000
+ 431              	.LASF9:
+ 432 004b 75696E74 		.ascii	"uint8\000"
+ 432      3800
+ 433              	.LASF5:
+ 434 0051 6C6F6E67 		.ascii	"long unsigned int\000"
+ 434      20756E73 
+ 434      69676E65 
+ 434      6420696E 
+ 434      7400
+ 435              	.LASF7:
+ 436 0063 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 436      206C6F6E 
+ 436      6720756E 
+ 436      7369676E 
+ 436      65642069 
+ 437              	.LASF17:
+ 438 007a 4932434F 		.ascii	"I2COLED_BACKUP_STRUCT\000"
+ 438      4C45445F 
+ 438      4241434B 
+ 438      55505F53 
+ 438      54525543 
+ 439              	.LASF11:
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 13
+
+
+ 440 0090 666C6F61 		.ascii	"float\000"
+ 440      7400
+ 441              	.LASF1:
+ 442 0096 756E7369 		.ascii	"unsigned char\000"
+ 442      676E6564 
+ 442      20636861 
+ 442      7200
+ 443              	.LASF13:
+ 444 00a4 63686172 		.ascii	"char\000"
+ 444      00
+ 445              	.LASF4:
+ 446 00a9 6C6F6E67 		.ascii	"long int\000"
+ 446      20696E74 
+ 446      00
+ 447              	.LASF12:
+ 448 00b2 646F7562 		.ascii	"double\000"
+ 448      6C6500
+ 449              	.LASF21:
+ 450 00b9 47656E65 		.ascii	"Generated_Source\\PSoC4\\I2COLED_PM.c\000"
+ 450      72617465 
+ 450      645F536F 
+ 450      75726365 
+ 450      5C50536F 
+ 451              	.LASF14:
+ 452 00dd 72656733 		.ascii	"reg32\000"
+ 452      3200
+ 453              	.LASF3:
+ 454 00e3 73686F72 		.ascii	"short unsigned int\000"
+ 454      7420756E 
+ 454      7369676E 
+ 454      65642069 
+ 454      6E7400
+ 455              	.LASF24:
+ 456 00f6 4932434F 		.ascii	"I2COLED_backup\000"
+ 456      4C45445F 
+ 456      6261636B 
+ 456      757000
+ 457              	.LASF15:
+ 458 0105 6C6F6E67 		.ascii	"long double\000"
+ 458      20646F75 
+ 458      626C6500 
+ 459              	.LASF22:
+ 460 0111 443A5C4E 		.ascii	"D:\\Nico\\Archivos\\lib_psoc\\Cypress-PSOC-OLED-mas"
+ 460      69636F5C 
+ 460      41726368 
+ 460      69766F73 
+ 460      5C6C6962 
+ 461 0140 7465725C 		.ascii	"ter\\OLED.cydsn\000"
+ 461      4F4C4544 
+ 461      2E637964 
+ 461      736E00
+ 462              	.LASF16:
+ 463 014f 73697A65 		.ascii	"sizetype\000"
+ 463      74797065 
+ 463      00
+ 464              	.LASF2:
+ 465 0158 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cckUuWzp.s 			page 14
+
+
+ 465      7420696E 
+ 465      7400
+ 466              	.LASF20:
+ 467 0162 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 467      43313120 
+ 467      352E342E 
+ 467      31203230 
+ 467      31363036 
+ 468 0195 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 468      20726576 
+ 468      6973696F 
+ 468      6E203233 
+ 468      37373135 
+ 469 01c8 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 469      66756E63 
+ 469      74696F6E 
+ 469      2D736563 
+ 469      74696F6E 
+ 470              	.LASF0:
+ 471 01f0 7369676E 		.ascii	"signed char\000"
+ 471      65642063 
+ 471      68617200 
+ 472              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,3389 @@
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB63:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include <project.h>
+  13:main.c        **** #include <stdlib.h>
+  14:main.c        **** 
+  15:main.c        **** #include "ssd1306.h"
+  16:main.c        **** 
+  17:main.c        **** #define DISPLAY_ADDRESS 0x3C // 011110+SA0+RW - 0x3C or 0x3D
+  18:main.c        **** 
+  19:main.c        **** int main(){
+  28              		.loc 1 19 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+  33              		.cfi_def_cfa_offset 32
+  34              		.cfi_offset 4, -32
+  35              		.cfi_offset 5, -28
+  36              		.cfi_offset 6, -24
+  37              		.cfi_offset 7, -20
+  38              		.cfi_offset 8, -16
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 2
+
+
+  39              		.cfi_offset 9, -12
+  40              		.cfi_offset 10, -8
+  41              		.cfi_offset 14, -4
+  42 0004 84B0     		sub	sp, sp, #16
+  43              		.cfi_def_cfa_offset 48
+  20:main.c        **** 
+  21:main.c        ****    I2COLED_Start();
+  44              		.loc 1 21 0
+  45 0006 FFF7FEFF 		bl	I2COLED_Start
+  46              	.LVL0:
+  22:main.c        **** 
+  23:main.c        ****     CyGlobalIntEnable;
+  47              		.loc 1 23 0
+  48              		.syntax unified
+  49              	@ 23 "main.c" 1
+  50 000a 62B6     		CPSIE   i
+  51              	@ 0 "" 2
+  24:main.c        **** 
+  25:main.c        ****     display_init(DISPLAY_ADDRESS);
+  52              		.loc 1 25 0
+  53              		.thumb
+  54              		.syntax unified
+  55 000c 3C20     		movs	r0, #60
+  56 000e FFF7FEFF 		bl	display_init
+  57              	.LVL1:
+  58              	.L31:
+  59              	.LBB2:
+  26:main.c        **** 
+  27:main.c        ****     
+  28:main.c        ****     for(;;){
+  29:main.c        **** 
+  30:main.c        ****        // clearing display
+  31:main.c        ****         display_clear();    
+  60              		.loc 1 31 0
+  61 0012 FFF7FEFF 		bl	display_clear
+  62              	.LVL2:
+  32:main.c        ****         display_update();    
+  63              		.loc 1 32 0
+  64 0016 FFF7FEFF 		bl	display_update
+  65              	.LVL3:
+  33:main.c        **** 
+  34:main.c        **** 
+  35:main.c        ****         // drawing a pixel
+  36:main.c        ****         gfx_drawPixel(10, 10, WHITE);    
+  66              		.loc 1 36 0
+  67 001a 0122     		movs	r2, #1
+  68 001c 0A21     		movs	r1, #10
+  69 001e 0846     		mov	r0, r1
+  70 0020 FFF7FEFF 		bl	gfx_drawPixel
+  71              	.LVL4:
+  37:main.c        ****         display_update(); 
+  72              		.loc 1 37 0
+  73 0024 FFF7FEFF 		bl	display_update
+  74              	.LVL5:
+  38:main.c        **** 
+  39:main.c        ****         CyDelay(500);
+  75              		.loc 1 39 0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 3
+
+
+  76 0028 4FF4FA70 		mov	r0, #500
+  77 002c FFF7FEFF 		bl	CyDelay
+  78              	.LVL6:
+  40:main.c        ****        display_clear();    
+  79              		.loc 1 40 0
+  80 0030 FFF7FEFF 		bl	display_clear
+  81              	.LVL7:
+  41:main.c        ****         display_update();    
+  82              		.loc 1 41 0
+  83 0034 FFF7FEFF 		bl	display_update
+  84              	.LVL8:
+  42:main.c        **** 
+  43:main.c        ****         
+  44:main.c        ****         // line drawing
+  45:main.c        ****         int16_t i = 0;
+  46:main.c        ****         for( i = 0 ; i < gfx_width(); i+=4) {
+  85              		.loc 1 46 0
+  86 0038 0024     		movs	r4, #0
+  87 003a 0EE0     		b	.L2
+  88              	.LVL9:
+  89              	.L3:
+  47:main.c        ****             gfx_drawLine(0, 0, i, gfx_height()-1, WHITE);
+  90              		.loc 1 47 0 discriminator 3
+  91 003c FFF7FEFF 		bl	gfx_height
+  92              	.LVL10:
+  93 0040 431E     		subs	r3, r0, #1
+  94 0042 0122     		movs	r2, #1
+  95 0044 0092     		str	r2, [sp]
+  96 0046 1BB2     		sxth	r3, r3
+  97 0048 2246     		mov	r2, r4
+  98 004a 0021     		movs	r1, #0
+  99 004c 0846     		mov	r0, r1
+ 100 004e FFF7FEFF 		bl	gfx_drawLine
+ 101              	.LVL11:
+  48:main.c        ****             display_update();
+ 102              		.loc 1 48 0 discriminator 3
+ 103 0052 FFF7FEFF 		bl	display_update
+ 104              	.LVL12:
+  46:main.c        ****             gfx_drawLine(0, 0, i, gfx_height()-1, WHITE);
+ 105              		.loc 1 46 0 discriminator 3
+ 106 0056 0434     		adds	r4, r4, #4
+ 107              	.LVL13:
+ 108 0058 24B2     		sxth	r4, r4
+ 109              	.LVL14:
+ 110              	.L2:
+  46:main.c        ****             gfx_drawLine(0, 0, i, gfx_height()-1, WHITE);
+ 111              		.loc 1 46 0 is_stmt 0 discriminator 1
+ 112 005a FFF7FEFF 		bl	gfx_width
+ 113              	.LVL15:
+ 114 005e 8442     		cmp	r4, r0
+ 115 0060 ECDB     		blt	.L3
+ 116 0062 0024     		movs	r4, #0
+ 117              	.LVL16:
+ 118 0064 0EE0     		b	.L4
+ 119              	.LVL17:
+ 120              	.L5:
+  49:main.c        ****         }
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 4
+
+
+  50:main.c        ****         for( i = 0 ; i < gfx_height() ; i += 4 ){
+  51:main.c        ****             gfx_drawLine(0, 0, gfx_width()-1, i, WHITE);
+ 121              		.loc 1 51 0 is_stmt 1 discriminator 3
+ 122 0066 FFF7FEFF 		bl	gfx_width
+ 123              	.LVL18:
+ 124 006a 421E     		subs	r2, r0, #1
+ 125 006c 0123     		movs	r3, #1
+ 126 006e 0093     		str	r3, [sp]
+ 127 0070 2346     		mov	r3, r4
+ 128 0072 12B2     		sxth	r2, r2
+ 129 0074 0021     		movs	r1, #0
+ 130 0076 0846     		mov	r0, r1
+ 131 0078 FFF7FEFF 		bl	gfx_drawLine
+ 132              	.LVL19:
+  52:main.c        ****             display_update();
+ 133              		.loc 1 52 0 discriminator 3
+ 134 007c FFF7FEFF 		bl	display_update
+ 135              	.LVL20:
+  50:main.c        ****             gfx_drawLine(0, 0, gfx_width()-1, i, WHITE);
+ 136              		.loc 1 50 0 discriminator 3
+ 137 0080 0434     		adds	r4, r4, #4
+ 138              	.LVL21:
+ 139 0082 24B2     		sxth	r4, r4
+ 140              	.LVL22:
+ 141              	.L4:
+  50:main.c        ****             gfx_drawLine(0, 0, gfx_width()-1, i, WHITE);
+ 142              		.loc 1 50 0 is_stmt 0 discriminator 1
+ 143 0084 FFF7FEFF 		bl	gfx_height
+ 144              	.LVL23:
+ 145 0088 8442     		cmp	r4, r0
+ 146 008a ECDB     		blt	.L5
+  53:main.c        ****         }    
+  54:main.c        ****      
+  55:main.c        ****         CyDelay(3000);
+ 147              		.loc 1 55 0 is_stmt 1
+ 148 008c 40F6B830 		movw	r0, #3000
+ 149 0090 FFF7FEFF 		bl	CyDelay
+ 150              	.LVL24:
+  56:main.c        ****         display_clear();    
+ 151              		.loc 1 56 0
+ 152 0094 FFF7FEFF 		bl	display_clear
+ 153              	.LVL25:
+  57:main.c        ****         display_update();    
+ 154              		.loc 1 57 0
+ 155 0098 FFF7FEFF 		bl	display_update
+ 156              	.LVL26:
+  58:main.c        **** 
+  59:main.c        ****         // text settings
+  60:main.c        ****         gfx_setTextSize(1);
+ 157              		.loc 1 60 0
+ 158 009c 0120     		movs	r0, #1
+ 159 009e FFF7FEFF 		bl	gfx_setTextSize
+ 160              	.LVL27:
+  61:main.c        ****         gfx_setTextColor(WHITE);
+ 161              		.loc 1 61 0
+ 162 00a2 0120     		movs	r0, #1
+ 163 00a4 FFF7FEFF 		bl	gfx_setTextColor
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 5
+
+
+ 164              	.LVL28:
+  62:main.c        ****         gfx_setCursor(0,0);
+ 165              		.loc 1 62 0
+ 166 00a8 0021     		movs	r1, #0
+ 167 00aa 0846     		mov	r0, r1
+ 168 00ac FFF7FEFF 		bl	gfx_setCursor
+ 169              	.LVL29:
+  63:main.c        **** 
+  64:main.c        ****         // text display
+  65:main.c        ****         for( i = 0 ; i < 168 ; i++){
+ 170              		.loc 1 65 0
+ 171 00b0 0024     		movs	r4, #0
+ 172 00b2 06E0     		b	.L6
+ 173              	.LVL30:
+ 174              	.L8:
+  66:main.c        ****             if( i == '\n' ) 
+ 175              		.loc 1 66 0
+ 176 00b4 0A2C     		cmp	r4, #10
+ 177 00b6 02D0     		beq	.L7
+  67:main.c        ****                 continue;
+  68:main.c        ****             gfx_write(i);
+ 178              		.loc 1 68 0
+ 179 00b8 E0B2     		uxtb	r0, r4
+ 180 00ba FFF7FEFF 		bl	gfx_write
+ 181              	.LVL31:
+ 182              	.L7:
+  65:main.c        ****             if( i == '\n' ) 
+ 183              		.loc 1 65 0 discriminator 2
+ 184 00be 0134     		adds	r4, r4, #1
+ 185              	.LVL32:
+ 186 00c0 24B2     		sxth	r4, r4
+ 187              	.LVL33:
+ 188              	.L6:
+  65:main.c        ****             if( i == '\n' ) 
+ 189              		.loc 1 65 0 is_stmt 0 discriminator 1
+ 190 00c2 A72C     		cmp	r4, #167
+ 191 00c4 F6DD     		ble	.L8
+  69:main.c        ****           }    
+  70:main.c        ****         display_update(); 
+ 192              		.loc 1 70 0 is_stmt 1
+ 193 00c6 FFF7FEFF 		bl	display_update
+ 194              	.LVL34:
+  71:main.c        ****         
+  72:main.c        ****         CyDelay(3000);
+ 195              		.loc 1 72 0
+ 196 00ca 40F6B830 		movw	r0, #3000
+ 197 00ce FFF7FEFF 		bl	CyDelay
+ 198              	.LVL35:
+  73:main.c        ****         display_clear();    
+ 199              		.loc 1 73 0
+ 200 00d2 FFF7FEFF 		bl	display_clear
+ 201              	.LVL36:
+  74:main.c        ****         display_update();    
+ 202              		.loc 1 74 0
+ 203 00d6 FFF7FEFF 		bl	display_update
+ 204              	.LVL37:
+  75:main.c        ****         
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 6
+
+
+  76:main.c        ****         // cursor
+  77:main.c        ****         gfx_setCursor( 0, 0 );
+ 205              		.loc 1 77 0
+ 206 00da 0021     		movs	r1, #0
+ 207 00dc 0846     		mov	r0, r1
+ 208 00de FFF7FEFF 		bl	gfx_setCursor
+ 209              	.LVL38:
+  78:main.c        ****         
+  79:main.c        ****         // text sizes
+  80:main.c        ****         gfx_setTextSize(2);
+ 210              		.loc 1 80 0
+ 211 00e2 0220     		movs	r0, #2
+ 212 00e4 FFF7FEFF 		bl	gfx_setTextSize
+ 213              	.LVL39:
+  81:main.c        ****         gfx_write( '8' );
+ 214              		.loc 1 81 0
+ 215 00e8 3820     		movs	r0, #56
+ 216 00ea FFF7FEFF 		bl	gfx_write
+ 217              	.LVL40:
+  82:main.c        ****         gfx_setTextSize(3);
+ 218              		.loc 1 82 0
+ 219 00ee 0320     		movs	r0, #3
+ 220 00f0 FFF7FEFF 		bl	gfx_setTextSize
+ 221              	.LVL41:
+  83:main.c        ****         gfx_write( '8' );
+ 222              		.loc 1 83 0
+ 223 00f4 3820     		movs	r0, #56
+ 224 00f6 FFF7FEFF 		bl	gfx_write
+ 225              	.LVL42:
+  84:main.c        ****         gfx_setTextSize(4);
+ 226              		.loc 1 84 0
+ 227 00fa 0420     		movs	r0, #4
+ 228 00fc FFF7FEFF 		bl	gfx_setTextSize
+ 229              	.LVL43:
+  85:main.c        ****         gfx_write( '8' );
+ 230              		.loc 1 85 0
+ 231 0100 3820     		movs	r0, #56
+ 232 0102 FFF7FEFF 		bl	gfx_write
+ 233              	.LVL44:
+  86:main.c        ****         display_update(); 
+ 234              		.loc 1 86 0
+ 235 0106 FFF7FEFF 		bl	display_update
+ 236              	.LVL45:
+  87:main.c        ****         
+  88:main.c        ****         CyDelay(3000);
+ 237              		.loc 1 88 0
+ 238 010a 40F6B830 		movw	r0, #3000
+ 239 010e FFF7FEFF 		bl	CyDelay
+ 240              	.LVL46:
+  89:main.c        ****         display_clear();    
+ 241              		.loc 1 89 0
+ 242 0112 FFF7FEFF 		bl	display_clear
+ 243              	.LVL47:
+  90:main.c        ****         display_update();    
+ 244              		.loc 1 90 0
+ 245 0116 FFF7FEFF 		bl	display_update
+ 246              	.LVL48:
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 7
+
+
+  91:main.c        **** 
+  92:main.c        ****         // line printing
+  93:main.c        ****         gfx_setTextSize(1);
+ 247              		.loc 1 93 0
+ 248 011a 0120     		movs	r0, #1
+ 249 011c FFF7FEFF 		bl	gfx_setTextSize
+ 250              	.LVL49:
+  94:main.c        ****         gfx_setTextColor(WHITE);
+ 251              		.loc 1 94 0
+ 252 0120 0120     		movs	r0, #1
+ 253 0122 FFF7FEFF 		bl	gfx_setTextColor
+ 254              	.LVL50:
+  95:main.c        ****         gfx_setCursor(0,0);
+ 255              		.loc 1 95 0
+ 256 0126 0021     		movs	r1, #0
+ 257 0128 0846     		mov	r0, r1
+ 258 012a FFF7FEFF 		bl	gfx_setCursor
+ 259              	.LVL51:
+  96:main.c        ****         gfx_println("HOLA PERROS ...");
+ 260              		.loc 1 96 0
+ 261 012e D148     		ldr	r0, .L33
+ 262 0130 FFF7FEFF 		bl	gfx_println
+ 263              	.LVL52:
+  97:main.c        ****         gfx_println("YA ESCRIBE LA PSOC :V ...");
+ 264              		.loc 1 97 0
+ 265 0134 D048     		ldr	r0, .L33+4
+ 266 0136 FFF7FEFF 		bl	gfx_println
+ 267              	.LVL53:
+  98:main.c        ****         display_update();    
+ 268              		.loc 1 98 0
+ 269 013a FFF7FEFF 		bl	display_update
+ 270              	.LVL54:
+  99:main.c        **** 
+ 100:main.c        ****         CyDelay(3000);
+ 271              		.loc 1 100 0
+ 272 013e 40F6B830 		movw	r0, #3000
+ 273 0142 FFF7FEFF 		bl	CyDelay
+ 274              	.LVL55:
+ 101:main.c        ****         display_clear();    
+ 275              		.loc 1 101 0
+ 276 0146 FFF7FEFF 		bl	display_clear
+ 277              	.LVL56:
+ 102:main.c        ****         display_update();    
+ 278              		.loc 1 102 0
+ 279 014a FFF7FEFF 		bl	display_update
+ 280              	.LVL57:
+ 103:main.c        **** 
+ 104:main.c        ****         
+ 105:main.c        ****         // scrolling
+ 106:main.c        ****         gfx_setTextSize(1);
+ 281              		.loc 1 106 0
+ 282 014e 0120     		movs	r0, #1
+ 283 0150 FFF7FEFF 		bl	gfx_setTextSize
+ 284              	.LVL58:
+ 107:main.c        ****         gfx_setTextColor(WHITE);
+ 285              		.loc 1 107 0
+ 286 0154 0120     		movs	r0, #1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 8
+
+
+ 287 0156 FFF7FEFF 		bl	gfx_setTextColor
+ 288              	.LVL59:
+ 108:main.c        ****         gfx_setCursor(0,0);
+ 289              		.loc 1 108 0
+ 290 015a 0021     		movs	r1, #0
+ 291 015c 0846     		mov	r0, r1
+ 292 015e FFF7FEFF 		bl	gfx_setCursor
+ 293              	.LVL60:
+ 109:main.c        **** 
+ 110:main.c        ****         for( i = 1 ; i < 16 ; i++ ){
+ 294              		.loc 1 110 0
+ 295 0162 0124     		movs	r4, #1
+ 296 0164 04E0     		b	.L9
+ 297              	.LVL61:
+ 298              	.L10:
+ 111:main.c        ****             gfx_println("scroll");
+ 299              		.loc 1 111 0 discriminator 3
+ 300 0166 C548     		ldr	r0, .L33+8
+ 301 0168 FFF7FEFF 		bl	gfx_println
+ 302              	.LVL62:
+ 110:main.c        ****             gfx_println("scroll");
+ 303              		.loc 1 110 0 discriminator 3
+ 304 016c 0134     		adds	r4, r4, #1
+ 305              	.LVL63:
+ 306 016e 24B2     		sxth	r4, r4
+ 307              	.LVL64:
+ 308              	.L9:
+ 110:main.c        ****             gfx_println("scroll");
+ 309              		.loc 1 110 0 is_stmt 0 discriminator 1
+ 310 0170 0F2C     		cmp	r4, #15
+ 311 0172 F8DD     		ble	.L10
+ 112:main.c        ****         
+ 113:main.c        ****         }
+ 114:main.c        ****         display_update();    
+ 312              		.loc 1 114 0 is_stmt 1
+ 313 0174 FFF7FEFF 		bl	display_update
+ 314              	.LVL65:
+ 115:main.c        ****         
+ 116:main.c        ****         
+ 117:main.c        ****         
+ 118:main.c        ****         display_scroll(SCROLL_PAGE_0,SCROLL_PAGE_7,SCROLL_RIGHT,SCROLL_SPEED_7);
+ 315              		.loc 1 118 0
+ 316 0178 0723     		movs	r3, #7
+ 317 017a 2622     		movs	r2, #38
+ 318 017c 1946     		mov	r1, r3
+ 319 017e 0020     		movs	r0, #0
+ 320 0180 FFF7FEFF 		bl	display_scroll
+ 321              	.LVL66:
+ 119:main.c        ****         CyDelay(2000);
+ 322              		.loc 1 119 0
+ 323 0184 4FF4FA60 		mov	r0, #2000
+ 324 0188 FFF7FEFF 		bl	CyDelay
+ 325              	.LVL67:
+ 120:main.c        ****         display_stopscroll();
+ 326              		.loc 1 120 0
+ 327 018c FFF7FEFF 		bl	display_stopscroll
+ 328              	.LVL68:
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 9
+
+
+ 121:main.c        ****         display_scroll(SCROLL_PAGE_2,SCROLL_PAGE_4,SCROLL_LEFT,SCROLL_SPEED_3);
+ 329              		.loc 1 121 0
+ 330 0190 0623     		movs	r3, #6
+ 331 0192 2A22     		movs	r2, #42
+ 332 0194 0421     		movs	r1, #4
+ 333 0196 0220     		movs	r0, #2
+ 334 0198 FFF7FEFF 		bl	display_scroll
+ 335              	.LVL69:
+ 122:main.c        ****         CyDelay(2000);
+ 336              		.loc 1 122 0
+ 337 019c 4FF4FA60 		mov	r0, #2000
+ 338 01a0 FFF7FEFF 		bl	CyDelay
+ 339              	.LVL70:
+ 123:main.c        ****         display_stopscroll();
+ 340              		.loc 1 123 0
+ 341 01a4 FFF7FEFF 		bl	display_stopscroll
+ 342              	.LVL71:
+ 124:main.c        ****         
+ 125:main.c        ****         
+ 126:main.c        **** 
+ 127:main.c        ****         CyDelay(3000);
+ 343              		.loc 1 127 0
+ 344 01a8 40F6B830 		movw	r0, #3000
+ 345 01ac FFF7FEFF 		bl	CyDelay
+ 346              	.LVL72:
+ 128:main.c        ****         display_clear();    
+ 347              		.loc 1 128 0
+ 348 01b0 FFF7FEFF 		bl	display_clear
+ 349              	.LVL73:
+ 129:main.c        ****         display_update();    
+ 350              		.loc 1 129 0
+ 351 01b4 FFF7FEFF 		bl	display_update
+ 352              	.LVL74:
+ 130:main.c        ****         
+ 131:main.c        ****         
+ 132:main.c        ****         // rectangles
+ 133:main.c        ****         for( i = 0 ; i < gfx_height()/2 ; i += 2 ){
+ 353              		.loc 1 133 0
+ 354 01b8 0024     		movs	r4, #0
+ 355 01ba 15E0     		b	.L11
+ 356              	.LVL75:
+ 357              	.L12:
+ 134:main.c        ****             gfx_drawRect(i, i, gfx_width()-2*i, gfx_height()-2*i, WHITE);
+ 358              		.loc 1 134 0 discriminator 3
+ 359 01bc FFF7FEFF 		bl	gfx_width
+ 360              	.LVL76:
+ 361 01c0 0746     		mov	r7, r0
+ 362 01c2 A5B2     		uxth	r5, r4
+ 363 01c4 6E00     		lsls	r6, r5, #1
+ 364 01c6 B6B2     		uxth	r6, r6
+ 365 01c8 FFF7FEFF 		bl	gfx_height
+ 366              	.LVL77:
+ 367 01cc 831B     		subs	r3, r0, r6
+ 368 01ce BA1B     		subs	r2, r7, r6
+ 369 01d0 0121     		movs	r1, #1
+ 370 01d2 0091     		str	r1, [sp]
+ 371 01d4 1BB2     		sxth	r3, r3
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 10
+
+
+ 372 01d6 12B2     		sxth	r2, r2
+ 373 01d8 2146     		mov	r1, r4
+ 374 01da 2046     		mov	r0, r4
+ 375 01dc FFF7FEFF 		bl	gfx_drawRect
+ 376              	.LVL78:
+ 135:main.c        ****             display_update();   
+ 377              		.loc 1 135 0 discriminator 3
+ 378 01e0 FFF7FEFF 		bl	display_update
+ 379              	.LVL79:
+ 133:main.c        ****             gfx_drawRect(i, i, gfx_width()-2*i, gfx_height()-2*i, WHITE);
+ 380              		.loc 1 133 0 discriminator 3
+ 381 01e4 AC1C     		adds	r4, r5, #2
+ 382              	.LVL80:
+ 383 01e6 24B2     		sxth	r4, r4
+ 384              	.LVL81:
+ 385              	.L11:
+ 133:main.c        ****             gfx_drawRect(i, i, gfx_width()-2*i, gfx_height()-2*i, WHITE);
+ 386              		.loc 1 133 0 is_stmt 0 discriminator 1
+ 387 01e8 FFF7FEFF 		bl	gfx_height
+ 388              	.LVL82:
+ 389 01ec 00EBD070 		add	r0, r0, r0, lsr #31
+ 390 01f0 40F34F00 		sbfx	r0, r0, #1, #16
+ 391 01f4 8442     		cmp	r4, r0
+ 392 01f6 E1DB     		blt	.L12
+ 136:main.c        ****         }
+ 137:main.c        ****         
+ 138:main.c        ****         CyDelay(3000);
+ 393              		.loc 1 138 0 is_stmt 1
+ 394 01f8 40F6B830 		movw	r0, #3000
+ 395 01fc FFF7FEFF 		bl	CyDelay
+ 396              	.LVL83:
+ 139:main.c        ****         display_clear();    
+ 397              		.loc 1 139 0
+ 398 0200 FFF7FEFF 		bl	display_clear
+ 399              	.LVL84:
+ 140:main.c        ****         display_update();    
+ 400              		.loc 1 140 0
+ 401 0204 FFF7FEFF 		bl	display_update
+ 402              	.LVL85:
+ 141:main.c        **** 
+ 142:main.c        ****         // filled rectangles
+ 143:main.c        ****         uint8_t color = 1;
+ 403              		.loc 1 143 0
+ 404 0208 0125     		movs	r5, #1
+ 144:main.c        ****         for( i = 0 ; i < gfx_height()/2 ; i += 3 ){
+ 405              		.loc 1 144 0
+ 406 020a 0024     		movs	r4, #0
+ 407 020c 19E0     		b	.L13
+ 408              	.LVL86:
+ 409              	.L14:
+ 145:main.c        ****             // alternate colors
+ 146:main.c        ****             gfx_fillRect(i, i, gfx_width()-i*2, gfx_height()-i*2, color%2);
+ 410              		.loc 1 146 0 discriminator 3
+ 411 020e FFF7FEFF 		bl	gfx_width
+ 412              	.LVL87:
+ 413 0212 8046     		mov	r8, r0
+ 414 0214 A6B2     		uxth	r6, r4
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 11
+
+
+ 415 0216 7700     		lsls	r7, r6, #1
+ 416 0218 BFB2     		uxth	r7, r7
+ 417 021a FFF7FEFF 		bl	gfx_height
+ 418              	.LVL88:
+ 419 021e C31B     		subs	r3, r0, r7
+ 420 0220 C7EB0802 		rsb	r2, r7, r8
+ 421 0224 05F00101 		and	r1, r5, #1
+ 422 0228 0091     		str	r1, [sp]
+ 423 022a 1BB2     		sxth	r3, r3
+ 424 022c 12B2     		sxth	r2, r2
+ 425 022e 2146     		mov	r1, r4
+ 426 0230 2046     		mov	r0, r4
+ 427 0232 FFF7FEFF 		bl	gfx_fillRect
+ 428              	.LVL89:
+ 147:main.c        ****             display_update();    
+ 429              		.loc 1 147 0 discriminator 3
+ 430 0236 FFF7FEFF 		bl	display_update
+ 431              	.LVL90:
+ 148:main.c        ****             color++;
+ 432              		.loc 1 148 0 discriminator 3
+ 433 023a 0135     		adds	r5, r5, #1
+ 434              	.LVL91:
+ 435 023c EDB2     		uxtb	r5, r5
+ 436              	.LVL92:
+ 144:main.c        ****             // alternate colors
+ 437              		.loc 1 144 0 discriminator 3
+ 438 023e F41C     		adds	r4, r6, #3
+ 439              	.LVL93:
+ 440 0240 24B2     		sxth	r4, r4
+ 441              	.LVL94:
+ 442              	.L13:
+ 144:main.c        ****             // alternate colors
+ 443              		.loc 1 144 0 is_stmt 0 discriminator 1
+ 444 0242 FFF7FEFF 		bl	gfx_height
+ 445              	.LVL95:
+ 446 0246 00EBD070 		add	r0, r0, r0, lsr #31
+ 447 024a 40F34F00 		sbfx	r0, r0, #1, #16
+ 448 024e 8442     		cmp	r4, r0
+ 449 0250 DDDB     		blt	.L14
+ 149:main.c        ****         }    
+ 150:main.c        **** 
+ 151:main.c        ****         CyDelay(3000);
+ 450              		.loc 1 151 0 is_stmt 1
+ 451 0252 40F6B830 		movw	r0, #3000
+ 452 0256 FFF7FEFF 		bl	CyDelay
+ 453              	.LVL96:
+ 152:main.c        ****         display_clear();    
+ 454              		.loc 1 152 0
+ 455 025a FFF7FEFF 		bl	display_clear
+ 456              	.LVL97:
+ 153:main.c        ****         display_update();    
+ 457              		.loc 1 153 0
+ 458 025e FFF7FEFF 		bl	display_update
+ 459              	.LVL98:
+ 154:main.c        ****         
+ 155:main.c        ****         // circles
+ 156:main.c        ****         for( i = 0 ; i < gfx_height() ; i += 2 ){
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 12
+
+
+ 460              		.loc 1 156 0
+ 461 0262 0024     		movs	r4, #0
+ 462 0264 14E0     		b	.L15
+ 463              	.LVL99:
+ 464              	.L16:
+ 157:main.c        ****             gfx_drawCircle( gfx_width()/2, gfx_height()/2, i, WHITE );
+ 465              		.loc 1 157 0 discriminator 3
+ 466 0266 FFF7FEFF 		bl	gfx_width
+ 467              	.LVL100:
+ 468 026a 0546     		mov	r5, r0
+ 469 026c FFF7FEFF 		bl	gfx_height
+ 470              	.LVL101:
+ 471 0270 00EBD070 		add	r0, r0, r0, lsr #31
+ 472 0274 05EBD575 		add	r5, r5, r5, lsr #31
+ 473 0278 0123     		movs	r3, #1
+ 474 027a 2246     		mov	r2, r4
+ 475 027c 40F34F01 		sbfx	r1, r0, #1, #16
+ 476 0280 45F34F00 		sbfx	r0, r5, #1, #16
+ 477 0284 FFF7FEFF 		bl	gfx_drawCircle
+ 478              	.LVL102:
+ 158:main.c        ****             display_update();    
+ 479              		.loc 1 158 0 discriminator 3
+ 480 0288 FFF7FEFF 		bl	display_update
+ 481              	.LVL103:
+ 156:main.c        ****             gfx_drawCircle( gfx_width()/2, gfx_height()/2, i, WHITE );
+ 482              		.loc 1 156 0 discriminator 3
+ 483 028c 0234     		adds	r4, r4, #2
+ 484              	.LVL104:
+ 485 028e 24B2     		sxth	r4, r4
+ 486              	.LVL105:
+ 487              	.L15:
+ 156:main.c        ****             gfx_drawCircle( gfx_width()/2, gfx_height()/2, i, WHITE );
+ 488              		.loc 1 156 0 is_stmt 0 discriminator 1
+ 489 0290 FFF7FEFF 		bl	gfx_height
+ 490              	.LVL106:
+ 491 0294 8442     		cmp	r4, r0
+ 492 0296 E6DB     		blt	.L16
+ 159:main.c        ****         }    
+ 160:main.c        **** 
+ 161:main.c        ****         CyDelay(3000);
+ 493              		.loc 1 161 0 is_stmt 1
+ 494 0298 40F6B830 		movw	r0, #3000
+ 495 029c FFF7FEFF 		bl	CyDelay
+ 496              	.LVL107:
+ 162:main.c        ****         display_clear();    
+ 497              		.loc 1 162 0
+ 498 02a0 FFF7FEFF 		bl	display_clear
+ 499              	.LVL108:
+ 163:main.c        ****         display_update();    
+ 500              		.loc 1 163 0
+ 501 02a4 FFF7FEFF 		bl	display_update
+ 502              	.LVL109:
+ 164:main.c        ****         
+ 165:main.c        ****         
+ 166:main.c        ****     #define MIN(x, y) (((x) < (y)) ? (x) : (y))
+ 167:main.c        ****         
+ 168:main.c        ****         // triangles
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 13
+
+
+ 169:main.c        ****         for( i = 0 ; i < MIN(gfx_width(),gfx_height())/2; i+=5) {
+ 503              		.loc 1 169 0
+ 504 02a8 0024     		movs	r4, #0
+ 505 02aa 38E0     		b	.L17
+ 506              	.LVL110:
+ 507              	.L20:
+ 170:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 508              		.loc 1 170 0 discriminator 7
+ 509 02ac FFF7FEFF 		bl	gfx_width
+ 510              	.LVL111:
+ 511 02b0 0746     		mov	r7, r0
+ 512 02b2 FFF7FEFF 		bl	gfx_height
+ 513              	.LVL112:
+ 514 02b6 0646     		mov	r6, r0
+ 515 02b8 A4B2     		uxth	r4, r4
+ 171:main.c        ****                              gfx_width()/2-i, gfx_height()/2+i,
+ 516              		.loc 1 171 0 discriminator 7
+ 517 02ba FFF7FEFF 		bl	gfx_width
+ 518              	.LVL113:
+ 519 02be 8046     		mov	r8, r0
+ 520 02c0 FFF7FEFF 		bl	gfx_height
+ 521              	.LVL114:
+ 522 02c4 8146     		mov	r9, r0
+ 172:main.c        ****                              gfx_width()/2+i, gfx_height()/2+i, WHITE);
+ 523              		.loc 1 172 0 discriminator 7
+ 524 02c6 FFF7FEFF 		bl	gfx_width
+ 525              	.LVL115:
+ 526 02ca 0546     		mov	r5, r0
+ 527 02cc FFF7FEFF 		bl	gfx_height
+ 528              	.LVL116:
+ 170:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 529              		.loc 1 170 0 discriminator 7
+ 530 02d0 09EBD979 		add	r9, r9, r9, lsr #31
+ 531 02d4 04EB6903 		add	r3, r4, r9, asr #1
+ 532 02d8 08EBD878 		add	r8, r8, r8, lsr #31
+ 533 02dc C4EB6802 		rsb	r2, r4, r8, asr #1
+ 534 02e0 06EBD676 		add	r6, r6, r6, lsr #31
+ 535 02e4 C4EB6601 		rsb	r1, r4, r6, asr #1
+ 536 02e8 07EBD777 		add	r7, r7, r7, lsr #31
+ 537 02ec 0126     		movs	r6, #1
+ 538 02ee 0296     		str	r6, [sp, #8]
+ 539 02f0 00EBD070 		add	r0, r0, r0, lsr #31
+ 540 02f4 04EB6006 		add	r6, r4, r0, asr #1
+ 541 02f8 36B2     		sxth	r6, r6
+ 542 02fa 0196     		str	r6, [sp, #4]
+ 543 02fc 05EBD575 		add	r5, r5, r5, lsr #31
+ 544 0300 04EB6505 		add	r5, r4, r5, asr #1
+ 545 0304 2DB2     		sxth	r5, r5
+ 546 0306 0095     		str	r5, [sp]
+ 547 0308 1BB2     		sxth	r3, r3
+ 548 030a 12B2     		sxth	r2, r2
+ 549 030c 09B2     		sxth	r1, r1
+ 550 030e 47F34F00 		sbfx	r0, r7, #1, #16
+ 551 0312 FFF7FEFF 		bl	gfx_drawTriangle
+ 552              	.LVL117:
+ 173:main.c        ****             display_update();    
+ 553              		.loc 1 173 0 discriminator 7
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 14
+
+
+ 554 0316 FFF7FEFF 		bl	display_update
+ 555              	.LVL118:
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 556              		.loc 1 169 0 discriminator 7
+ 557 031a 0534     		adds	r4, r4, #5
+ 558              	.LVL119:
+ 559 031c 24B2     		sxth	r4, r4
+ 560              	.LVL120:
+ 561              	.L17:
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 562              		.loc 1 169 0 is_stmt 0 discriminator 1
+ 563 031e 2546     		mov	r5, r4
+ 564 0320 FFF7FEFF 		bl	gfx_width
+ 565              	.LVL121:
+ 566 0324 0646     		mov	r6, r0
+ 567 0326 FFF7FEFF 		bl	gfx_height
+ 568              	.LVL122:
+ 569 032a 8642     		cmp	r6, r0
+ 570 032c 05DA     		bge	.L18
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 571              		.loc 1 169 0 discriminator 3
+ 572 032e FFF7FEFF 		bl	gfx_width
+ 573              	.LVL123:
+ 574 0332 00EBD070 		add	r0, r0, r0, lsr #31
+ 575 0336 4010     		asrs	r0, r0, #1
+ 576 0338 04E0     		b	.L19
+ 577              	.L18:
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 578              		.loc 1 169 0 discriminator 4
+ 579 033a FFF7FEFF 		bl	gfx_height
+ 580              	.LVL124:
+ 581 033e 00EBD070 		add	r0, r0, r0, lsr #31
+ 582 0342 4010     		asrs	r0, r0, #1
+ 583              	.L19:
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 584              		.loc 1 169 0 discriminator 6
+ 585 0344 A842     		cmp	r0, r5
+ 586 0346 B1DC     		bgt	.L20
+ 174:main.c        ****         }    
+ 175:main.c        **** 
+ 176:main.c        ****         
+ 177:main.c        ****         CyDelay(3000);
+ 587              		.loc 1 177 0 is_stmt 1
+ 588 0348 40F6B830 		movw	r0, #3000
+ 589 034c FFF7FEFF 		bl	CyDelay
+ 590              	.LVL125:
+ 178:main.c        ****         display_clear();    
+ 591              		.loc 1 178 0
+ 592 0350 FFF7FEFF 		bl	display_clear
+ 593              	.LVL126:
+ 179:main.c        ****         display_update();    
+ 594              		.loc 1 179 0
+ 595 0354 FFF7FEFF 		bl	display_update
+ 596              	.LVL127:
+ 180:main.c        ****        
+ 181:main.c        ****         // rotation
+ 182:main.c        ****         int16_t j = 0;
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 15
+
+
+ 183:main.c        ****         for( j = 0 ; j < 4 ; j++ ){
+ 597              		.loc 1 183 0
+ 598 0358 0026     		movs	r6, #0
+ 599 035a 59E0     		b	.L21
+ 600              	.LVL128:
+ 601              	.L26:
+ 184:main.c        ****             gfx_setRotation(j);
+ 602              		.loc 1 184 0
+ 603 035c F0B2     		uxtb	r0, r6
+ 604 035e FFF7FEFF 		bl	gfx_setRotation
+ 605              	.LVL129:
+ 185:main.c        ****             for( i = 0 ; i < MIN(gfx_width(),gfx_height())/2; i+=5) {
+ 606              		.loc 1 185 0
+ 607 0362 0024     		movs	r4, #0
+ 608 0364 3DE0     		b	.L22
+ 609              	.LVL130:
+ 610              	.L25:
+ 186:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 611              		.loc 1 186 0 discriminator 7
+ 612 0366 FFF7FEFF 		bl	gfx_width
+ 613              	.LVL131:
+ 614 036a 0746     		mov	r7, r0
+ 615 036c FFF7FEFF 		bl	gfx_height
+ 616              	.LVL132:
+ 617 0370 8046     		mov	r8, r0
+ 618 0372 A4B2     		uxth	r4, r4
+ 187:main.c        ****                                  gfx_width()/2-i, gfx_height()/2+i,
+ 619              		.loc 1 187 0 discriminator 7
+ 620 0374 FFF7FEFF 		bl	gfx_width
+ 621              	.LVL133:
+ 622 0378 8146     		mov	r9, r0
+ 623 037a FFF7FEFF 		bl	gfx_height
+ 624              	.LVL134:
+ 625 037e 8246     		mov	r10, r0
+ 188:main.c        ****                                  gfx_width()/2+i, gfx_height()/2+i, WHITE);
+ 626              		.loc 1 188 0 discriminator 7
+ 627 0380 FFF7FEFF 		bl	gfx_width
+ 628              	.LVL135:
+ 629 0384 0546     		mov	r5, r0
+ 630 0386 FFF7FEFF 		bl	gfx_height
+ 631              	.LVL136:
+ 186:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 632              		.loc 1 186 0 discriminator 7
+ 633 038a 0AEBDA7A 		add	r10, r10, r10, lsr #31
+ 634 038e 04EB6A03 		add	r3, r4, r10, asr #1
+ 635 0392 09EBD979 		add	r9, r9, r9, lsr #31
+ 636 0396 C4EB6902 		rsb	r2, r4, r9, asr #1
+ 637 039a 08EBD878 		add	r8, r8, r8, lsr #31
+ 638 039e C4EB6801 		rsb	r1, r4, r8, asr #1
+ 639 03a2 07EBD777 		add	r7, r7, r7, lsr #31
+ 640 03a6 4FF0010E 		mov	lr, #1
+ 641 03aa CDF808E0 		str	lr, [sp, #8]
+ 642 03ae 00EBD070 		add	r0, r0, r0, lsr #31
+ 643 03b2 04EB6000 		add	r0, r4, r0, asr #1
+ 644 03b6 00B2     		sxth	r0, r0
+ 645 03b8 0190     		str	r0, [sp, #4]
+ 646 03ba 05EBD575 		add	r5, r5, r5, lsr #31
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 16
+
+
+ 647 03be 04EB6505 		add	r5, r4, r5, asr #1
+ 648 03c2 2DB2     		sxth	r5, r5
+ 649 03c4 0095     		str	r5, [sp]
+ 650 03c6 1BB2     		sxth	r3, r3
+ 651 03c8 12B2     		sxth	r2, r2
+ 652 03ca 09B2     		sxth	r1, r1
+ 653 03cc 47F34F00 		sbfx	r0, r7, #1, #16
+ 654 03d0 FFF7FEFF 		bl	gfx_drawTriangle
+ 655              	.LVL137:
+ 189:main.c        ****                 display_update(); 
+ 656              		.loc 1 189 0 discriminator 7
+ 657 03d4 FFF7FEFF 		bl	display_update
+ 658              	.LVL138:
+ 190:main.c        ****                 CyDelay(200);
+ 659              		.loc 1 190 0 discriminator 7
+ 660 03d8 C820     		movs	r0, #200
+ 661 03da FFF7FEFF 		bl	CyDelay
+ 662              	.LVL139:
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 663              		.loc 1 185 0 discriminator 7
+ 664 03de 0534     		adds	r4, r4, #5
+ 665              	.LVL140:
+ 666 03e0 24B2     		sxth	r4, r4
+ 667              	.LVL141:
+ 668              	.L22:
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 669              		.loc 1 185 0 is_stmt 0 discriminator 1
+ 670 03e2 2546     		mov	r5, r4
+ 671 03e4 FFF7FEFF 		bl	gfx_width
+ 672              	.LVL142:
+ 673 03e8 0746     		mov	r7, r0
+ 674 03ea FFF7FEFF 		bl	gfx_height
+ 675              	.LVL143:
+ 676 03ee 8742     		cmp	r7, r0
+ 677 03f0 05DA     		bge	.L23
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 678              		.loc 1 185 0 discriminator 3
+ 679 03f2 FFF7FEFF 		bl	gfx_width
+ 680              	.LVL144:
+ 681 03f6 00EBD070 		add	r0, r0, r0, lsr #31
+ 682 03fa 4010     		asrs	r0, r0, #1
+ 683 03fc 04E0     		b	.L24
+ 684              	.L23:
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 685              		.loc 1 185 0 discriminator 4
+ 686 03fe FFF7FEFF 		bl	gfx_height
+ 687              	.LVL145:
+ 688 0402 00EBD070 		add	r0, r0, r0, lsr #31
+ 689 0406 4010     		asrs	r0, r0, #1
+ 690              	.L24:
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 691              		.loc 1 185 0 discriminator 6
+ 692 0408 A842     		cmp	r0, r5
+ 693 040a ACDC     		bgt	.L25
+ 183:main.c        ****             gfx_setRotation(j);
+ 694              		.loc 1 183 0 is_stmt 1 discriminator 2
+ 695 040c 0136     		adds	r6, r6, #1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 17
+
+
+ 696              	.LVL146:
+ 697 040e 36B2     		sxth	r6, r6
+ 698              	.LVL147:
+ 699              	.L21:
+ 183:main.c        ****             gfx_setRotation(j);
+ 700              		.loc 1 183 0 is_stmt 0 discriminator 1
+ 701 0410 032E     		cmp	r6, #3
+ 702 0412 A3DD     		ble	.L26
+ 191:main.c        ****             }    
+ 192:main.c        ****         }
+ 193:main.c        ****         
+ 194:main.c        ****         CyDelay(3000);
+ 703              		.loc 1 194 0 is_stmt 1
+ 704 0414 40F6B830 		movw	r0, #3000
+ 705 0418 FFF7FEFF 		bl	CyDelay
+ 706              	.LVL148:
+ 195:main.c        ****        
+ 196:main.c        ****         // invert and dim
+ 197:main.c        ****         display_invert(1);
+ 707              		.loc 1 197 0
+ 708 041c 0120     		movs	r0, #1
+ 709 041e FFF7FEFF 		bl	display_invert
+ 710              	.LVL149:
+ 198:main.c        ****         CyDelay(1000);
+ 711              		.loc 1 198 0
+ 712 0422 4FF47A70 		mov	r0, #1000
+ 713 0426 FFF7FEFF 		bl	CyDelay
+ 714              	.LVL150:
+ 199:main.c        ****         
+ 200:main.c        ****         for( i = 256 ; i >= 0 ; i-- ){
+ 715              		.loc 1 200 0
+ 716 042a 4FF48074 		mov	r4, #256
+ 717 042e 07E0     		b	.L27
+ 718              	.LVL151:
+ 719              	.L28:
+ 201:main.c        ****             display_contrast(i); 
+ 720              		.loc 1 201 0 discriminator 3
+ 721 0430 E0B2     		uxtb	r0, r4
+ 722 0432 FFF7FEFF 		bl	display_contrast
+ 723              	.LVL152:
+ 202:main.c        ****             CyDelay(10);
+ 724              		.loc 1 202 0 discriminator 3
+ 725 0436 0A20     		movs	r0, #10
+ 726 0438 FFF7FEFF 		bl	CyDelay
+ 727              	.LVL153:
+ 200:main.c        ****             display_contrast(i); 
+ 728              		.loc 1 200 0 discriminator 3
+ 729 043c 013C     		subs	r4, r4, #1
+ 730              	.LVL154:
+ 731 043e 24B2     		sxth	r4, r4
+ 732              	.LVL155:
+ 733              	.L27:
+ 200:main.c        ****             display_contrast(i); 
+ 734              		.loc 1 200 0 is_stmt 0 discriminator 1
+ 735 0440 002C     		cmp	r4, #0
+ 736 0442 F5DA     		bge	.L28
+ 203:main.c        ****         }
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 18
+
+
+ 204:main.c        ****         
+ 205:main.c        ****         
+ 206:main.c        ****         
+ 207:main.c        ****         display_invert(0);
+ 737              		.loc 1 207 0 is_stmt 1
+ 738 0444 0020     		movs	r0, #0
+ 739 0446 FFF7FEFF 		bl	display_invert
+ 740              	.LVL156:
+ 208:main.c        ****         CyDelay(1000);
+ 741              		.loc 1 208 0
+ 742 044a 4FF47A70 		mov	r0, #1000
+ 743 044e FFF7FEFF 		bl	CyDelay
+ 744              	.LVL157:
+ 209:main.c        ****         for( i = 0 ; i < 256 ; i++ ){
+ 745              		.loc 1 209 0
+ 746 0452 0024     		movs	r4, #0
+ 747 0454 07E0     		b	.L29
+ 748              	.LVL158:
+ 749              	.L30:
+ 210:main.c        ****             display_contrast(i); 
+ 750              		.loc 1 210 0 discriminator 3
+ 751 0456 E0B2     		uxtb	r0, r4
+ 752 0458 FFF7FEFF 		bl	display_contrast
+ 753              	.LVL159:
+ 211:main.c        ****             CyDelay(10);
+ 754              		.loc 1 211 0 discriminator 3
+ 755 045c 0A20     		movs	r0, #10
+ 756 045e FFF7FEFF 		bl	CyDelay
+ 757              	.LVL160:
+ 209:main.c        ****         for( i = 0 ; i < 256 ; i++ ){
+ 758              		.loc 1 209 0 discriminator 3
+ 759 0462 0134     		adds	r4, r4, #1
+ 760              	.LVL161:
+ 761 0464 24B2     		sxth	r4, r4
+ 762              	.LVL162:
+ 763              	.L29:
+ 209:main.c        ****         for( i = 0 ; i < 256 ; i++ ){
+ 764              		.loc 1 209 0 is_stmt 0 discriminator 1
+ 765 0466 FF2C     		cmp	r4, #255
+ 766 0468 F5DD     		ble	.L30
+ 212:main.c        ****         }
+ 213:main.c        ****         
+ 214:main.c        ****     
+ 215:main.c        ****         CyDelay(3000);
+ 767              		.loc 1 215 0 is_stmt 1
+ 768 046a 40F6B830 		movw	r0, #3000
+ 769 046e FFF7FEFF 		bl	CyDelay
+ 770              	.LVL163:
+ 771              	.LBE2:
+ 216:main.c        **** 
+ 217:main.c        ****     
+ 218:main.c        ****     
+ 219:main.c        ****     
+ 220:main.c        ****     }
+ 772              		.loc 1 220 0
+ 773 0472 CEE5     		b	.L31
+ 774              	.L34:
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 19
+
+
+ 775              		.align	2
+ 776              	.L33:
+ 777 0474 00000000 		.word	.LC0
+ 778 0478 10000000 		.word	.LC1
+ 779 047c 2C000000 		.word	.LC2
+ 780              		.cfi_endproc
+ 781              	.LFE63:
+ 782              		.size	main, .-main
+ 783              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 784              		.align	2
+ 785              	.LC0:
+ 786 0000 484F4C41 		.ascii	"HOLA PERROS ...\000"
+ 786      20504552 
+ 786      524F5320 
+ 786      2E2E2E00 
+ 787              	.LC1:
+ 788 0010 59412045 		.ascii	"YA ESCRIBE LA PSOC :V ...\000"
+ 788      53435249 
+ 788      4245204C 
+ 788      41205053 
+ 788      4F43203A 
+ 789 002a 0000     		.space	2
+ 790              	.LC2:
+ 791 002c 7363726F 		.ascii	"scroll\000"
+ 791      6C6C00
+ 792              		.text
+ 793              	.Letext0:
+ 794              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 795              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 796              		.file 4 "ssd1306.h"
+ 797              		.file 5 "Generated_Source\\PSoC5/CyLib.h"
+ 798              		.file 6 "Generated_Source\\PSoC5/I2COLED.h"
+ 799              		.file 7 "Generated_Source\\PSoC5/core_cm3.h"
+ 800              		.section	.debug_info,"",%progbits
+ 801              	.Ldebug_info0:
+ 802 0000 7E0A0000 		.4byte	0xa7e
+ 803 0004 0400     		.2byte	0x4
+ 804 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 805 000a 04       		.byte	0x4
+ 806 000b 01       		.uleb128 0x1
+ 807 000c 63030000 		.4byte	.LASF62
+ 808 0010 0C       		.byte	0xc
+ 809 0011 84020000 		.4byte	.LASF63
+ 810 0015 D6020000 		.4byte	.LASF64
+ 811 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 812 001d 00000000 		.4byte	0
+ 813 0021 00000000 		.4byte	.Ldebug_line0
+ 814 0025 02       		.uleb128 0x2
+ 815 0026 01       		.byte	0x1
+ 816 0027 06       		.byte	0x6
+ 817 0028 AE000000 		.4byte	.LASF0
+ 818 002c 03       		.uleb128 0x3
+ 819 002d FC000000 		.4byte	.LASF2
+ 820 0031 02       		.byte	0x2
+ 821 0032 1D       		.byte	0x1d
+ 822 0033 37000000 		.4byte	0x37
+ 823 0037 02       		.uleb128 0x2
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 20
+
+
+ 824 0038 01       		.byte	0x1
+ 825 0039 08       		.byte	0x8
+ 826 003a 40010000 		.4byte	.LASF1
+ 827 003e 03       		.uleb128 0x3
+ 828 003f 28030000 		.4byte	.LASF3
+ 829 0043 02       		.byte	0x2
+ 830 0044 29       		.byte	0x29
+ 831 0045 49000000 		.4byte	0x49
+ 832 0049 02       		.uleb128 0x2
+ 833 004a 02       		.byte	0x2
+ 834 004b 05       		.byte	0x5
+ 835 004c 3A000000 		.4byte	.LASF4
+ 836 0050 02       		.uleb128 0x2
+ 837 0051 02       		.byte	0x2
+ 838 0052 07       		.byte	0x7
+ 839 0053 03020000 		.4byte	.LASF5
+ 840 0057 03       		.uleb128 0x3
+ 841 0058 10030000 		.4byte	.LASF6
+ 842 005c 02       		.byte	0x2
+ 843 005d 3F       		.byte	0x3f
+ 844 005e 62000000 		.4byte	0x62
+ 845 0062 02       		.uleb128 0x2
+ 846 0063 04       		.byte	0x4
+ 847 0064 05       		.byte	0x5
+ 848 0065 F3000000 		.4byte	.LASF7
+ 849 0069 02       		.uleb128 0x2
+ 850 006a 04       		.byte	0x4
+ 851 006b 07       		.byte	0x7
+ 852 006c D4010000 		.4byte	.LASF8
+ 853 0070 02       		.uleb128 0x2
+ 854 0071 08       		.byte	0x8
+ 855 0072 05       		.byte	0x5
+ 856 0073 D7000000 		.4byte	.LASF9
+ 857 0077 02       		.uleb128 0x2
+ 858 0078 08       		.byte	0x8
+ 859 0079 07       		.byte	0x7
+ 860 007a A2010000 		.4byte	.LASF10
+ 861 007e 04       		.uleb128 0x4
+ 862 007f 04       		.byte	0x4
+ 863 0080 05       		.byte	0x5
+ 864 0081 696E7400 		.ascii	"int\000"
+ 865 0085 02       		.uleb128 0x2
+ 866 0086 04       		.byte	0x4
+ 867 0087 07       		.byte	0x7
+ 868 0088 C7010000 		.4byte	.LASF11
+ 869 008c 03       		.uleb128 0x3
+ 870 008d 86000000 		.4byte	.LASF12
+ 871 0091 03       		.byte	0x3
+ 872 0092 18       		.byte	0x18
+ 873 0093 2C000000 		.4byte	0x2c
+ 874 0097 03       		.uleb128 0x3
+ 875 0098 40020000 		.4byte	.LASF13
+ 876 009c 03       		.byte	0x3
+ 877 009d 20       		.byte	0x20
+ 878 009e 3E000000 		.4byte	0x3e
+ 879 00a2 03       		.uleb128 0x3
+ 880 00a3 28020000 		.4byte	.LASF14
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 21
+
+
+ 881 00a7 03       		.byte	0x3
+ 882 00a8 2C       		.byte	0x2c
+ 883 00a9 57000000 		.4byte	0x57
+ 884 00ad 02       		.uleb128 0x2
+ 885 00ae 04       		.byte	0x4
+ 886 00af 04       		.byte	0x4
+ 887 00b0 C7000000 		.4byte	.LASF15
+ 888 00b4 02       		.uleb128 0x2
+ 889 00b5 08       		.byte	0x8
+ 890 00b6 04       		.byte	0x4
+ 891 00b7 B8020000 		.4byte	.LASF16
+ 892 00bb 02       		.uleb128 0x2
+ 893 00bc 01       		.byte	0x1
+ 894 00bd 08       		.byte	0x8
+ 895 00be 16020000 		.4byte	.LASF17
+ 896 00c2 02       		.uleb128 0x2
+ 897 00c3 08       		.byte	0x8
+ 898 00c4 04       		.byte	0x4
+ 899 00c5 27010000 		.4byte	.LASF18
+ 900 00c9 02       		.uleb128 0x2
+ 901 00ca 04       		.byte	0x4
+ 902 00cb 07       		.byte	0x7
+ 903 00cc 41030000 		.4byte	.LASF19
+ 904 00d0 05       		.uleb128 0x5
+ 905 00d1 01       		.byte	0x1
+ 906 00d2 37000000 		.4byte	0x37
+ 907 00d6 04       		.byte	0x4
+ 908 00d7 19       		.byte	0x19
+ 909 00d8 E9000000 		.4byte	0xe9
+ 910 00dc 06       		.uleb128 0x6
+ 911 00dd 1B020000 		.4byte	.LASF20
+ 912 00e1 26       		.byte	0x26
+ 913 00e2 06       		.uleb128 0x6
+ 914 00e3 4A030000 		.4byte	.LASF21
+ 915 00e7 2A       		.byte	0x2a
+ 916 00e8 00       		.byte	0
+ 917 00e9 05       		.uleb128 0x5
+ 918 00ea 01       		.byte	0x1
+ 919 00eb 37000000 		.4byte	0x37
+ 920 00ef 04       		.byte	0x4
+ 921 00f0 1E       		.byte	0x1e
+ 922 00f1 26010000 		.4byte	0x126
+ 923 00f5 06       		.uleb128 0x6
+ 924 00f6 48020000 		.4byte	.LASF22
+ 925 00fa 03       		.byte	0x3
+ 926 00fb 06       		.uleb128 0x6
+ 927 00fc 57020000 		.4byte	.LASF23
+ 928 0100 02       		.byte	0x2
+ 929 0101 06       		.uleb128 0x6
+ 930 0102 66020000 		.4byte	.LASF24
+ 931 0106 01       		.byte	0x1
+ 932 0107 06       		.uleb128 0x6
+ 933 0108 75020000 		.4byte	.LASF25
+ 934 010c 06       		.byte	0x6
+ 935 010d 06       		.uleb128 0x6
+ 936 010e 32030000 		.4byte	.LASF26
+ 937 0112 00       		.byte	0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 22
+
+
+ 938 0113 06       		.uleb128 0x6
+ 939 0114 8B020000 		.4byte	.LASF27
+ 940 0118 05       		.byte	0x5
+ 941 0119 06       		.uleb128 0x6
+ 942 011a 9A020000 		.4byte	.LASF28
+ 943 011e 04       		.byte	0x4
+ 944 011f 06       		.uleb128 0x6
+ 945 0120 A9020000 		.4byte	.LASF29
+ 946 0124 07       		.byte	0x7
+ 947 0125 00       		.byte	0
+ 948 0126 05       		.uleb128 0x5
+ 949 0127 01       		.byte	0x1
+ 950 0128 37000000 		.4byte	0x37
+ 951 012c 04       		.byte	0x4
+ 952 012d 29       		.byte	0x29
+ 953 012e 63010000 		.4byte	0x163
+ 954 0132 06       		.uleb128 0x6
+ 955 0133 4E010000 		.4byte	.LASF30
+ 956 0137 00       		.byte	0
+ 957 0138 06       		.uleb128 0x6
+ 958 0139 5C010000 		.4byte	.LASF31
+ 959 013d 01       		.byte	0x1
+ 960 013e 06       		.uleb128 0x6
+ 961 013f 6A010000 		.4byte	.LASF32
+ 962 0143 02       		.byte	0x2
+ 963 0144 06       		.uleb128 0x6
+ 964 0145 78010000 		.4byte	.LASF33
+ 965 0149 03       		.byte	0x3
+ 966 014a 06       		.uleb128 0x6
+ 967 014b 86010000 		.4byte	.LASF34
+ 968 014f 04       		.byte	0x4
+ 969 0150 06       		.uleb128 0x6
+ 970 0151 94010000 		.4byte	.LASF35
+ 971 0155 05       		.byte	0x5
+ 972 0156 06       		.uleb128 0x6
+ 973 0157 00000000 		.4byte	.LASF36
+ 974 015b 06       		.byte	0x6
+ 975 015c 06       		.uleb128 0x6
+ 976 015d B9010000 		.4byte	.LASF37
+ 977 0161 07       		.byte	0x7
+ 978 0162 00       		.byte	0
+ 979 0163 07       		.uleb128 0x7
+ 980 0164 58000000 		.4byte	.LASF65
+ 981 0168 01       		.byte	0x1
+ 982 0169 13       		.byte	0x13
+ 983 016a 7E000000 		.4byte	0x7e
+ 984 016e 00000000 		.4byte	.LFB63
+ 985 0172 80040000 		.4byte	.LFE63-.LFB63
+ 986 0176 01       		.uleb128 0x1
+ 987 0177 9C       		.byte	0x9c
+ 988 0178 73090000 		.4byte	0x973
+ 989 017c 08       		.uleb128 0x8
+ 990 017d 12000000 		.4byte	.LBB2
+ 991 0181 60040000 		.4byte	.LBE2-.LBB2
+ 992 0185 59090000 		.4byte	0x959
+ 993 0189 09       		.uleb128 0x9
+ 994 018a 6900     		.ascii	"i\000"
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 23
+
+
+ 995 018c 01       		.byte	0x1
+ 996 018d 2D       		.byte	0x2d
+ 997 018e 97000000 		.4byte	0x97
+ 998 0192 00000000 		.4byte	.LLST0
+ 999 0196 0A       		.uleb128 0xa
+ 1000 0197 44000000 		.4byte	.LASF38
+ 1001 019b 01       		.byte	0x1
+ 1002 019c 8F       		.byte	0x8f
+ 1003 019d 8C000000 		.4byte	0x8c
+ 1004 01a1 A4010000 		.4byte	.LLST1
+ 1005 01a5 09       		.uleb128 0x9
+ 1006 01a6 6A00     		.ascii	"j\000"
+ 1007 01a8 01       		.byte	0x1
+ 1008 01a9 B6       		.byte	0xb6
+ 1009 01aa 97000000 		.4byte	0x97
+ 1010 01ae CE010000 		.4byte	.LLST2
+ 1011 01b2 0B       		.uleb128 0xb
+ 1012 01b3 16000000 		.4byte	.LVL2
+ 1013 01b7 84090000 		.4byte	0x984
+ 1014 01bb 0B       		.uleb128 0xb
+ 1015 01bc 1A000000 		.4byte	.LVL3
+ 1016 01c0 8F090000 		.4byte	0x98f
+ 1017 01c4 0C       		.uleb128 0xc
+ 1018 01c5 24000000 		.4byte	.LVL4
+ 1019 01c9 9A090000 		.4byte	0x99a
+ 1020 01cd E1010000 		.4byte	0x1e1
+ 1021 01d1 0D       		.uleb128 0xd
+ 1022 01d2 01       		.uleb128 0x1
+ 1023 01d3 50       		.byte	0x50
+ 1024 01d4 01       		.uleb128 0x1
+ 1025 01d5 3A       		.byte	0x3a
+ 1026 01d6 0D       		.uleb128 0xd
+ 1027 01d7 01       		.uleb128 0x1
+ 1028 01d8 51       		.byte	0x51
+ 1029 01d9 01       		.uleb128 0x1
+ 1030 01da 3A       		.byte	0x3a
+ 1031 01db 0D       		.uleb128 0xd
+ 1032 01dc 01       		.uleb128 0x1
+ 1033 01dd 52       		.byte	0x52
+ 1034 01de 01       		.uleb128 0x1
+ 1035 01df 31       		.byte	0x31
+ 1036 01e0 00       		.byte	0
+ 1037 01e1 0B       		.uleb128 0xb
+ 1038 01e2 28000000 		.4byte	.LVL5
+ 1039 01e6 8F090000 		.4byte	0x98f
+ 1040 01ea 0C       		.uleb128 0xc
+ 1041 01eb 30000000 		.4byte	.LVL6
+ 1042 01ef A5090000 		.4byte	0x9a5
+ 1043 01f3 FF010000 		.4byte	0x1ff
+ 1044 01f7 0D       		.uleb128 0xd
+ 1045 01f8 01       		.uleb128 0x1
+ 1046 01f9 50       		.byte	0x50
+ 1047 01fa 03       		.uleb128 0x3
+ 1048 01fb 0A       		.byte	0xa
+ 1049 01fc F401     		.2byte	0x1f4
+ 1050 01fe 00       		.byte	0
+ 1051 01ff 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 24
+
+
+ 1052 0200 34000000 		.4byte	.LVL7
+ 1053 0204 84090000 		.4byte	0x984
+ 1054 0208 0B       		.uleb128 0xb
+ 1055 0209 38000000 		.4byte	.LVL8
+ 1056 020d 8F090000 		.4byte	0x98f
+ 1057 0211 0B       		.uleb128 0xb
+ 1058 0212 40000000 		.4byte	.LVL10
+ 1059 0216 B0090000 		.4byte	0x9b0
+ 1060 021a 0C       		.uleb128 0xc
+ 1061 021b 52000000 		.4byte	.LVL11
+ 1062 021f BB090000 		.4byte	0x9bb
+ 1063 0223 3E020000 		.4byte	0x23e
+ 1064 0227 0D       		.uleb128 0xd
+ 1065 0228 01       		.uleb128 0x1
+ 1066 0229 50       		.byte	0x50
+ 1067 022a 01       		.uleb128 0x1
+ 1068 022b 30       		.byte	0x30
+ 1069 022c 0D       		.uleb128 0xd
+ 1070 022d 01       		.uleb128 0x1
+ 1071 022e 51       		.byte	0x51
+ 1072 022f 01       		.uleb128 0x1
+ 1073 0230 30       		.byte	0x30
+ 1074 0231 0D       		.uleb128 0xd
+ 1075 0232 01       		.uleb128 0x1
+ 1076 0233 52       		.byte	0x52
+ 1077 0234 02       		.uleb128 0x2
+ 1078 0235 74       		.byte	0x74
+ 1079 0236 00       		.sleb128 0
+ 1080 0237 0D       		.uleb128 0xd
+ 1081 0238 02       		.uleb128 0x2
+ 1082 0239 7D       		.byte	0x7d
+ 1083 023a 00       		.sleb128 0
+ 1084 023b 01       		.uleb128 0x1
+ 1085 023c 31       		.byte	0x31
+ 1086 023d 00       		.byte	0
+ 1087 023e 0B       		.uleb128 0xb
+ 1088 023f 56000000 		.4byte	.LVL12
+ 1089 0243 8F090000 		.4byte	0x98f
+ 1090 0247 0B       		.uleb128 0xb
+ 1091 0248 5E000000 		.4byte	.LVL15
+ 1092 024c C6090000 		.4byte	0x9c6
+ 1093 0250 0B       		.uleb128 0xb
+ 1094 0251 6A000000 		.4byte	.LVL18
+ 1095 0255 C6090000 		.4byte	0x9c6
+ 1096 0259 0C       		.uleb128 0xc
+ 1097 025a 7C000000 		.4byte	.LVL19
+ 1098 025e BB090000 		.4byte	0x9bb
+ 1099 0262 7D020000 		.4byte	0x27d
+ 1100 0266 0D       		.uleb128 0xd
+ 1101 0267 01       		.uleb128 0x1
+ 1102 0268 50       		.byte	0x50
+ 1103 0269 01       		.uleb128 0x1
+ 1104 026a 30       		.byte	0x30
+ 1105 026b 0D       		.uleb128 0xd
+ 1106 026c 01       		.uleb128 0x1
+ 1107 026d 51       		.byte	0x51
+ 1108 026e 01       		.uleb128 0x1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 25
+
+
+ 1109 026f 30       		.byte	0x30
+ 1110 0270 0D       		.uleb128 0xd
+ 1111 0271 01       		.uleb128 0x1
+ 1112 0272 53       		.byte	0x53
+ 1113 0273 02       		.uleb128 0x2
+ 1114 0274 74       		.byte	0x74
+ 1115 0275 00       		.sleb128 0
+ 1116 0276 0D       		.uleb128 0xd
+ 1117 0277 02       		.uleb128 0x2
+ 1118 0278 7D       		.byte	0x7d
+ 1119 0279 00       		.sleb128 0
+ 1120 027a 01       		.uleb128 0x1
+ 1121 027b 31       		.byte	0x31
+ 1122 027c 00       		.byte	0
+ 1123 027d 0B       		.uleb128 0xb
+ 1124 027e 80000000 		.4byte	.LVL20
+ 1125 0282 8F090000 		.4byte	0x98f
+ 1126 0286 0B       		.uleb128 0xb
+ 1127 0287 88000000 		.4byte	.LVL23
+ 1128 028b B0090000 		.4byte	0x9b0
+ 1129 028f 0C       		.uleb128 0xc
+ 1130 0290 94000000 		.4byte	.LVL24
+ 1131 0294 A5090000 		.4byte	0x9a5
+ 1132 0298 A4020000 		.4byte	0x2a4
+ 1133 029c 0D       		.uleb128 0xd
+ 1134 029d 01       		.uleb128 0x1
+ 1135 029e 50       		.byte	0x50
+ 1136 029f 03       		.uleb128 0x3
+ 1137 02a0 0A       		.byte	0xa
+ 1138 02a1 B80B     		.2byte	0xbb8
+ 1139 02a3 00       		.byte	0
+ 1140 02a4 0B       		.uleb128 0xb
+ 1141 02a5 98000000 		.4byte	.LVL25
+ 1142 02a9 84090000 		.4byte	0x984
+ 1143 02ad 0B       		.uleb128 0xb
+ 1144 02ae 9C000000 		.4byte	.LVL26
+ 1145 02b2 8F090000 		.4byte	0x98f
+ 1146 02b6 0C       		.uleb128 0xc
+ 1147 02b7 A2000000 		.4byte	.LVL27
+ 1148 02bb D1090000 		.4byte	0x9d1
+ 1149 02bf C9020000 		.4byte	0x2c9
+ 1150 02c3 0D       		.uleb128 0xd
+ 1151 02c4 01       		.uleb128 0x1
+ 1152 02c5 50       		.byte	0x50
+ 1153 02c6 01       		.uleb128 0x1
+ 1154 02c7 31       		.byte	0x31
+ 1155 02c8 00       		.byte	0
+ 1156 02c9 0C       		.uleb128 0xc
+ 1157 02ca A8000000 		.4byte	.LVL28
+ 1158 02ce DC090000 		.4byte	0x9dc
+ 1159 02d2 DC020000 		.4byte	0x2dc
+ 1160 02d6 0D       		.uleb128 0xd
+ 1161 02d7 01       		.uleb128 0x1
+ 1162 02d8 50       		.byte	0x50
+ 1163 02d9 01       		.uleb128 0x1
+ 1164 02da 31       		.byte	0x31
+ 1165 02db 00       		.byte	0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 26
+
+
+ 1166 02dc 0C       		.uleb128 0xc
+ 1167 02dd B0000000 		.4byte	.LVL29
+ 1168 02e1 E7090000 		.4byte	0x9e7
+ 1169 02e5 F4020000 		.4byte	0x2f4
+ 1170 02e9 0D       		.uleb128 0xd
+ 1171 02ea 01       		.uleb128 0x1
+ 1172 02eb 50       		.byte	0x50
+ 1173 02ec 01       		.uleb128 0x1
+ 1174 02ed 30       		.byte	0x30
+ 1175 02ee 0D       		.uleb128 0xd
+ 1176 02ef 01       		.uleb128 0x1
+ 1177 02f0 51       		.byte	0x51
+ 1178 02f1 01       		.uleb128 0x1
+ 1179 02f2 30       		.byte	0x30
+ 1180 02f3 00       		.byte	0
+ 1181 02f4 0C       		.uleb128 0xc
+ 1182 02f5 BE000000 		.4byte	.LVL31
+ 1183 02f9 F2090000 		.4byte	0x9f2
+ 1184 02fd 08030000 		.4byte	0x308
+ 1185 0301 0D       		.uleb128 0xd
+ 1186 0302 01       		.uleb128 0x1
+ 1187 0303 50       		.byte	0x50
+ 1188 0304 02       		.uleb128 0x2
+ 1189 0305 74       		.byte	0x74
+ 1190 0306 00       		.sleb128 0
+ 1191 0307 00       		.byte	0
+ 1192 0308 0B       		.uleb128 0xb
+ 1193 0309 CA000000 		.4byte	.LVL34
+ 1194 030d 8F090000 		.4byte	0x98f
+ 1195 0311 0C       		.uleb128 0xc
+ 1196 0312 D2000000 		.4byte	.LVL35
+ 1197 0316 A5090000 		.4byte	0x9a5
+ 1198 031a 26030000 		.4byte	0x326
+ 1199 031e 0D       		.uleb128 0xd
+ 1200 031f 01       		.uleb128 0x1
+ 1201 0320 50       		.byte	0x50
+ 1202 0321 03       		.uleb128 0x3
+ 1203 0322 0A       		.byte	0xa
+ 1204 0323 B80B     		.2byte	0xbb8
+ 1205 0325 00       		.byte	0
+ 1206 0326 0B       		.uleb128 0xb
+ 1207 0327 D6000000 		.4byte	.LVL36
+ 1208 032b 84090000 		.4byte	0x984
+ 1209 032f 0B       		.uleb128 0xb
+ 1210 0330 DA000000 		.4byte	.LVL37
+ 1211 0334 8F090000 		.4byte	0x98f
+ 1212 0338 0C       		.uleb128 0xc
+ 1213 0339 E2000000 		.4byte	.LVL38
+ 1214 033d E7090000 		.4byte	0x9e7
+ 1215 0341 50030000 		.4byte	0x350
+ 1216 0345 0D       		.uleb128 0xd
+ 1217 0346 01       		.uleb128 0x1
+ 1218 0347 50       		.byte	0x50
+ 1219 0348 01       		.uleb128 0x1
+ 1220 0349 30       		.byte	0x30
+ 1221 034a 0D       		.uleb128 0xd
+ 1222 034b 01       		.uleb128 0x1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 27
+
+
+ 1223 034c 51       		.byte	0x51
+ 1224 034d 01       		.uleb128 0x1
+ 1225 034e 30       		.byte	0x30
+ 1226 034f 00       		.byte	0
+ 1227 0350 0C       		.uleb128 0xc
+ 1228 0351 E8000000 		.4byte	.LVL39
+ 1229 0355 D1090000 		.4byte	0x9d1
+ 1230 0359 63030000 		.4byte	0x363
+ 1231 035d 0D       		.uleb128 0xd
+ 1232 035e 01       		.uleb128 0x1
+ 1233 035f 50       		.byte	0x50
+ 1234 0360 01       		.uleb128 0x1
+ 1235 0361 32       		.byte	0x32
+ 1236 0362 00       		.byte	0
+ 1237 0363 0C       		.uleb128 0xc
+ 1238 0364 EE000000 		.4byte	.LVL40
+ 1239 0368 F2090000 		.4byte	0x9f2
+ 1240 036c 77030000 		.4byte	0x377
+ 1241 0370 0D       		.uleb128 0xd
+ 1242 0371 01       		.uleb128 0x1
+ 1243 0372 50       		.byte	0x50
+ 1244 0373 02       		.uleb128 0x2
+ 1245 0374 08       		.byte	0x8
+ 1246 0375 38       		.byte	0x38
+ 1247 0376 00       		.byte	0
+ 1248 0377 0C       		.uleb128 0xc
+ 1249 0378 F4000000 		.4byte	.LVL41
+ 1250 037c D1090000 		.4byte	0x9d1
+ 1251 0380 8A030000 		.4byte	0x38a
+ 1252 0384 0D       		.uleb128 0xd
+ 1253 0385 01       		.uleb128 0x1
+ 1254 0386 50       		.byte	0x50
+ 1255 0387 01       		.uleb128 0x1
+ 1256 0388 33       		.byte	0x33
+ 1257 0389 00       		.byte	0
+ 1258 038a 0C       		.uleb128 0xc
+ 1259 038b FA000000 		.4byte	.LVL42
+ 1260 038f F2090000 		.4byte	0x9f2
+ 1261 0393 9E030000 		.4byte	0x39e
+ 1262 0397 0D       		.uleb128 0xd
+ 1263 0398 01       		.uleb128 0x1
+ 1264 0399 50       		.byte	0x50
+ 1265 039a 02       		.uleb128 0x2
+ 1266 039b 08       		.byte	0x8
+ 1267 039c 38       		.byte	0x38
+ 1268 039d 00       		.byte	0
+ 1269 039e 0C       		.uleb128 0xc
+ 1270 039f 00010000 		.4byte	.LVL43
+ 1271 03a3 D1090000 		.4byte	0x9d1
+ 1272 03a7 B1030000 		.4byte	0x3b1
+ 1273 03ab 0D       		.uleb128 0xd
+ 1274 03ac 01       		.uleb128 0x1
+ 1275 03ad 50       		.byte	0x50
+ 1276 03ae 01       		.uleb128 0x1
+ 1277 03af 34       		.byte	0x34
+ 1278 03b0 00       		.byte	0
+ 1279 03b1 0C       		.uleb128 0xc
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 28
+
+
+ 1280 03b2 06010000 		.4byte	.LVL44
+ 1281 03b6 F2090000 		.4byte	0x9f2
+ 1282 03ba C5030000 		.4byte	0x3c5
+ 1283 03be 0D       		.uleb128 0xd
+ 1284 03bf 01       		.uleb128 0x1
+ 1285 03c0 50       		.byte	0x50
+ 1286 03c1 02       		.uleb128 0x2
+ 1287 03c2 08       		.byte	0x8
+ 1288 03c3 38       		.byte	0x38
+ 1289 03c4 00       		.byte	0
+ 1290 03c5 0B       		.uleb128 0xb
+ 1291 03c6 0A010000 		.4byte	.LVL45
+ 1292 03ca 8F090000 		.4byte	0x98f
+ 1293 03ce 0C       		.uleb128 0xc
+ 1294 03cf 12010000 		.4byte	.LVL46
+ 1295 03d3 A5090000 		.4byte	0x9a5
+ 1296 03d7 E3030000 		.4byte	0x3e3
+ 1297 03db 0D       		.uleb128 0xd
+ 1298 03dc 01       		.uleb128 0x1
+ 1299 03dd 50       		.byte	0x50
+ 1300 03de 03       		.uleb128 0x3
+ 1301 03df 0A       		.byte	0xa
+ 1302 03e0 B80B     		.2byte	0xbb8
+ 1303 03e2 00       		.byte	0
+ 1304 03e3 0B       		.uleb128 0xb
+ 1305 03e4 16010000 		.4byte	.LVL47
+ 1306 03e8 84090000 		.4byte	0x984
+ 1307 03ec 0B       		.uleb128 0xb
+ 1308 03ed 1A010000 		.4byte	.LVL48
+ 1309 03f1 8F090000 		.4byte	0x98f
+ 1310 03f5 0C       		.uleb128 0xc
+ 1311 03f6 20010000 		.4byte	.LVL49
+ 1312 03fa D1090000 		.4byte	0x9d1
+ 1313 03fe 08040000 		.4byte	0x408
+ 1314 0402 0D       		.uleb128 0xd
+ 1315 0403 01       		.uleb128 0x1
+ 1316 0404 50       		.byte	0x50
+ 1317 0405 01       		.uleb128 0x1
+ 1318 0406 31       		.byte	0x31
+ 1319 0407 00       		.byte	0
+ 1320 0408 0C       		.uleb128 0xc
+ 1321 0409 26010000 		.4byte	.LVL50
+ 1322 040d DC090000 		.4byte	0x9dc
+ 1323 0411 1B040000 		.4byte	0x41b
+ 1324 0415 0D       		.uleb128 0xd
+ 1325 0416 01       		.uleb128 0x1
+ 1326 0417 50       		.byte	0x50
+ 1327 0418 01       		.uleb128 0x1
+ 1328 0419 31       		.byte	0x31
+ 1329 041a 00       		.byte	0
+ 1330 041b 0C       		.uleb128 0xc
+ 1331 041c 2E010000 		.4byte	.LVL51
+ 1332 0420 E7090000 		.4byte	0x9e7
+ 1333 0424 33040000 		.4byte	0x433
+ 1334 0428 0D       		.uleb128 0xd
+ 1335 0429 01       		.uleb128 0x1
+ 1336 042a 50       		.byte	0x50
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 29
+
+
+ 1337 042b 01       		.uleb128 0x1
+ 1338 042c 30       		.byte	0x30
+ 1339 042d 0D       		.uleb128 0xd
+ 1340 042e 01       		.uleb128 0x1
+ 1341 042f 51       		.byte	0x51
+ 1342 0430 01       		.uleb128 0x1
+ 1343 0431 30       		.byte	0x30
+ 1344 0432 00       		.byte	0
+ 1345 0433 0C       		.uleb128 0xc
+ 1346 0434 34010000 		.4byte	.LVL52
+ 1347 0438 FD090000 		.4byte	0x9fd
+ 1348 043c 4A040000 		.4byte	0x44a
+ 1349 0440 0D       		.uleb128 0xd
+ 1350 0441 01       		.uleb128 0x1
+ 1351 0442 50       		.byte	0x50
+ 1352 0443 05       		.uleb128 0x5
+ 1353 0444 03       		.byte	0x3
+ 1354 0445 00000000 		.4byte	.LC0
+ 1355 0449 00       		.byte	0
+ 1356 044a 0C       		.uleb128 0xc
+ 1357 044b 3A010000 		.4byte	.LVL53
+ 1358 044f FD090000 		.4byte	0x9fd
+ 1359 0453 61040000 		.4byte	0x461
+ 1360 0457 0D       		.uleb128 0xd
+ 1361 0458 01       		.uleb128 0x1
+ 1362 0459 50       		.byte	0x50
+ 1363 045a 05       		.uleb128 0x5
+ 1364 045b 03       		.byte	0x3
+ 1365 045c 10000000 		.4byte	.LC1
+ 1366 0460 00       		.byte	0
+ 1367 0461 0B       		.uleb128 0xb
+ 1368 0462 3E010000 		.4byte	.LVL54
+ 1369 0466 8F090000 		.4byte	0x98f
+ 1370 046a 0C       		.uleb128 0xc
+ 1371 046b 46010000 		.4byte	.LVL55
+ 1372 046f A5090000 		.4byte	0x9a5
+ 1373 0473 7F040000 		.4byte	0x47f
+ 1374 0477 0D       		.uleb128 0xd
+ 1375 0478 01       		.uleb128 0x1
+ 1376 0479 50       		.byte	0x50
+ 1377 047a 03       		.uleb128 0x3
+ 1378 047b 0A       		.byte	0xa
+ 1379 047c B80B     		.2byte	0xbb8
+ 1380 047e 00       		.byte	0
+ 1381 047f 0B       		.uleb128 0xb
+ 1382 0480 4A010000 		.4byte	.LVL56
+ 1383 0484 84090000 		.4byte	0x984
+ 1384 0488 0B       		.uleb128 0xb
+ 1385 0489 4E010000 		.4byte	.LVL57
+ 1386 048d 8F090000 		.4byte	0x98f
+ 1387 0491 0C       		.uleb128 0xc
+ 1388 0492 54010000 		.4byte	.LVL58
+ 1389 0496 D1090000 		.4byte	0x9d1
+ 1390 049a A4040000 		.4byte	0x4a4
+ 1391 049e 0D       		.uleb128 0xd
+ 1392 049f 01       		.uleb128 0x1
+ 1393 04a0 50       		.byte	0x50
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 30
+
+
+ 1394 04a1 01       		.uleb128 0x1
+ 1395 04a2 31       		.byte	0x31
+ 1396 04a3 00       		.byte	0
+ 1397 04a4 0C       		.uleb128 0xc
+ 1398 04a5 5A010000 		.4byte	.LVL59
+ 1399 04a9 DC090000 		.4byte	0x9dc
+ 1400 04ad B7040000 		.4byte	0x4b7
+ 1401 04b1 0D       		.uleb128 0xd
+ 1402 04b2 01       		.uleb128 0x1
+ 1403 04b3 50       		.byte	0x50
+ 1404 04b4 01       		.uleb128 0x1
+ 1405 04b5 31       		.byte	0x31
+ 1406 04b6 00       		.byte	0
+ 1407 04b7 0C       		.uleb128 0xc
+ 1408 04b8 62010000 		.4byte	.LVL60
+ 1409 04bc E7090000 		.4byte	0x9e7
+ 1410 04c0 CF040000 		.4byte	0x4cf
+ 1411 04c4 0D       		.uleb128 0xd
+ 1412 04c5 01       		.uleb128 0x1
+ 1413 04c6 50       		.byte	0x50
+ 1414 04c7 01       		.uleb128 0x1
+ 1415 04c8 30       		.byte	0x30
+ 1416 04c9 0D       		.uleb128 0xd
+ 1417 04ca 01       		.uleb128 0x1
+ 1418 04cb 51       		.byte	0x51
+ 1419 04cc 01       		.uleb128 0x1
+ 1420 04cd 30       		.byte	0x30
+ 1421 04ce 00       		.byte	0
+ 1422 04cf 0C       		.uleb128 0xc
+ 1423 04d0 6C010000 		.4byte	.LVL62
+ 1424 04d4 FD090000 		.4byte	0x9fd
+ 1425 04d8 E6040000 		.4byte	0x4e6
+ 1426 04dc 0D       		.uleb128 0xd
+ 1427 04dd 01       		.uleb128 0x1
+ 1428 04de 50       		.byte	0x50
+ 1429 04df 05       		.uleb128 0x5
+ 1430 04e0 03       		.byte	0x3
+ 1431 04e1 2C000000 		.4byte	.LC2
+ 1432 04e5 00       		.byte	0
+ 1433 04e6 0B       		.uleb128 0xb
+ 1434 04e7 78010000 		.4byte	.LVL65
+ 1435 04eb 8F090000 		.4byte	0x98f
+ 1436 04ef 0C       		.uleb128 0xc
+ 1437 04f0 84010000 		.4byte	.LVL66
+ 1438 04f4 080A0000 		.4byte	0xa08
+ 1439 04f8 12050000 		.4byte	0x512
+ 1440 04fc 0D       		.uleb128 0xd
+ 1441 04fd 01       		.uleb128 0x1
+ 1442 04fe 50       		.byte	0x50
+ 1443 04ff 01       		.uleb128 0x1
+ 1444 0500 30       		.byte	0x30
+ 1445 0501 0D       		.uleb128 0xd
+ 1446 0502 01       		.uleb128 0x1
+ 1447 0503 51       		.byte	0x51
+ 1448 0504 01       		.uleb128 0x1
+ 1449 0505 37       		.byte	0x37
+ 1450 0506 0D       		.uleb128 0xd
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 31
+
+
+ 1451 0507 01       		.uleb128 0x1
+ 1452 0508 52       		.byte	0x52
+ 1453 0509 02       		.uleb128 0x2
+ 1454 050a 08       		.byte	0x8
+ 1455 050b 26       		.byte	0x26
+ 1456 050c 0D       		.uleb128 0xd
+ 1457 050d 01       		.uleb128 0x1
+ 1458 050e 53       		.byte	0x53
+ 1459 050f 01       		.uleb128 0x1
+ 1460 0510 37       		.byte	0x37
+ 1461 0511 00       		.byte	0
+ 1462 0512 0C       		.uleb128 0xc
+ 1463 0513 8C010000 		.4byte	.LVL67
+ 1464 0517 A5090000 		.4byte	0x9a5
+ 1465 051b 27050000 		.4byte	0x527
+ 1466 051f 0D       		.uleb128 0xd
+ 1467 0520 01       		.uleb128 0x1
+ 1468 0521 50       		.byte	0x50
+ 1469 0522 03       		.uleb128 0x3
+ 1470 0523 0A       		.byte	0xa
+ 1471 0524 D007     		.2byte	0x7d0
+ 1472 0526 00       		.byte	0
+ 1473 0527 0B       		.uleb128 0xb
+ 1474 0528 90010000 		.4byte	.LVL68
+ 1475 052c 130A0000 		.4byte	0xa13
+ 1476 0530 0C       		.uleb128 0xc
+ 1477 0531 9C010000 		.4byte	.LVL69
+ 1478 0535 080A0000 		.4byte	0xa08
+ 1479 0539 53050000 		.4byte	0x553
+ 1480 053d 0D       		.uleb128 0xd
+ 1481 053e 01       		.uleb128 0x1
+ 1482 053f 50       		.byte	0x50
+ 1483 0540 01       		.uleb128 0x1
+ 1484 0541 32       		.byte	0x32
+ 1485 0542 0D       		.uleb128 0xd
+ 1486 0543 01       		.uleb128 0x1
+ 1487 0544 51       		.byte	0x51
+ 1488 0545 01       		.uleb128 0x1
+ 1489 0546 34       		.byte	0x34
+ 1490 0547 0D       		.uleb128 0xd
+ 1491 0548 01       		.uleb128 0x1
+ 1492 0549 52       		.byte	0x52
+ 1493 054a 02       		.uleb128 0x2
+ 1494 054b 08       		.byte	0x8
+ 1495 054c 2A       		.byte	0x2a
+ 1496 054d 0D       		.uleb128 0xd
+ 1497 054e 01       		.uleb128 0x1
+ 1498 054f 53       		.byte	0x53
+ 1499 0550 01       		.uleb128 0x1
+ 1500 0551 36       		.byte	0x36
+ 1501 0552 00       		.byte	0
+ 1502 0553 0C       		.uleb128 0xc
+ 1503 0554 A4010000 		.4byte	.LVL70
+ 1504 0558 A5090000 		.4byte	0x9a5
+ 1505 055c 68050000 		.4byte	0x568
+ 1506 0560 0D       		.uleb128 0xd
+ 1507 0561 01       		.uleb128 0x1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 32
+
+
+ 1508 0562 50       		.byte	0x50
+ 1509 0563 03       		.uleb128 0x3
+ 1510 0564 0A       		.byte	0xa
+ 1511 0565 D007     		.2byte	0x7d0
+ 1512 0567 00       		.byte	0
+ 1513 0568 0B       		.uleb128 0xb
+ 1514 0569 A8010000 		.4byte	.LVL71
+ 1515 056d 130A0000 		.4byte	0xa13
+ 1516 0571 0C       		.uleb128 0xc
+ 1517 0572 B0010000 		.4byte	.LVL72
+ 1518 0576 A5090000 		.4byte	0x9a5
+ 1519 057a 86050000 		.4byte	0x586
+ 1520 057e 0D       		.uleb128 0xd
+ 1521 057f 01       		.uleb128 0x1
+ 1522 0580 50       		.byte	0x50
+ 1523 0581 03       		.uleb128 0x3
+ 1524 0582 0A       		.byte	0xa
+ 1525 0583 B80B     		.2byte	0xbb8
+ 1526 0585 00       		.byte	0
+ 1527 0586 0B       		.uleb128 0xb
+ 1528 0587 B4010000 		.4byte	.LVL73
+ 1529 058b 84090000 		.4byte	0x984
+ 1530 058f 0B       		.uleb128 0xb
+ 1531 0590 B8010000 		.4byte	.LVL74
+ 1532 0594 8F090000 		.4byte	0x98f
+ 1533 0598 0B       		.uleb128 0xb
+ 1534 0599 C0010000 		.4byte	.LVL76
+ 1535 059d C6090000 		.4byte	0x9c6
+ 1536 05a1 0B       		.uleb128 0xb
+ 1537 05a2 CC010000 		.4byte	.LVL77
+ 1538 05a6 B0090000 		.4byte	0x9b0
+ 1539 05aa 0C       		.uleb128 0xc
+ 1540 05ab E0010000 		.4byte	.LVL78
+ 1541 05af 1E0A0000 		.4byte	0xa1e
+ 1542 05b3 D3050000 		.4byte	0x5d3
+ 1543 05b7 0D       		.uleb128 0xd
+ 1544 05b8 01       		.uleb128 0x1
+ 1545 05b9 50       		.byte	0x50
+ 1546 05ba 02       		.uleb128 0x2
+ 1547 05bb 74       		.byte	0x74
+ 1548 05bc 00       		.sleb128 0
+ 1549 05bd 0D       		.uleb128 0xd
+ 1550 05be 01       		.uleb128 0x1
+ 1551 05bf 51       		.byte	0x51
+ 1552 05c0 02       		.uleb128 0x2
+ 1553 05c1 74       		.byte	0x74
+ 1554 05c2 00       		.sleb128 0
+ 1555 05c3 0D       		.uleb128 0xd
+ 1556 05c4 01       		.uleb128 0x1
+ 1557 05c5 52       		.byte	0x52
+ 1558 05c6 05       		.uleb128 0x5
+ 1559 05c7 77       		.byte	0x77
+ 1560 05c8 00       		.sleb128 0
+ 1561 05c9 76       		.byte	0x76
+ 1562 05ca 00       		.sleb128 0
+ 1563 05cb 1C       		.byte	0x1c
+ 1564 05cc 0D       		.uleb128 0xd
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 33
+
+
+ 1565 05cd 02       		.uleb128 0x2
+ 1566 05ce 7D       		.byte	0x7d
+ 1567 05cf 00       		.sleb128 0
+ 1568 05d0 01       		.uleb128 0x1
+ 1569 05d1 31       		.byte	0x31
+ 1570 05d2 00       		.byte	0
+ 1571 05d3 0B       		.uleb128 0xb
+ 1572 05d4 E4010000 		.4byte	.LVL79
+ 1573 05d8 8F090000 		.4byte	0x98f
+ 1574 05dc 0B       		.uleb128 0xb
+ 1575 05dd EC010000 		.4byte	.LVL82
+ 1576 05e1 B0090000 		.4byte	0x9b0
+ 1577 05e5 0C       		.uleb128 0xc
+ 1578 05e6 00020000 		.4byte	.LVL83
+ 1579 05ea A5090000 		.4byte	0x9a5
+ 1580 05ee FA050000 		.4byte	0x5fa
+ 1581 05f2 0D       		.uleb128 0xd
+ 1582 05f3 01       		.uleb128 0x1
+ 1583 05f4 50       		.byte	0x50
+ 1584 05f5 03       		.uleb128 0x3
+ 1585 05f6 0A       		.byte	0xa
+ 1586 05f7 B80B     		.2byte	0xbb8
+ 1587 05f9 00       		.byte	0
+ 1588 05fa 0B       		.uleb128 0xb
+ 1589 05fb 04020000 		.4byte	.LVL84
+ 1590 05ff 84090000 		.4byte	0x984
+ 1591 0603 0B       		.uleb128 0xb
+ 1592 0604 08020000 		.4byte	.LVL85
+ 1593 0608 8F090000 		.4byte	0x98f
+ 1594 060c 0B       		.uleb128 0xb
+ 1595 060d 12020000 		.4byte	.LVL87
+ 1596 0611 C6090000 		.4byte	0x9c6
+ 1597 0615 0B       		.uleb128 0xb
+ 1598 0616 1E020000 		.4byte	.LVL88
+ 1599 061a B0090000 		.4byte	0x9b0
+ 1600 061e 0C       		.uleb128 0xc
+ 1601 061f 36020000 		.4byte	.LVL89
+ 1602 0623 290A0000 		.4byte	0xa29
+ 1603 0627 4A060000 		.4byte	0x64a
+ 1604 062b 0D       		.uleb128 0xd
+ 1605 062c 01       		.uleb128 0x1
+ 1606 062d 50       		.byte	0x50
+ 1607 062e 02       		.uleb128 0x2
+ 1608 062f 74       		.byte	0x74
+ 1609 0630 00       		.sleb128 0
+ 1610 0631 0D       		.uleb128 0xd
+ 1611 0632 01       		.uleb128 0x1
+ 1612 0633 51       		.byte	0x51
+ 1613 0634 02       		.uleb128 0x2
+ 1614 0635 74       		.byte	0x74
+ 1615 0636 00       		.sleb128 0
+ 1616 0637 0D       		.uleb128 0xd
+ 1617 0638 01       		.uleb128 0x1
+ 1618 0639 52       		.byte	0x52
+ 1619 063a 05       		.uleb128 0x5
+ 1620 063b 78       		.byte	0x78
+ 1621 063c 00       		.sleb128 0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 34
+
+
+ 1622 063d 77       		.byte	0x77
+ 1623 063e 00       		.sleb128 0
+ 1624 063f 1C       		.byte	0x1c
+ 1625 0640 0D       		.uleb128 0xd
+ 1626 0641 02       		.uleb128 0x2
+ 1627 0642 7D       		.byte	0x7d
+ 1628 0643 00       		.sleb128 0
+ 1629 0644 04       		.uleb128 0x4
+ 1630 0645 75       		.byte	0x75
+ 1631 0646 00       		.sleb128 0
+ 1632 0647 31       		.byte	0x31
+ 1633 0648 1A       		.byte	0x1a
+ 1634 0649 00       		.byte	0
+ 1635 064a 0B       		.uleb128 0xb
+ 1636 064b 3A020000 		.4byte	.LVL90
+ 1637 064f 8F090000 		.4byte	0x98f
+ 1638 0653 0B       		.uleb128 0xb
+ 1639 0654 46020000 		.4byte	.LVL95
+ 1640 0658 B0090000 		.4byte	0x9b0
+ 1641 065c 0C       		.uleb128 0xc
+ 1642 065d 5A020000 		.4byte	.LVL96
+ 1643 0661 A5090000 		.4byte	0x9a5
+ 1644 0665 71060000 		.4byte	0x671
+ 1645 0669 0D       		.uleb128 0xd
+ 1646 066a 01       		.uleb128 0x1
+ 1647 066b 50       		.byte	0x50
+ 1648 066c 03       		.uleb128 0x3
+ 1649 066d 0A       		.byte	0xa
+ 1650 066e B80B     		.2byte	0xbb8
+ 1651 0670 00       		.byte	0
+ 1652 0671 0B       		.uleb128 0xb
+ 1653 0672 5E020000 		.4byte	.LVL97
+ 1654 0676 84090000 		.4byte	0x984
+ 1655 067a 0B       		.uleb128 0xb
+ 1656 067b 62020000 		.4byte	.LVL98
+ 1657 067f 8F090000 		.4byte	0x98f
+ 1658 0683 0B       		.uleb128 0xb
+ 1659 0684 6A020000 		.4byte	.LVL100
+ 1660 0688 C6090000 		.4byte	0x9c6
+ 1661 068c 0B       		.uleb128 0xb
+ 1662 068d 70020000 		.4byte	.LVL101
+ 1663 0691 B0090000 		.4byte	0x9b0
+ 1664 0695 0C       		.uleb128 0xc
+ 1665 0696 88020000 		.4byte	.LVL102
+ 1666 069a 340A0000 		.4byte	0xa34
+ 1667 069e BA060000 		.4byte	0x6ba
+ 1668 06a2 0D       		.uleb128 0xd
+ 1669 06a3 01       		.uleb128 0x1
+ 1670 06a4 50       		.byte	0x50
+ 1671 06a5 08       		.uleb128 0x8
+ 1672 06a6 75       		.byte	0x75
+ 1673 06a7 00       		.sleb128 0
+ 1674 06a8 09       		.byte	0x9
+ 1675 06a9 F3       		.byte	0xf3
+ 1676 06aa 24       		.byte	0x24
+ 1677 06ab 09       		.byte	0x9
+ 1678 06ac F4       		.byte	0xf4
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 35
+
+
+ 1679 06ad 26       		.byte	0x26
+ 1680 06ae 0D       		.uleb128 0xd
+ 1681 06af 01       		.uleb128 0x1
+ 1682 06b0 52       		.byte	0x52
+ 1683 06b1 02       		.uleb128 0x2
+ 1684 06b2 74       		.byte	0x74
+ 1685 06b3 00       		.sleb128 0
+ 1686 06b4 0D       		.uleb128 0xd
+ 1687 06b5 01       		.uleb128 0x1
+ 1688 06b6 53       		.byte	0x53
+ 1689 06b7 01       		.uleb128 0x1
+ 1690 06b8 31       		.byte	0x31
+ 1691 06b9 00       		.byte	0
+ 1692 06ba 0B       		.uleb128 0xb
+ 1693 06bb 8C020000 		.4byte	.LVL103
+ 1694 06bf 8F090000 		.4byte	0x98f
+ 1695 06c3 0B       		.uleb128 0xb
+ 1696 06c4 94020000 		.4byte	.LVL106
+ 1697 06c8 B0090000 		.4byte	0x9b0
+ 1698 06cc 0C       		.uleb128 0xc
+ 1699 06cd A0020000 		.4byte	.LVL107
+ 1700 06d1 A5090000 		.4byte	0x9a5
+ 1701 06d5 E1060000 		.4byte	0x6e1
+ 1702 06d9 0D       		.uleb128 0xd
+ 1703 06da 01       		.uleb128 0x1
+ 1704 06db 50       		.byte	0x50
+ 1705 06dc 03       		.uleb128 0x3
+ 1706 06dd 0A       		.byte	0xa
+ 1707 06de B80B     		.2byte	0xbb8
+ 1708 06e0 00       		.byte	0
+ 1709 06e1 0B       		.uleb128 0xb
+ 1710 06e2 A4020000 		.4byte	.LVL108
+ 1711 06e6 84090000 		.4byte	0x984
+ 1712 06ea 0B       		.uleb128 0xb
+ 1713 06eb A8020000 		.4byte	.LVL109
+ 1714 06ef 8F090000 		.4byte	0x98f
+ 1715 06f3 0B       		.uleb128 0xb
+ 1716 06f4 B0020000 		.4byte	.LVL111
+ 1717 06f8 C6090000 		.4byte	0x9c6
+ 1718 06fc 0B       		.uleb128 0xb
+ 1719 06fd B6020000 		.4byte	.LVL112
+ 1720 0701 B0090000 		.4byte	0x9b0
+ 1721 0705 0B       		.uleb128 0xb
+ 1722 0706 BE020000 		.4byte	.LVL113
+ 1723 070a C6090000 		.4byte	0x9c6
+ 1724 070e 0B       		.uleb128 0xb
+ 1725 070f C4020000 		.4byte	.LVL114
+ 1726 0713 B0090000 		.4byte	0x9b0
+ 1727 0717 0B       		.uleb128 0xb
+ 1728 0718 CA020000 		.4byte	.LVL115
+ 1729 071c C6090000 		.4byte	0x9c6
+ 1730 0720 0B       		.uleb128 0xb
+ 1731 0721 D0020000 		.4byte	.LVL116
+ 1732 0725 B0090000 		.4byte	0x9b0
+ 1733 0729 0C       		.uleb128 0xc
+ 1734 072a 16030000 		.4byte	.LVL117
+ 1735 072e 3F0A0000 		.4byte	0xa3f
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 36
+
+
+ 1736 0732 6D070000 		.4byte	0x76d
+ 1737 0736 0D       		.uleb128 0xd
+ 1738 0737 01       		.uleb128 0x1
+ 1739 0738 50       		.byte	0x50
+ 1740 0739 08       		.uleb128 0x8
+ 1741 073a 77       		.byte	0x77
+ 1742 073b 00       		.sleb128 0
+ 1743 073c 09       		.byte	0x9
+ 1744 073d F3       		.byte	0xf3
+ 1745 073e 24       		.byte	0x24
+ 1746 073f 09       		.byte	0x9
+ 1747 0740 F4       		.byte	0xf4
+ 1748 0741 26       		.byte	0x26
+ 1749 0742 0D       		.uleb128 0xd
+ 1750 0743 01       		.uleb128 0x1
+ 1751 0744 52       		.byte	0x52
+ 1752 0745 07       		.uleb128 0x7
+ 1753 0746 78       		.byte	0x78
+ 1754 0747 00       		.sleb128 0
+ 1755 0748 31       		.byte	0x31
+ 1756 0749 26       		.byte	0x26
+ 1757 074a 74       		.byte	0x74
+ 1758 074b 00       		.sleb128 0
+ 1759 074c 1C       		.byte	0x1c
+ 1760 074d 0D       		.uleb128 0xd
+ 1761 074e 01       		.uleb128 0x1
+ 1762 074f 53       		.byte	0x53
+ 1763 0750 07       		.uleb128 0x7
+ 1764 0751 79       		.byte	0x79
+ 1765 0752 00       		.sleb128 0
+ 1766 0753 31       		.byte	0x31
+ 1767 0754 26       		.byte	0x26
+ 1768 0755 74       		.byte	0x74
+ 1769 0756 00       		.sleb128 0
+ 1770 0757 22       		.byte	0x22
+ 1771 0758 0D       		.uleb128 0xd
+ 1772 0759 02       		.uleb128 0x2
+ 1773 075a 7D       		.byte	0x7d
+ 1774 075b 00       		.sleb128 0
+ 1775 075c 02       		.uleb128 0x2
+ 1776 075d 75       		.byte	0x75
+ 1777 075e 00       		.sleb128 0
+ 1778 075f 0D       		.uleb128 0xd
+ 1779 0760 02       		.uleb128 0x2
+ 1780 0761 7D       		.byte	0x7d
+ 1781 0762 04       		.sleb128 4
+ 1782 0763 02       		.uleb128 0x2
+ 1783 0764 76       		.byte	0x76
+ 1784 0765 00       		.sleb128 0
+ 1785 0766 0D       		.uleb128 0xd
+ 1786 0767 02       		.uleb128 0x2
+ 1787 0768 7D       		.byte	0x7d
+ 1788 0769 08       		.sleb128 8
+ 1789 076a 01       		.uleb128 0x1
+ 1790 076b 31       		.byte	0x31
+ 1791 076c 00       		.byte	0
+ 1792 076d 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 37
+
+
+ 1793 076e 1A030000 		.4byte	.LVL118
+ 1794 0772 8F090000 		.4byte	0x98f
+ 1795 0776 0B       		.uleb128 0xb
+ 1796 0777 24030000 		.4byte	.LVL121
+ 1797 077b C6090000 		.4byte	0x9c6
+ 1798 077f 0B       		.uleb128 0xb
+ 1799 0780 2A030000 		.4byte	.LVL122
+ 1800 0784 B0090000 		.4byte	0x9b0
+ 1801 0788 0B       		.uleb128 0xb
+ 1802 0789 32030000 		.4byte	.LVL123
+ 1803 078d C6090000 		.4byte	0x9c6
+ 1804 0791 0B       		.uleb128 0xb
+ 1805 0792 3E030000 		.4byte	.LVL124
+ 1806 0796 B0090000 		.4byte	0x9b0
+ 1807 079a 0C       		.uleb128 0xc
+ 1808 079b 50030000 		.4byte	.LVL125
+ 1809 079f A5090000 		.4byte	0x9a5
+ 1810 07a3 AF070000 		.4byte	0x7af
+ 1811 07a7 0D       		.uleb128 0xd
+ 1812 07a8 01       		.uleb128 0x1
+ 1813 07a9 50       		.byte	0x50
+ 1814 07aa 03       		.uleb128 0x3
+ 1815 07ab 0A       		.byte	0xa
+ 1816 07ac B80B     		.2byte	0xbb8
+ 1817 07ae 00       		.byte	0
+ 1818 07af 0B       		.uleb128 0xb
+ 1819 07b0 54030000 		.4byte	.LVL126
+ 1820 07b4 84090000 		.4byte	0x984
+ 1821 07b8 0B       		.uleb128 0xb
+ 1822 07b9 58030000 		.4byte	.LVL127
+ 1823 07bd 8F090000 		.4byte	0x98f
+ 1824 07c1 0C       		.uleb128 0xc
+ 1825 07c2 62030000 		.4byte	.LVL129
+ 1826 07c6 4A0A0000 		.4byte	0xa4a
+ 1827 07ca D5070000 		.4byte	0x7d5
+ 1828 07ce 0D       		.uleb128 0xd
+ 1829 07cf 01       		.uleb128 0x1
+ 1830 07d0 50       		.byte	0x50
+ 1831 07d1 02       		.uleb128 0x2
+ 1832 07d2 76       		.byte	0x76
+ 1833 07d3 00       		.sleb128 0
+ 1834 07d4 00       		.byte	0
+ 1835 07d5 0B       		.uleb128 0xb
+ 1836 07d6 6A030000 		.4byte	.LVL131
+ 1837 07da C6090000 		.4byte	0x9c6
+ 1838 07de 0B       		.uleb128 0xb
+ 1839 07df 70030000 		.4byte	.LVL132
+ 1840 07e3 B0090000 		.4byte	0x9b0
+ 1841 07e7 0B       		.uleb128 0xb
+ 1842 07e8 78030000 		.4byte	.LVL133
+ 1843 07ec C6090000 		.4byte	0x9c6
+ 1844 07f0 0B       		.uleb128 0xb
+ 1845 07f1 7E030000 		.4byte	.LVL134
+ 1846 07f5 B0090000 		.4byte	0x9b0
+ 1847 07f9 0B       		.uleb128 0xb
+ 1848 07fa 84030000 		.4byte	.LVL135
+ 1849 07fe C6090000 		.4byte	0x9c6
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 38
+
+
+ 1850 0802 0B       		.uleb128 0xb
+ 1851 0803 8A030000 		.4byte	.LVL136
+ 1852 0807 B0090000 		.4byte	0x9b0
+ 1853 080b 0C       		.uleb128 0xc
+ 1854 080c D4030000 		.4byte	.LVL137
+ 1855 0810 3F0A0000 		.4byte	0xa3f
+ 1856 0814 53080000 		.4byte	0x853
+ 1857 0818 0D       		.uleb128 0xd
+ 1858 0819 01       		.uleb128 0x1
+ 1859 081a 50       		.byte	0x50
+ 1860 081b 08       		.uleb128 0x8
+ 1861 081c 77       		.byte	0x77
+ 1862 081d 00       		.sleb128 0
+ 1863 081e 09       		.byte	0x9
+ 1864 081f F3       		.byte	0xf3
+ 1865 0820 24       		.byte	0x24
+ 1866 0821 09       		.byte	0x9
+ 1867 0822 F4       		.byte	0xf4
+ 1868 0823 26       		.byte	0x26
+ 1869 0824 0D       		.uleb128 0xd
+ 1870 0825 01       		.uleb128 0x1
+ 1871 0826 51       		.byte	0x51
+ 1872 0827 07       		.uleb128 0x7
+ 1873 0828 78       		.byte	0x78
+ 1874 0829 00       		.sleb128 0
+ 1875 082a 31       		.byte	0x31
+ 1876 082b 26       		.byte	0x26
+ 1877 082c 74       		.byte	0x74
+ 1878 082d 00       		.sleb128 0
+ 1879 082e 1C       		.byte	0x1c
+ 1880 082f 0D       		.uleb128 0xd
+ 1881 0830 01       		.uleb128 0x1
+ 1882 0831 52       		.byte	0x52
+ 1883 0832 07       		.uleb128 0x7
+ 1884 0833 79       		.byte	0x79
+ 1885 0834 00       		.sleb128 0
+ 1886 0835 31       		.byte	0x31
+ 1887 0836 26       		.byte	0x26
+ 1888 0837 74       		.byte	0x74
+ 1889 0838 00       		.sleb128 0
+ 1890 0839 1C       		.byte	0x1c
+ 1891 083a 0D       		.uleb128 0xd
+ 1892 083b 01       		.uleb128 0x1
+ 1893 083c 53       		.byte	0x53
+ 1894 083d 07       		.uleb128 0x7
+ 1895 083e 7A       		.byte	0x7a
+ 1896 083f 00       		.sleb128 0
+ 1897 0840 31       		.byte	0x31
+ 1898 0841 26       		.byte	0x26
+ 1899 0842 74       		.byte	0x74
+ 1900 0843 00       		.sleb128 0
+ 1901 0844 22       		.byte	0x22
+ 1902 0845 0D       		.uleb128 0xd
+ 1903 0846 02       		.uleb128 0x2
+ 1904 0847 7D       		.byte	0x7d
+ 1905 0848 00       		.sleb128 0
+ 1906 0849 02       		.uleb128 0x2
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 39
+
+
+ 1907 084a 75       		.byte	0x75
+ 1908 084b 00       		.sleb128 0
+ 1909 084c 0D       		.uleb128 0xd
+ 1910 084d 02       		.uleb128 0x2
+ 1911 084e 7D       		.byte	0x7d
+ 1912 084f 08       		.sleb128 8
+ 1913 0850 01       		.uleb128 0x1
+ 1914 0851 31       		.byte	0x31
+ 1915 0852 00       		.byte	0
+ 1916 0853 0B       		.uleb128 0xb
+ 1917 0854 D8030000 		.4byte	.LVL138
+ 1918 0858 8F090000 		.4byte	0x98f
+ 1919 085c 0C       		.uleb128 0xc
+ 1920 085d DE030000 		.4byte	.LVL139
+ 1921 0861 A5090000 		.4byte	0x9a5
+ 1922 0865 70080000 		.4byte	0x870
+ 1923 0869 0D       		.uleb128 0xd
+ 1924 086a 01       		.uleb128 0x1
+ 1925 086b 50       		.byte	0x50
+ 1926 086c 02       		.uleb128 0x2
+ 1927 086d 08       		.byte	0x8
+ 1928 086e C8       		.byte	0xc8
+ 1929 086f 00       		.byte	0
+ 1930 0870 0B       		.uleb128 0xb
+ 1931 0871 E8030000 		.4byte	.LVL142
+ 1932 0875 C6090000 		.4byte	0x9c6
+ 1933 0879 0B       		.uleb128 0xb
+ 1934 087a EE030000 		.4byte	.LVL143
+ 1935 087e B0090000 		.4byte	0x9b0
+ 1936 0882 0B       		.uleb128 0xb
+ 1937 0883 F6030000 		.4byte	.LVL144
+ 1938 0887 C6090000 		.4byte	0x9c6
+ 1939 088b 0B       		.uleb128 0xb
+ 1940 088c 02040000 		.4byte	.LVL145
+ 1941 0890 B0090000 		.4byte	0x9b0
+ 1942 0894 0C       		.uleb128 0xc
+ 1943 0895 1C040000 		.4byte	.LVL148
+ 1944 0899 A5090000 		.4byte	0x9a5
+ 1945 089d A9080000 		.4byte	0x8a9
+ 1946 08a1 0D       		.uleb128 0xd
+ 1947 08a2 01       		.uleb128 0x1
+ 1948 08a3 50       		.byte	0x50
+ 1949 08a4 03       		.uleb128 0x3
+ 1950 08a5 0A       		.byte	0xa
+ 1951 08a6 B80B     		.2byte	0xbb8
+ 1952 08a8 00       		.byte	0
+ 1953 08a9 0C       		.uleb128 0xc
+ 1954 08aa 22040000 		.4byte	.LVL149
+ 1955 08ae 550A0000 		.4byte	0xa55
+ 1956 08b2 BC080000 		.4byte	0x8bc
+ 1957 08b6 0D       		.uleb128 0xd
+ 1958 08b7 01       		.uleb128 0x1
+ 1959 08b8 50       		.byte	0x50
+ 1960 08b9 01       		.uleb128 0x1
+ 1961 08ba 31       		.byte	0x31
+ 1962 08bb 00       		.byte	0
+ 1963 08bc 0C       		.uleb128 0xc
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 40
+
+
+ 1964 08bd 2A040000 		.4byte	.LVL150
+ 1965 08c1 A5090000 		.4byte	0x9a5
+ 1966 08c5 D1080000 		.4byte	0x8d1
+ 1967 08c9 0D       		.uleb128 0xd
+ 1968 08ca 01       		.uleb128 0x1
+ 1969 08cb 50       		.byte	0x50
+ 1970 08cc 03       		.uleb128 0x3
+ 1971 08cd 0A       		.byte	0xa
+ 1972 08ce E803     		.2byte	0x3e8
+ 1973 08d0 00       		.byte	0
+ 1974 08d1 0C       		.uleb128 0xc
+ 1975 08d2 36040000 		.4byte	.LVL152
+ 1976 08d6 600A0000 		.4byte	0xa60
+ 1977 08da E5080000 		.4byte	0x8e5
+ 1978 08de 0D       		.uleb128 0xd
+ 1979 08df 01       		.uleb128 0x1
+ 1980 08e0 50       		.byte	0x50
+ 1981 08e1 02       		.uleb128 0x2
+ 1982 08e2 74       		.byte	0x74
+ 1983 08e3 00       		.sleb128 0
+ 1984 08e4 00       		.byte	0
+ 1985 08e5 0C       		.uleb128 0xc
+ 1986 08e6 3C040000 		.4byte	.LVL153
+ 1987 08ea A5090000 		.4byte	0x9a5
+ 1988 08ee F8080000 		.4byte	0x8f8
+ 1989 08f2 0D       		.uleb128 0xd
+ 1990 08f3 01       		.uleb128 0x1
+ 1991 08f4 50       		.byte	0x50
+ 1992 08f5 01       		.uleb128 0x1
+ 1993 08f6 3A       		.byte	0x3a
+ 1994 08f7 00       		.byte	0
+ 1995 08f8 0C       		.uleb128 0xc
+ 1996 08f9 4A040000 		.4byte	.LVL156
+ 1997 08fd 550A0000 		.4byte	0xa55
+ 1998 0901 0B090000 		.4byte	0x90b
+ 1999 0905 0D       		.uleb128 0xd
+ 2000 0906 01       		.uleb128 0x1
+ 2001 0907 50       		.byte	0x50
+ 2002 0908 01       		.uleb128 0x1
+ 2003 0909 30       		.byte	0x30
+ 2004 090a 00       		.byte	0
+ 2005 090b 0C       		.uleb128 0xc
+ 2006 090c 52040000 		.4byte	.LVL157
+ 2007 0910 A5090000 		.4byte	0x9a5
+ 2008 0914 20090000 		.4byte	0x920
+ 2009 0918 0D       		.uleb128 0xd
+ 2010 0919 01       		.uleb128 0x1
+ 2011 091a 50       		.byte	0x50
+ 2012 091b 03       		.uleb128 0x3
+ 2013 091c 0A       		.byte	0xa
+ 2014 091d E803     		.2byte	0x3e8
+ 2015 091f 00       		.byte	0
+ 2016 0920 0C       		.uleb128 0xc
+ 2017 0921 5C040000 		.4byte	.LVL159
+ 2018 0925 600A0000 		.4byte	0xa60
+ 2019 0929 34090000 		.4byte	0x934
+ 2020 092d 0D       		.uleb128 0xd
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 41
+
+
+ 2021 092e 01       		.uleb128 0x1
+ 2022 092f 50       		.byte	0x50
+ 2023 0930 02       		.uleb128 0x2
+ 2024 0931 74       		.byte	0x74
+ 2025 0932 00       		.sleb128 0
+ 2026 0933 00       		.byte	0
+ 2027 0934 0C       		.uleb128 0xc
+ 2028 0935 62040000 		.4byte	.LVL160
+ 2029 0939 A5090000 		.4byte	0x9a5
+ 2030 093d 47090000 		.4byte	0x947
+ 2031 0941 0D       		.uleb128 0xd
+ 2032 0942 01       		.uleb128 0x1
+ 2033 0943 50       		.byte	0x50
+ 2034 0944 01       		.uleb128 0x1
+ 2035 0945 3A       		.byte	0x3a
+ 2036 0946 00       		.byte	0
+ 2037 0947 0E       		.uleb128 0xe
+ 2038 0948 72040000 		.4byte	.LVL163
+ 2039 094c A5090000 		.4byte	0x9a5
+ 2040 0950 0D       		.uleb128 0xd
+ 2041 0951 01       		.uleb128 0x1
+ 2042 0952 50       		.byte	0x50
+ 2043 0953 03       		.uleb128 0x3
+ 2044 0954 0A       		.byte	0xa
+ 2045 0955 B80B     		.2byte	0xbb8
+ 2046 0957 00       		.byte	0
+ 2047 0958 00       		.byte	0
+ 2048 0959 0B       		.uleb128 0xb
+ 2049 095a 0A000000 		.4byte	.LVL0
+ 2050 095e 6B0A0000 		.4byte	0xa6b
+ 2051 0962 0E       		.uleb128 0xe
+ 2052 0963 12000000 		.4byte	.LVL1
+ 2053 0967 760A0000 		.4byte	0xa76
+ 2054 096b 0D       		.uleb128 0xd
+ 2055 096c 01       		.uleb128 0x1
+ 2056 096d 50       		.byte	0x50
+ 2057 096e 02       		.uleb128 0x2
+ 2058 096f 08       		.byte	0x8
+ 2059 0970 3C       		.byte	0x3c
+ 2060 0971 00       		.byte	0
+ 2061 0972 00       		.byte	0
+ 2062 0973 0F       		.uleb128 0xf
+ 2063 0974 56030000 		.4byte	.LASF66
+ 2064 0978 07       		.byte	0x7
+ 2065 0979 1207     		.2byte	0x712
+ 2066 097b 7F090000 		.4byte	0x97f
+ 2067 097f 10       		.uleb128 0x10
+ 2068 0980 A2000000 		.4byte	0xa2
+ 2069 0984 11       		.uleb128 0x11
+ 2070 0985 E5000000 		.4byte	.LASF39
+ 2071 0989 E5000000 		.4byte	.LASF39
+ 2072 098d 04       		.byte	0x4
+ 2073 098e 36       		.byte	0x36
+ 2074 098f 11       		.uleb128 0x11
+ 2075 0990 77000000 		.4byte	.LASF40
+ 2076 0994 77000000 		.4byte	.LASF40
+ 2077 0998 04       		.byte	0x4
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 42
+
+
+ 2078 0999 35       		.byte	0x35
+ 2079 099a 11       		.uleb128 0x11
+ 2080 099b 1D000000 		.4byte	.LASF41
+ 2081 099f 1D000000 		.4byte	.LASF41
+ 2082 09a3 04       		.byte	0x4
+ 2083 09a4 3F       		.byte	0x3f
+ 2084 09a5 11       		.uleb128 0x11
+ 2085 09a6 F1030000 		.4byte	.LASF42
+ 2086 09aa F1030000 		.4byte	.LASF42
+ 2087 09ae 05       		.byte	0x5
+ 2088 09af 76       		.byte	0x76
+ 2089 09b0 11       		.uleb128 0x11
+ 2090 09b1 BF020000 		.4byte	.LASF43
+ 2091 09b5 BF020000 		.4byte	.LASF43
+ 2092 09b9 04       		.byte	0x4
+ 2093 09ba 47       		.byte	0x47
+ 2094 09bb 11       		.uleb128 0x11
+ 2095 09bc 5D000000 		.4byte	.LASF44
+ 2096 09c0 5D000000 		.4byte	.LASF44
+ 2097 09c4 04       		.byte	0x4
+ 2098 09c5 40       		.byte	0x40
+ 2099 09c6 11       		.uleb128 0x11
+ 2100 09c7 E6010000 		.4byte	.LASF45
+ 2101 09cb E6010000 		.4byte	.LASF45
+ 2102 09cf 04       		.byte	0x4
+ 2103 09d0 46       		.byte	0x46
+ 2104 09d1 11       		.uleb128 0x11
+ 2105 09d2 17010000 		.4byte	.LASF46
+ 2106 09d6 17010000 		.4byte	.LASF46
+ 2107 09da 04       		.byte	0x4
+ 2108 09db 42       		.byte	0x42
+ 2109 09dc 11       		.uleb128 0x11
+ 2110 09dd 06010000 		.4byte	.LASF47
+ 2111 09e1 06010000 		.4byte	.LASF47
+ 2112 09e5 04       		.byte	0x4
+ 2113 09e6 43       		.byte	0x43
+ 2114 09e7 11       		.uleb128 0x11
+ 2115 09e8 1A030000 		.4byte	.LASF48
+ 2116 09ec 1A030000 		.4byte	.LASF48
+ 2117 09f0 04       		.byte	0x4
+ 2118 09f1 41       		.byte	0x41
+ 2119 09f2 11       		.uleb128 0x11
+ 2120 09f3 CD000000 		.4byte	.LASF49
+ 2121 09f7 CD000000 		.4byte	.LASF49
+ 2122 09fb 04       		.byte	0x4
+ 2123 09fc 45       		.byte	0x45
+ 2124 09fd 11       		.uleb128 0x11
+ 2125 09fe CA020000 		.4byte	.LASF50
+ 2126 0a02 CA020000 		.4byte	.LASF50
+ 2127 0a06 04       		.byte	0x4
+ 2128 0a07 49       		.byte	0x49
+ 2129 0a08 11       		.uleb128 0x11
+ 2130 0a09 0E000000 		.4byte	.LASF51
+ 2131 0a0d 0E000000 		.4byte	.LASF51
+ 2132 0a11 04       		.byte	0x4
+ 2133 0a12 38       		.byte	0x38
+ 2134 0a13 11       		.uleb128 0x11
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 43
+
+
+ 2135 0a14 F0010000 		.4byte	.LASF52
+ 2136 0a18 F0010000 		.4byte	.LASF52
+ 2137 0a1c 04       		.byte	0x4
+ 2138 0a1d 37       		.byte	0x37
+ 2139 0a1e 11       		.uleb128 0x11
+ 2140 0a1f BA000000 		.4byte	.LASF53
+ 2141 0a23 BA000000 		.4byte	.LASF53
+ 2142 0a27 04       		.byte	0x4
+ 2143 0a28 4A       		.byte	0x4a
+ 2144 0a29 11       		.uleb128 0x11
+ 2145 0a2a 6A000000 		.4byte	.LASF54
+ 2146 0a2e 6A000000 		.4byte	.LASF54
+ 2147 0a32 04       		.byte	0x4
+ 2148 0a33 4B       		.byte	0x4b
+ 2149 0a34 11       		.uleb128 0x11
+ 2150 0a35 2B000000 		.4byte	.LASF55
+ 2151 0a39 2B000000 		.4byte	.LASF55
+ 2152 0a3d 04       		.byte	0x4
+ 2153 0a3e 4C       		.byte	0x4c
+ 2154 0a3f 11       		.uleb128 0x11
+ 2155 0a40 8E000000 		.4byte	.LASF56
+ 2156 0a44 8E000000 		.4byte	.LASF56
+ 2157 0a48 04       		.byte	0x4
+ 2158 0a49 4D       		.byte	0x4d
+ 2159 0a4a 11       		.uleb128 0x11
+ 2160 0a4b 30020000 		.4byte	.LASF57
+ 2161 0a4f 30020000 		.4byte	.LASF57
+ 2162 0a53 04       		.byte	0x4
+ 2163 0a54 4E       		.byte	0x4e
+ 2164 0a55 11       		.uleb128 0x11
+ 2165 0a56 9F000000 		.4byte	.LASF58
+ 2166 0a5a 9F000000 		.4byte	.LASF58
+ 2167 0a5e 04       		.byte	0x4
+ 2168 0a5f 3A       		.byte	0x3a
+ 2169 0a60 11       		.uleb128 0x11
+ 2170 0a61 F9030000 		.4byte	.LASF59
+ 2171 0a65 F9030000 		.4byte	.LASF59
+ 2172 0a69 04       		.byte	0x4
+ 2173 0a6a 39       		.byte	0x39
+ 2174 0a6b 11       		.uleb128 0x11
+ 2175 0a6c 4A000000 		.4byte	.LASF60
+ 2176 0a70 4A000000 		.4byte	.LASF60
+ 2177 0a74 06       		.byte	0x6
+ 2178 0a75 93       		.byte	0x93
+ 2179 0a76 11       		.uleb128 0x11
+ 2180 0a77 33010000 		.4byte	.LASF61
+ 2181 0a7b 33010000 		.4byte	.LASF61
+ 2182 0a7f 04       		.byte	0x4
+ 2183 0a80 34       		.byte	0x34
+ 2184 0a81 00       		.byte	0
+ 2185              		.section	.debug_abbrev,"",%progbits
+ 2186              	.Ldebug_abbrev0:
+ 2187 0000 01       		.uleb128 0x1
+ 2188 0001 11       		.uleb128 0x11
+ 2189 0002 01       		.byte	0x1
+ 2190 0003 25       		.uleb128 0x25
+ 2191 0004 0E       		.uleb128 0xe
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 44
+
+
+ 2192 0005 13       		.uleb128 0x13
+ 2193 0006 0B       		.uleb128 0xb
+ 2194 0007 03       		.uleb128 0x3
+ 2195 0008 0E       		.uleb128 0xe
+ 2196 0009 1B       		.uleb128 0x1b
+ 2197 000a 0E       		.uleb128 0xe
+ 2198 000b 55       		.uleb128 0x55
+ 2199 000c 17       		.uleb128 0x17
+ 2200 000d 11       		.uleb128 0x11
+ 2201 000e 01       		.uleb128 0x1
+ 2202 000f 10       		.uleb128 0x10
+ 2203 0010 17       		.uleb128 0x17
+ 2204 0011 00       		.byte	0
+ 2205 0012 00       		.byte	0
+ 2206 0013 02       		.uleb128 0x2
+ 2207 0014 24       		.uleb128 0x24
+ 2208 0015 00       		.byte	0
+ 2209 0016 0B       		.uleb128 0xb
+ 2210 0017 0B       		.uleb128 0xb
+ 2211 0018 3E       		.uleb128 0x3e
+ 2212 0019 0B       		.uleb128 0xb
+ 2213 001a 03       		.uleb128 0x3
+ 2214 001b 0E       		.uleb128 0xe
+ 2215 001c 00       		.byte	0
+ 2216 001d 00       		.byte	0
+ 2217 001e 03       		.uleb128 0x3
+ 2218 001f 16       		.uleb128 0x16
+ 2219 0020 00       		.byte	0
+ 2220 0021 03       		.uleb128 0x3
+ 2221 0022 0E       		.uleb128 0xe
+ 2222 0023 3A       		.uleb128 0x3a
+ 2223 0024 0B       		.uleb128 0xb
+ 2224 0025 3B       		.uleb128 0x3b
+ 2225 0026 0B       		.uleb128 0xb
+ 2226 0027 49       		.uleb128 0x49
+ 2227 0028 13       		.uleb128 0x13
+ 2228 0029 00       		.byte	0
+ 2229 002a 00       		.byte	0
+ 2230 002b 04       		.uleb128 0x4
+ 2231 002c 24       		.uleb128 0x24
+ 2232 002d 00       		.byte	0
+ 2233 002e 0B       		.uleb128 0xb
+ 2234 002f 0B       		.uleb128 0xb
+ 2235 0030 3E       		.uleb128 0x3e
+ 2236 0031 0B       		.uleb128 0xb
+ 2237 0032 03       		.uleb128 0x3
+ 2238 0033 08       		.uleb128 0x8
+ 2239 0034 00       		.byte	0
+ 2240 0035 00       		.byte	0
+ 2241 0036 05       		.uleb128 0x5
+ 2242 0037 04       		.uleb128 0x4
+ 2243 0038 01       		.byte	0x1
+ 2244 0039 0B       		.uleb128 0xb
+ 2245 003a 0B       		.uleb128 0xb
+ 2246 003b 49       		.uleb128 0x49
+ 2247 003c 13       		.uleb128 0x13
+ 2248 003d 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 45
+
+
+ 2249 003e 0B       		.uleb128 0xb
+ 2250 003f 3B       		.uleb128 0x3b
+ 2251 0040 0B       		.uleb128 0xb
+ 2252 0041 01       		.uleb128 0x1
+ 2253 0042 13       		.uleb128 0x13
+ 2254 0043 00       		.byte	0
+ 2255 0044 00       		.byte	0
+ 2256 0045 06       		.uleb128 0x6
+ 2257 0046 28       		.uleb128 0x28
+ 2258 0047 00       		.byte	0
+ 2259 0048 03       		.uleb128 0x3
+ 2260 0049 0E       		.uleb128 0xe
+ 2261 004a 1C       		.uleb128 0x1c
+ 2262 004b 0B       		.uleb128 0xb
+ 2263 004c 00       		.byte	0
+ 2264 004d 00       		.byte	0
+ 2265 004e 07       		.uleb128 0x7
+ 2266 004f 2E       		.uleb128 0x2e
+ 2267 0050 01       		.byte	0x1
+ 2268 0051 3F       		.uleb128 0x3f
+ 2269 0052 19       		.uleb128 0x19
+ 2270 0053 03       		.uleb128 0x3
+ 2271 0054 0E       		.uleb128 0xe
+ 2272 0055 3A       		.uleb128 0x3a
+ 2273 0056 0B       		.uleb128 0xb
+ 2274 0057 3B       		.uleb128 0x3b
+ 2275 0058 0B       		.uleb128 0xb
+ 2276 0059 49       		.uleb128 0x49
+ 2277 005a 13       		.uleb128 0x13
+ 2278 005b 8701     		.uleb128 0x87
+ 2279 005d 19       		.uleb128 0x19
+ 2280 005e 11       		.uleb128 0x11
+ 2281 005f 01       		.uleb128 0x1
+ 2282 0060 12       		.uleb128 0x12
+ 2283 0061 06       		.uleb128 0x6
+ 2284 0062 40       		.uleb128 0x40
+ 2285 0063 18       		.uleb128 0x18
+ 2286 0064 9742     		.uleb128 0x2117
+ 2287 0066 19       		.uleb128 0x19
+ 2288 0067 01       		.uleb128 0x1
+ 2289 0068 13       		.uleb128 0x13
+ 2290 0069 00       		.byte	0
+ 2291 006a 00       		.byte	0
+ 2292 006b 08       		.uleb128 0x8
+ 2293 006c 0B       		.uleb128 0xb
+ 2294 006d 01       		.byte	0x1
+ 2295 006e 11       		.uleb128 0x11
+ 2296 006f 01       		.uleb128 0x1
+ 2297 0070 12       		.uleb128 0x12
+ 2298 0071 06       		.uleb128 0x6
+ 2299 0072 01       		.uleb128 0x1
+ 2300 0073 13       		.uleb128 0x13
+ 2301 0074 00       		.byte	0
+ 2302 0075 00       		.byte	0
+ 2303 0076 09       		.uleb128 0x9
+ 2304 0077 34       		.uleb128 0x34
+ 2305 0078 00       		.byte	0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 46
+
+
+ 2306 0079 03       		.uleb128 0x3
+ 2307 007a 08       		.uleb128 0x8
+ 2308 007b 3A       		.uleb128 0x3a
+ 2309 007c 0B       		.uleb128 0xb
+ 2310 007d 3B       		.uleb128 0x3b
+ 2311 007e 0B       		.uleb128 0xb
+ 2312 007f 49       		.uleb128 0x49
+ 2313 0080 13       		.uleb128 0x13
+ 2314 0081 02       		.uleb128 0x2
+ 2315 0082 17       		.uleb128 0x17
+ 2316 0083 00       		.byte	0
+ 2317 0084 00       		.byte	0
+ 2318 0085 0A       		.uleb128 0xa
+ 2319 0086 34       		.uleb128 0x34
+ 2320 0087 00       		.byte	0
+ 2321 0088 03       		.uleb128 0x3
+ 2322 0089 0E       		.uleb128 0xe
+ 2323 008a 3A       		.uleb128 0x3a
+ 2324 008b 0B       		.uleb128 0xb
+ 2325 008c 3B       		.uleb128 0x3b
+ 2326 008d 0B       		.uleb128 0xb
+ 2327 008e 49       		.uleb128 0x49
+ 2328 008f 13       		.uleb128 0x13
+ 2329 0090 02       		.uleb128 0x2
+ 2330 0091 17       		.uleb128 0x17
+ 2331 0092 00       		.byte	0
+ 2332 0093 00       		.byte	0
+ 2333 0094 0B       		.uleb128 0xb
+ 2334 0095 898201   		.uleb128 0x4109
+ 2335 0098 00       		.byte	0
+ 2336 0099 11       		.uleb128 0x11
+ 2337 009a 01       		.uleb128 0x1
+ 2338 009b 31       		.uleb128 0x31
+ 2339 009c 13       		.uleb128 0x13
+ 2340 009d 00       		.byte	0
+ 2341 009e 00       		.byte	0
+ 2342 009f 0C       		.uleb128 0xc
+ 2343 00a0 898201   		.uleb128 0x4109
+ 2344 00a3 01       		.byte	0x1
+ 2345 00a4 11       		.uleb128 0x11
+ 2346 00a5 01       		.uleb128 0x1
+ 2347 00a6 31       		.uleb128 0x31
+ 2348 00a7 13       		.uleb128 0x13
+ 2349 00a8 01       		.uleb128 0x1
+ 2350 00a9 13       		.uleb128 0x13
+ 2351 00aa 00       		.byte	0
+ 2352 00ab 00       		.byte	0
+ 2353 00ac 0D       		.uleb128 0xd
+ 2354 00ad 8A8201   		.uleb128 0x410a
+ 2355 00b0 00       		.byte	0
+ 2356 00b1 02       		.uleb128 0x2
+ 2357 00b2 18       		.uleb128 0x18
+ 2358 00b3 9142     		.uleb128 0x2111
+ 2359 00b5 18       		.uleb128 0x18
+ 2360 00b6 00       		.byte	0
+ 2361 00b7 00       		.byte	0
+ 2362 00b8 0E       		.uleb128 0xe
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 47
+
+
+ 2363 00b9 898201   		.uleb128 0x4109
+ 2364 00bc 01       		.byte	0x1
+ 2365 00bd 11       		.uleb128 0x11
+ 2366 00be 01       		.uleb128 0x1
+ 2367 00bf 31       		.uleb128 0x31
+ 2368 00c0 13       		.uleb128 0x13
+ 2369 00c1 00       		.byte	0
+ 2370 00c2 00       		.byte	0
+ 2371 00c3 0F       		.uleb128 0xf
+ 2372 00c4 34       		.uleb128 0x34
+ 2373 00c5 00       		.byte	0
+ 2374 00c6 03       		.uleb128 0x3
+ 2375 00c7 0E       		.uleb128 0xe
+ 2376 00c8 3A       		.uleb128 0x3a
+ 2377 00c9 0B       		.uleb128 0xb
+ 2378 00ca 3B       		.uleb128 0x3b
+ 2379 00cb 05       		.uleb128 0x5
+ 2380 00cc 49       		.uleb128 0x49
+ 2381 00cd 13       		.uleb128 0x13
+ 2382 00ce 3F       		.uleb128 0x3f
+ 2383 00cf 19       		.uleb128 0x19
+ 2384 00d0 3C       		.uleb128 0x3c
+ 2385 00d1 19       		.uleb128 0x19
+ 2386 00d2 00       		.byte	0
+ 2387 00d3 00       		.byte	0
+ 2388 00d4 10       		.uleb128 0x10
+ 2389 00d5 35       		.uleb128 0x35
+ 2390 00d6 00       		.byte	0
+ 2391 00d7 49       		.uleb128 0x49
+ 2392 00d8 13       		.uleb128 0x13
+ 2393 00d9 00       		.byte	0
+ 2394 00da 00       		.byte	0
+ 2395 00db 11       		.uleb128 0x11
+ 2396 00dc 2E       		.uleb128 0x2e
+ 2397 00dd 00       		.byte	0
+ 2398 00de 3F       		.uleb128 0x3f
+ 2399 00df 19       		.uleb128 0x19
+ 2400 00e0 3C       		.uleb128 0x3c
+ 2401 00e1 19       		.uleb128 0x19
+ 2402 00e2 6E       		.uleb128 0x6e
+ 2403 00e3 0E       		.uleb128 0xe
+ 2404 00e4 03       		.uleb128 0x3
+ 2405 00e5 0E       		.uleb128 0xe
+ 2406 00e6 3A       		.uleb128 0x3a
+ 2407 00e7 0B       		.uleb128 0xb
+ 2408 00e8 3B       		.uleb128 0x3b
+ 2409 00e9 0B       		.uleb128 0xb
+ 2410 00ea 00       		.byte	0
+ 2411 00eb 00       		.byte	0
+ 2412 00ec 00       		.byte	0
+ 2413              		.section	.debug_loc,"",%progbits
+ 2414              	.Ldebug_loc0:
+ 2415              	.LLST0:
+ 2416 0000 38000000 		.4byte	.LVL8
+ 2417 0004 3C000000 		.4byte	.LVL9
+ 2418 0008 0200     		.2byte	0x2
+ 2419 000a 30       		.byte	0x30
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 48
+
+
+ 2420 000b 9F       		.byte	0x9f
+ 2421 000c 3C000000 		.4byte	.LVL9
+ 2422 0010 58000000 		.4byte	.LVL13
+ 2423 0014 0100     		.2byte	0x1
+ 2424 0016 54       		.byte	0x54
+ 2425 0017 5A000000 		.4byte	.LVL14
+ 2426 001b 64000000 		.4byte	.LVL16
+ 2427 001f 0100     		.2byte	0x1
+ 2428 0021 54       		.byte	0x54
+ 2429 0022 66000000 		.4byte	.LVL17
+ 2430 0026 82000000 		.4byte	.LVL21
+ 2431 002a 0100     		.2byte	0x1
+ 2432 002c 54       		.byte	0x54
+ 2433 002d 84000000 		.4byte	.LVL22
+ 2434 0031 B0000000 		.4byte	.LVL29
+ 2435 0035 0100     		.2byte	0x1
+ 2436 0037 54       		.byte	0x54
+ 2437 0038 B0000000 		.4byte	.LVL29
+ 2438 003c B4000000 		.4byte	.LVL30
+ 2439 0040 0200     		.2byte	0x2
+ 2440 0042 30       		.byte	0x30
+ 2441 0043 9F       		.byte	0x9f
+ 2442 0044 B4000000 		.4byte	.LVL30
+ 2443 0048 C0000000 		.4byte	.LVL32
+ 2444 004c 0100     		.2byte	0x1
+ 2445 004e 54       		.byte	0x54
+ 2446 004f C2000000 		.4byte	.LVL33
+ 2447 0053 62010000 		.4byte	.LVL60
+ 2448 0057 0100     		.2byte	0x1
+ 2449 0059 54       		.byte	0x54
+ 2450 005a 62010000 		.4byte	.LVL60
+ 2451 005e 66010000 		.4byte	.LVL61
+ 2452 0062 0200     		.2byte	0x2
+ 2453 0064 31       		.byte	0x31
+ 2454 0065 9F       		.byte	0x9f
+ 2455 0066 66010000 		.4byte	.LVL61
+ 2456 006a 6E010000 		.4byte	.LVL63
+ 2457 006e 0100     		.2byte	0x1
+ 2458 0070 54       		.byte	0x54
+ 2459 0071 70010000 		.4byte	.LVL64
+ 2460 0075 B8010000 		.4byte	.LVL74
+ 2461 0079 0100     		.2byte	0x1
+ 2462 007b 54       		.byte	0x54
+ 2463 007c B8010000 		.4byte	.LVL74
+ 2464 0080 BC010000 		.4byte	.LVL75
+ 2465 0084 0200     		.2byte	0x2
+ 2466 0086 30       		.byte	0x30
+ 2467 0087 9F       		.byte	0x9f
+ 2468 0088 BC010000 		.4byte	.LVL75
+ 2469 008c E6010000 		.4byte	.LVL80
+ 2470 0090 0100     		.2byte	0x1
+ 2471 0092 54       		.byte	0x54
+ 2472 0093 E6010000 		.4byte	.LVL80
+ 2473 0097 E8010000 		.4byte	.LVL81
+ 2474 009b 0100     		.2byte	0x1
+ 2475 009d 55       		.byte	0x55
+ 2476 009e E8010000 		.4byte	.LVL81
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 49
+
+
+ 2477 00a2 08020000 		.4byte	.LVL85
+ 2478 00a6 0100     		.2byte	0x1
+ 2479 00a8 54       		.byte	0x54
+ 2480 00a9 08020000 		.4byte	.LVL85
+ 2481 00ad 0E020000 		.4byte	.LVL86
+ 2482 00b1 0200     		.2byte	0x2
+ 2483 00b3 30       		.byte	0x30
+ 2484 00b4 9F       		.byte	0x9f
+ 2485 00b5 0E020000 		.4byte	.LVL86
+ 2486 00b9 40020000 		.4byte	.LVL93
+ 2487 00bd 0100     		.2byte	0x1
+ 2488 00bf 54       		.byte	0x54
+ 2489 00c0 40020000 		.4byte	.LVL93
+ 2490 00c4 42020000 		.4byte	.LVL94
+ 2491 00c8 0100     		.2byte	0x1
+ 2492 00ca 56       		.byte	0x56
+ 2493 00cb 42020000 		.4byte	.LVL94
+ 2494 00cf 62020000 		.4byte	.LVL98
+ 2495 00d3 0100     		.2byte	0x1
+ 2496 00d5 54       		.byte	0x54
+ 2497 00d6 62020000 		.4byte	.LVL98
+ 2498 00da 66020000 		.4byte	.LVL99
+ 2499 00de 0200     		.2byte	0x2
+ 2500 00e0 30       		.byte	0x30
+ 2501 00e1 9F       		.byte	0x9f
+ 2502 00e2 66020000 		.4byte	.LVL99
+ 2503 00e6 8E020000 		.4byte	.LVL104
+ 2504 00ea 0100     		.2byte	0x1
+ 2505 00ec 54       		.byte	0x54
+ 2506 00ed 90020000 		.4byte	.LVL105
+ 2507 00f1 A8020000 		.4byte	.LVL109
+ 2508 00f5 0100     		.2byte	0x1
+ 2509 00f7 54       		.byte	0x54
+ 2510 00f8 A8020000 		.4byte	.LVL109
+ 2511 00fc AC020000 		.4byte	.LVL110
+ 2512 0100 0200     		.2byte	0x2
+ 2513 0102 30       		.byte	0x30
+ 2514 0103 9F       		.byte	0x9f
+ 2515 0104 AC020000 		.4byte	.LVL110
+ 2516 0108 1C030000 		.4byte	.LVL119
+ 2517 010c 0100     		.2byte	0x1
+ 2518 010e 54       		.byte	0x54
+ 2519 010f 1C030000 		.4byte	.LVL119
+ 2520 0113 1E030000 		.4byte	.LVL120
+ 2521 0117 0300     		.2byte	0x3
+ 2522 0119 74       		.byte	0x74
+ 2523 011a 7B       		.sleb128 -5
+ 2524 011b 9F       		.byte	0x9f
+ 2525 011c 1E030000 		.4byte	.LVL120
+ 2526 0120 62030000 		.4byte	.LVL129
+ 2527 0124 0100     		.2byte	0x1
+ 2528 0126 54       		.byte	0x54
+ 2529 0127 62030000 		.4byte	.LVL129
+ 2530 012b 66030000 		.4byte	.LVL130
+ 2531 012f 0200     		.2byte	0x2
+ 2532 0131 30       		.byte	0x30
+ 2533 0132 9F       		.byte	0x9f
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 50
+
+
+ 2534 0133 66030000 		.4byte	.LVL130
+ 2535 0137 E0030000 		.4byte	.LVL140
+ 2536 013b 0100     		.2byte	0x1
+ 2537 013d 54       		.byte	0x54
+ 2538 013e E0030000 		.4byte	.LVL140
+ 2539 0142 E2030000 		.4byte	.LVL141
+ 2540 0146 0300     		.2byte	0x3
+ 2541 0148 74       		.byte	0x74
+ 2542 0149 7B       		.sleb128 -5
+ 2543 014a 9F       		.byte	0x9f
+ 2544 014b E2030000 		.4byte	.LVL141
+ 2545 014f 2A040000 		.4byte	.LVL150
+ 2546 0153 0100     		.2byte	0x1
+ 2547 0155 54       		.byte	0x54
+ 2548 0156 2A040000 		.4byte	.LVL150
+ 2549 015a 30040000 		.4byte	.LVL151
+ 2550 015e 0400     		.2byte	0x4
+ 2551 0160 0A       		.byte	0xa
+ 2552 0161 0001     		.2byte	0x100
+ 2553 0163 9F       		.byte	0x9f
+ 2554 0164 30040000 		.4byte	.LVL151
+ 2555 0168 3E040000 		.4byte	.LVL154
+ 2556 016c 0100     		.2byte	0x1
+ 2557 016e 54       		.byte	0x54
+ 2558 016f 40040000 		.4byte	.LVL155
+ 2559 0173 52040000 		.4byte	.LVL157
+ 2560 0177 0100     		.2byte	0x1
+ 2561 0179 54       		.byte	0x54
+ 2562 017a 52040000 		.4byte	.LVL157
+ 2563 017e 56040000 		.4byte	.LVL158
+ 2564 0182 0200     		.2byte	0x2
+ 2565 0184 30       		.byte	0x30
+ 2566 0185 9F       		.byte	0x9f
+ 2567 0186 56040000 		.4byte	.LVL158
+ 2568 018a 64040000 		.4byte	.LVL161
+ 2569 018e 0100     		.2byte	0x1
+ 2570 0190 54       		.byte	0x54
+ 2571 0191 66040000 		.4byte	.LVL162
+ 2572 0195 80040000 		.4byte	.LFE63
+ 2573 0199 0100     		.2byte	0x1
+ 2574 019b 54       		.byte	0x54
+ 2575 019c 00000000 		.4byte	0
+ 2576 01a0 00000000 		.4byte	0
+ 2577              	.LLST1:
+ 2578 01a4 08020000 		.4byte	.LVL85
+ 2579 01a8 0E020000 		.4byte	.LVL86
+ 2580 01ac 0200     		.2byte	0x2
+ 2581 01ae 31       		.byte	0x31
+ 2582 01af 9F       		.byte	0x9f
+ 2583 01b0 0E020000 		.4byte	.LVL86
+ 2584 01b4 3C020000 		.4byte	.LVL91
+ 2585 01b8 0100     		.2byte	0x1
+ 2586 01ba 55       		.byte	0x55
+ 2587 01bb 3E020000 		.4byte	.LVL92
+ 2588 01bf 66020000 		.4byte	.LVL99
+ 2589 01c3 0100     		.2byte	0x1
+ 2590 01c5 55       		.byte	0x55
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 51
+
+
+ 2591 01c6 00000000 		.4byte	0
+ 2592 01ca 00000000 		.4byte	0
+ 2593              	.LLST2:
+ 2594 01ce 58030000 		.4byte	.LVL127
+ 2595 01d2 5C030000 		.4byte	.LVL128
+ 2596 01d6 0200     		.2byte	0x2
+ 2597 01d8 30       		.byte	0x30
+ 2598 01d9 9F       		.byte	0x9f
+ 2599 01da 5C030000 		.4byte	.LVL128
+ 2600 01de 0E040000 		.4byte	.LVL146
+ 2601 01e2 0100     		.2byte	0x1
+ 2602 01e4 56       		.byte	0x56
+ 2603 01e5 10040000 		.4byte	.LVL147
+ 2604 01e9 80040000 		.4byte	.LFE63
+ 2605 01ed 0100     		.2byte	0x1
+ 2606 01ef 56       		.byte	0x56
+ 2607 01f0 00000000 		.4byte	0
+ 2608 01f4 00000000 		.4byte	0
+ 2609              		.section	.debug_aranges,"",%progbits
+ 2610 0000 1C000000 		.4byte	0x1c
+ 2611 0004 0200     		.2byte	0x2
+ 2612 0006 00000000 		.4byte	.Ldebug_info0
+ 2613 000a 04       		.byte	0x4
+ 2614 000b 00       		.byte	0
+ 2615 000c 0000     		.2byte	0
+ 2616 000e 0000     		.2byte	0
+ 2617 0010 00000000 		.4byte	.LFB63
+ 2618 0014 80040000 		.4byte	.LFE63-.LFB63
+ 2619 0018 00000000 		.4byte	0
+ 2620 001c 00000000 		.4byte	0
+ 2621              		.section	.debug_ranges,"",%progbits
+ 2622              	.Ldebug_ranges0:
+ 2623 0000 00000000 		.4byte	.LFB63
+ 2624 0004 80040000 		.4byte	.LFE63
+ 2625 0008 00000000 		.4byte	0
+ 2626 000c 00000000 		.4byte	0
+ 2627              		.section	.debug_line,"",%progbits
+ 2628              	.Ldebug_line0:
+ 2629 0000 0E030000 		.section	.debug_str,"MS",%progbits,1
+ 2629      02006401 
+ 2629      00000201 
+ 2629      FB0E0D00 
+ 2629      01010101 
+ 2630              	.LASF36:
+ 2631 0000 5343524F 		.ascii	"SCROLL_PAGE_6\000"
+ 2631      4C4C5F50 
+ 2631      4147455F 
+ 2631      3600
+ 2632              	.LASF51:
+ 2633 000e 64697370 		.ascii	"display_scroll\000"
+ 2633      6C61795F 
+ 2633      7363726F 
+ 2633      6C6C00
+ 2634              	.LASF41:
+ 2635 001d 6766785F 		.ascii	"gfx_drawPixel\000"
+ 2635      64726177 
+ 2635      50697865 
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 52
+
+
+ 2635      6C00
+ 2636              	.LASF55:
+ 2637 002b 6766785F 		.ascii	"gfx_drawCircle\000"
+ 2637      64726177 
+ 2637      43697263 
+ 2637      6C6500
+ 2638              	.LASF4:
+ 2639 003a 73686F72 		.ascii	"short int\000"
+ 2639      7420696E 
+ 2639      7400
+ 2640              	.LASF38:
+ 2641 0044 636F6C6F 		.ascii	"color\000"
+ 2641      7200
+ 2642              	.LASF60:
+ 2643 004a 4932434F 		.ascii	"I2COLED_Start\000"
+ 2643      4C45445F 
+ 2643      53746172 
+ 2643      7400
+ 2644              	.LASF65:
+ 2645 0058 6D61696E 		.ascii	"main\000"
+ 2645      00
+ 2646              	.LASF44:
+ 2647 005d 6766785F 		.ascii	"gfx_drawLine\000"
+ 2647      64726177 
+ 2647      4C696E65 
+ 2647      00
+ 2648              	.LASF54:
+ 2649 006a 6766785F 		.ascii	"gfx_fillRect\000"
+ 2649      66696C6C 
+ 2649      52656374 
+ 2649      00
+ 2650              	.LASF40:
+ 2651 0077 64697370 		.ascii	"display_update\000"
+ 2651      6C61795F 
+ 2651      75706461 
+ 2651      746500
+ 2652              	.LASF12:
+ 2653 0086 75696E74 		.ascii	"uint8_t\000"
+ 2653      385F7400 
+ 2654              	.LASF56:
+ 2655 008e 6766785F 		.ascii	"gfx_drawTriangle\000"
+ 2655      64726177 
+ 2655      54726961 
+ 2655      6E676C65 
+ 2655      00
+ 2656              	.LASF58:
+ 2657 009f 64697370 		.ascii	"display_invert\000"
+ 2657      6C61795F 
+ 2657      696E7665 
+ 2657      727400
+ 2658              	.LASF0:
+ 2659 00ae 7369676E 		.ascii	"signed char\000"
+ 2659      65642063 
+ 2659      68617200 
+ 2660              	.LASF53:
+ 2661 00ba 6766785F 		.ascii	"gfx_drawRect\000"
+ 2661      64726177 
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 53
+
+
+ 2661      52656374 
+ 2661      00
+ 2662              	.LASF15:
+ 2663 00c7 666C6F61 		.ascii	"float\000"
+ 2663      7400
+ 2664              	.LASF49:
+ 2665 00cd 6766785F 		.ascii	"gfx_write\000"
+ 2665      77726974 
+ 2665      6500
+ 2666              	.LASF9:
+ 2667 00d7 6C6F6E67 		.ascii	"long long int\000"
+ 2667      206C6F6E 
+ 2667      6720696E 
+ 2667      7400
+ 2668              	.LASF39:
+ 2669 00e5 64697370 		.ascii	"display_clear\000"
+ 2669      6C61795F 
+ 2669      636C6561 
+ 2669      7200
+ 2670              	.LASF7:
+ 2671 00f3 6C6F6E67 		.ascii	"long int\000"
+ 2671      20696E74 
+ 2671      00
+ 2672              	.LASF2:
+ 2673 00fc 5F5F7569 		.ascii	"__uint8_t\000"
+ 2673      6E74385F 
+ 2673      7400
+ 2674              	.LASF47:
+ 2675 0106 6766785F 		.ascii	"gfx_setTextColor\000"
+ 2675      73657454 
+ 2675      65787443 
+ 2675      6F6C6F72 
+ 2675      00
+ 2676              	.LASF46:
+ 2677 0117 6766785F 		.ascii	"gfx_setTextSize\000"
+ 2677      73657454 
+ 2677      65787453 
+ 2677      697A6500 
+ 2678              	.LASF18:
+ 2679 0127 6C6F6E67 		.ascii	"long double\000"
+ 2679      20646F75 
+ 2679      626C6500 
+ 2680              	.LASF61:
+ 2681 0133 64697370 		.ascii	"display_init\000"
+ 2681      6C61795F 
+ 2681      696E6974 
+ 2681      00
+ 2682              	.LASF1:
+ 2683 0140 756E7369 		.ascii	"unsigned char\000"
+ 2683      676E6564 
+ 2683      20636861 
+ 2683      7200
+ 2684              	.LASF30:
+ 2685 014e 5343524F 		.ascii	"SCROLL_PAGE_0\000"
+ 2685      4C4C5F50 
+ 2685      4147455F 
+ 2685      3000
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 54
+
+
+ 2686              	.LASF31:
+ 2687 015c 5343524F 		.ascii	"SCROLL_PAGE_1\000"
+ 2687      4C4C5F50 
+ 2687      4147455F 
+ 2687      3100
+ 2688              	.LASF32:
+ 2689 016a 5343524F 		.ascii	"SCROLL_PAGE_2\000"
+ 2689      4C4C5F50 
+ 2689      4147455F 
+ 2689      3200
+ 2690              	.LASF33:
+ 2691 0178 5343524F 		.ascii	"SCROLL_PAGE_3\000"
+ 2691      4C4C5F50 
+ 2691      4147455F 
+ 2691      3300
+ 2692              	.LASF34:
+ 2693 0186 5343524F 		.ascii	"SCROLL_PAGE_4\000"
+ 2693      4C4C5F50 
+ 2693      4147455F 
+ 2693      3400
+ 2694              	.LASF35:
+ 2695 0194 5343524F 		.ascii	"SCROLL_PAGE_5\000"
+ 2695      4C4C5F50 
+ 2695      4147455F 
+ 2695      3500
+ 2696              	.LASF10:
+ 2697 01a2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2697      206C6F6E 
+ 2697      6720756E 
+ 2697      7369676E 
+ 2697      65642069 
+ 2698              	.LASF37:
+ 2699 01b9 5343524F 		.ascii	"SCROLL_PAGE_7\000"
+ 2699      4C4C5F50 
+ 2699      4147455F 
+ 2699      3700
+ 2700              	.LASF11:
+ 2701 01c7 756E7369 		.ascii	"unsigned int\000"
+ 2701      676E6564 
+ 2701      20696E74 
+ 2701      00
+ 2702              	.LASF8:
+ 2703 01d4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2703      20756E73 
+ 2703      69676E65 
+ 2703      6420696E 
+ 2703      7400
+ 2704              	.LASF45:
+ 2705 01e6 6766785F 		.ascii	"gfx_width\000"
+ 2705      77696474 
+ 2705      6800
+ 2706              	.LASF52:
+ 2707 01f0 64697370 		.ascii	"display_stopscroll\000"
+ 2707      6C61795F 
+ 2707      73746F70 
+ 2707      7363726F 
+ 2707      6C6C00
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 55
+
+
+ 2708              	.LASF5:
+ 2709 0203 73686F72 		.ascii	"short unsigned int\000"
+ 2709      7420756E 
+ 2709      7369676E 
+ 2709      65642069 
+ 2709      6E7400
+ 2710              	.LASF17:
+ 2711 0216 63686172 		.ascii	"char\000"
+ 2711      00
+ 2712              	.LASF20:
+ 2713 021b 5343524F 		.ascii	"SCROLL_RIGHT\000"
+ 2713      4C4C5F52 
+ 2713      49474854 
+ 2713      00
+ 2714              	.LASF14:
+ 2715 0228 696E7433 		.ascii	"int32_t\000"
+ 2715      325F7400 
+ 2716              	.LASF57:
+ 2717 0230 6766785F 		.ascii	"gfx_setRotation\000"
+ 2717      73657452 
+ 2717      6F746174 
+ 2717      696F6E00 
+ 2718              	.LASF13:
+ 2719 0240 696E7431 		.ascii	"int16_t\000"
+ 2719      365F7400 
+ 2720              	.LASF22:
+ 2721 0248 5343524F 		.ascii	"SCROLL_SPEED_0\000"
+ 2721      4C4C5F53 
+ 2721      50454544 
+ 2721      5F3000
+ 2722              	.LASF23:
+ 2723 0257 5343524F 		.ascii	"SCROLL_SPEED_1\000"
+ 2723      4C4C5F53 
+ 2723      50454544 
+ 2723      5F3100
+ 2724              	.LASF24:
+ 2725 0266 5343524F 		.ascii	"SCROLL_SPEED_2\000"
+ 2725      4C4C5F53 
+ 2725      50454544 
+ 2725      5F3200
+ 2726              	.LASF25:
+ 2727 0275 5343524F 		.ascii	"SCROLL_SPEED_3\000"
+ 2727      4C4C5F53 
+ 2727      50454544 
+ 2727      5F3300
+ 2728              	.LASF63:
+ 2729 0284 6D61696E 		.ascii	"main.c\000"
+ 2729      2E6300
+ 2730              	.LASF27:
+ 2731 028b 5343524F 		.ascii	"SCROLL_SPEED_5\000"
+ 2731      4C4C5F53 
+ 2731      50454544 
+ 2731      5F3500
+ 2732              	.LASF28:
+ 2733 029a 5343524F 		.ascii	"SCROLL_SPEED_6\000"
+ 2733      4C4C5F53 
+ 2733      50454544 
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 56
+
+
+ 2733      5F3600
+ 2734              	.LASF29:
+ 2735 02a9 5343524F 		.ascii	"SCROLL_SPEED_7\000"
+ 2735      4C4C5F53 
+ 2735      50454544 
+ 2735      5F3700
+ 2736              	.LASF16:
+ 2737 02b8 646F7562 		.ascii	"double\000"
+ 2737      6C6500
+ 2738              	.LASF43:
+ 2739 02bf 6766785F 		.ascii	"gfx_height\000"
+ 2739      68656967 
+ 2739      687400
+ 2740              	.LASF50:
+ 2741 02ca 6766785F 		.ascii	"gfx_println\000"
+ 2741      7072696E 
+ 2741      746C6E00 
+ 2742              	.LASF64:
+ 2743 02d6 433A5C55 		.ascii	"C:\\Users\\jdrd3\\Documents\\PSoC Creator\\Ejemplos"
+ 2743      73657273 
+ 2743      5C6A6472 
+ 2743      64335C44 
+ 2743      6F63756D 
+ 2744 0304 5C4F4C45 		.ascii	"\\OLED.cydsn\000"
+ 2744      442E6379 
+ 2744      64736E00 
+ 2745              	.LASF6:
+ 2746 0310 5F5F696E 		.ascii	"__int32_t\000"
+ 2746      7433325F 
+ 2746      7400
+ 2747              	.LASF48:
+ 2748 031a 6766785F 		.ascii	"gfx_setCursor\000"
+ 2748      73657443 
+ 2748      7572736F 
+ 2748      7200
+ 2749              	.LASF3:
+ 2750 0328 5F5F696E 		.ascii	"__int16_t\000"
+ 2750      7431365F 
+ 2750      7400
+ 2751              	.LASF26:
+ 2752 0332 5343524F 		.ascii	"SCROLL_SPEED_4\000"
+ 2752      4C4C5F53 
+ 2752      50454544 
+ 2752      5F3400
+ 2753              	.LASF19:
+ 2754 0341 73697A65 		.ascii	"sizetype\000"
+ 2754      74797065 
+ 2754      00
+ 2755              	.LASF21:
+ 2756 034a 5343524F 		.ascii	"SCROLL_LEFT\000"
+ 2756      4C4C5F4C 
+ 2756      45465400 
+ 2757              	.LASF66:
+ 2758 0356 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2758      52784275 
+ 2758      66666572 
+ 2758      00
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\cc1weASj.s 			page 57
+
+
+ 2759              	.LASF62:
+ 2760 0363 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2760      43313120 
+ 2760      352E342E 
+ 2760      31203230 
+ 2760      31363036 
+ 2761 0396 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2761      20726576 
+ 2761      6973696F 
+ 2761      6E203233 
+ 2761      37373135 
+ 2762 03c9 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2762      66756E63 
+ 2762      74696F6E 
+ 2762      2D736563 
+ 2762      74696F6E 
+ 2763              	.LASF42:
+ 2764 03f1 43794465 		.ascii	"CyDelay\000"
+ 2764      6C617900 
+ 2765              	.LASF59:
+ 2766 03f9 64697370 		.ascii	"display_contrast\000"
+ 2766      6C61795F 
+ 2766      636F6E74 
+ 2766      72617374 
+ 2766      00
+ 2767              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

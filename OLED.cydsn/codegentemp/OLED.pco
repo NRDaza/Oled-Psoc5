@@ -1,0 +1,12 @@
+# OLED
+# 2018-11-13 17:01:11Z
+
+# IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 0
+# IO_1@[IOP=(1)][IoId=(1)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 1
+set_location "ClockBlock" clockblockcell -1 -1 0
+set_io "Sda(0)" iocell 12 1
+set_io "Scl(0)" iocell 12 0
+set_location "\I2COLED:I2C_IRQ\" interrupt -1 -1 15
+set_location "\I2COLED:I2C_FF\" i2ccell -1 -1 0

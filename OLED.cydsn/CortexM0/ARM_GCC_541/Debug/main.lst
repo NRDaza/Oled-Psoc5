@@ -1,0 +1,1962 @@
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.rodata
+  20              		.align	2
+  21              	.LC0:
+  22 0000 74657374 		.ascii	"test line 1 ...\000"
+  22      206C696E 
+  22      65203120 
+  22      2E2E2E00 
+  23              		.align	2
+  24              	.LC2:
+  25 0010 326E6420 		.ascii	"2nd line ...\000"
+  25      6C696E65 
+  25      202E2E2E 
+  25      00
+  26 001d 000000   		.align	2
+  27              	.LC4:
+  28 0020 7363726F 		.ascii	"scroll\000"
+  28      6C6C00
+  29              		.section	.text.main,"ax",%progbits
+  30              		.align	2
+  31              		.global	main
+  32              		.code	16
+  33              		.thumb_func
+  34              		.type	main, %function
+  35              	main:
+  36              	.LFB33:
+  37              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include <project.h>
+  13:main.c        **** #include <stdlib.h>
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 2
+
+
+  14:main.c        **** 
+  15:main.c        **** #include "ssd1306.h"
+  16:main.c        **** 
+  17:main.c        **** #define DISPLAY_ADDRESS 0x3C // 011110+SA0+RW - 0x3C or 0x3D
+  18:main.c        **** 
+  19:main.c        **** int main(){
+  38              		.loc 1 19 0
+  39              		.cfi_startproc
+  40              		@ args = 0, pretend = 0, frame = 8
+  41              		@ frame_needed = 1, uses_anonymous_args = 0
+  42 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  43              		.cfi_def_cfa_offset 20
+  44              		.cfi_offset 4, -20
+  45              		.cfi_offset 5, -16
+  46              		.cfi_offset 6, -12
+  47              		.cfi_offset 7, -8
+  48              		.cfi_offset 14, -4
+  49 0002 4F46     		mov	r7, r9
+  50 0004 4646     		mov	r6, r8
+  51 0006 C0B4     		push	{r6, r7}
+  52              		.cfi_def_cfa_offset 28
+  53              		.cfi_offset 8, -28
+  54              		.cfi_offset 9, -24
+  55 0008 87B0     		sub	sp, sp, #28
+  56              		.cfi_def_cfa_offset 56
+  57 000a 04AF     		add	r7, sp, #16
+  58              		.cfi_def_cfa 7, 40
+  20:main.c        **** 
+  21:main.c        ****     I2COLED_Start();
+  59              		.loc 1 21 0
+  60 000c FFF7FEFF 		bl	I2COLED_Start
+  22:main.c        **** 
+  23:main.c        ****     CyGlobalIntEnable;
+  61              		.loc 1 23 0
+  62              		.syntax divided
+  63              	@ 23 "main.c" 1
+  64 0010 62B6     		CPSIE   i
+  65              	@ 0 "" 2
+  24:main.c        **** 
+  25:main.c        ****     display_init(DISPLAY_ADDRESS);
+  66              		.loc 1 25 0
+  67              		.thumb
+  68              		.syntax unified
+  69 0012 3C20     		movs	r0, #60
+  70 0014 FFF7FEFF 		bl	display_init
+  71              	.L52:
+  72              	.LBB2:
+  26:main.c        **** 
+  27:main.c        ****     
+  28:main.c        ****     for(;;){
+  29:main.c        **** 
+  30:main.c        ****         // clearing display
+  31:main.c        ****         display_clear();    
+  73              		.loc 1 31 0
+  74 0018 FFF7FEFF 		bl	display_clear
+  32:main.c        ****         display_update();    
+  75              		.loc 1 32 0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 3
+
+
+  76 001c FFF7FEFF 		bl	display_update
+  33:main.c        **** 
+  34:main.c        **** 
+  35:main.c        ****         // drawing a pixel
+  36:main.c        ****         gfx_drawPixel(40, 40, WHITE);    
+  77              		.loc 1 36 0
+  78 0020 0122     		movs	r2, #1
+  79 0022 2821     		movs	r1, #40
+  80 0024 2820     		movs	r0, #40
+  81 0026 FFF7FEFF 		bl	gfx_drawPixel
+  37:main.c        ****         display_update(); 
+  82              		.loc 1 37 0
+  83 002a FFF7FEFF 		bl	display_update
+  38:main.c        **** 
+  39:main.c        ****         CyDelay(1000);
+  84              		.loc 1 39 0
+  85 002e FA23     		movs	r3, #250
+  86 0030 9B00     		lsls	r3, r3, #2
+  87 0032 1800     		movs	r0, r3
+  88 0034 FFF7FEFF 		bl	CyDelay
+  40:main.c        ****         display_clear();    
+  89              		.loc 1 40 0
+  90 0038 FFF7FEFF 		bl	display_clear
+  41:main.c        ****         display_update();    
+  91              		.loc 1 41 0
+  92 003c FFF7FEFF 		bl	display_update
+  42:main.c        **** 
+  43:main.c        ****         
+  44:main.c        ****         // line drawing
+  45:main.c        ****         int16_t i = 0;
+  93              		.loc 1 45 0
+  94 0040 BB1D     		adds	r3, r7, #6
+  95 0042 0022     		movs	r2, #0
+  96 0044 1A80     		strh	r2, [r3]
+  46:main.c        ****         for( i = 0 ; i < gfx_width(); i+=4) {
+  97              		.loc 1 46 0
+  98 0046 BB1D     		adds	r3, r7, #6
+  99 0048 0022     		movs	r2, #0
+ 100 004a 1A80     		strh	r2, [r3]
+ 101 004c 18E0     		b	.L2
+ 102              	.L3:
+  47:main.c        ****             gfx_drawLine(0, 0, i, gfx_height()-1, WHITE);
+ 103              		.loc 1 47 0 discriminator 3
+ 104 004e FFF7FEFF 		bl	gfx_height
+ 105 0052 0300     		movs	r3, r0
+ 106 0054 9BB2     		uxth	r3, r3
+ 107 0056 013B     		subs	r3, r3, #1
+ 108 0058 9BB2     		uxth	r3, r3
+ 109 005a 19B2     		sxth	r1, r3
+ 110 005c BB1D     		adds	r3, r7, #6
+ 111 005e 0022     		movs	r2, #0
+ 112 0060 9A5E     		ldrsh	r2, [r3, r2]
+ 113 0062 0123     		movs	r3, #1
+ 114 0064 0093     		str	r3, [sp]
+ 115 0066 0B00     		movs	r3, r1
+ 116 0068 0021     		movs	r1, #0
+ 117 006a 0020     		movs	r0, #0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 4
+
+
+ 118 006c FFF7FEFF 		bl	gfx_drawLine
+  48:main.c        ****             display_update();
+ 119              		.loc 1 48 0 discriminator 3
+ 120 0070 FFF7FEFF 		bl	display_update
+  46:main.c        ****         for( i = 0 ; i < gfx_width(); i+=4) {
+ 121              		.loc 1 46 0 discriminator 3
+ 122 0074 BB1D     		adds	r3, r7, #6
+ 123 0076 1B88     		ldrh	r3, [r3]
+ 124 0078 0433     		adds	r3, r3, #4
+ 125 007a 9AB2     		uxth	r2, r3
+ 126 007c BB1D     		adds	r3, r7, #6
+ 127 007e 1A80     		strh	r2, [r3]
+ 128              	.L2:
+  46:main.c        ****         for( i = 0 ; i < gfx_width(); i+=4) {
+ 129              		.loc 1 46 0 is_stmt 0 discriminator 1
+ 130 0080 FFF7FEFF 		bl	gfx_width
+ 131 0084 0300     		movs	r3, r0
+ 132 0086 1A00     		movs	r2, r3
+ 133 0088 BB1D     		adds	r3, r7, #6
+ 134 008a 0021     		movs	r1, #0
+ 135 008c 5B5E     		ldrsh	r3, [r3, r1]
+ 136 008e 9342     		cmp	r3, r2
+ 137 0090 DDDB     		blt	.L3
+  49:main.c        ****         }
+  50:main.c        ****         for( i = 0 ; i < gfx_height() ; i += 4 ){
+ 138              		.loc 1 50 0 is_stmt 1
+ 139 0092 BB1D     		adds	r3, r7, #6
+ 140 0094 0022     		movs	r2, #0
+ 141 0096 1A80     		strh	r2, [r3]
+ 142 0098 18E0     		b	.L4
+ 143              	.L5:
+  51:main.c        ****             gfx_drawLine(0, 0, gfx_width()-1, i, WHITE);
+ 144              		.loc 1 51 0 discriminator 3
+ 145 009a FFF7FEFF 		bl	gfx_width
+ 146 009e 0300     		movs	r3, r0
+ 147 00a0 9BB2     		uxth	r3, r3
+ 148 00a2 013B     		subs	r3, r3, #1
+ 149 00a4 9BB2     		uxth	r3, r3
+ 150 00a6 1AB2     		sxth	r2, r3
+ 151 00a8 BB1D     		adds	r3, r7, #6
+ 152 00aa 0021     		movs	r1, #0
+ 153 00ac 595E     		ldrsh	r1, [r3, r1]
+ 154 00ae 0123     		movs	r3, #1
+ 155 00b0 0093     		str	r3, [sp]
+ 156 00b2 0B00     		movs	r3, r1
+ 157 00b4 0021     		movs	r1, #0
+ 158 00b6 0020     		movs	r0, #0
+ 159 00b8 FFF7FEFF 		bl	gfx_drawLine
+  52:main.c        ****             display_update();
+ 160              		.loc 1 52 0 discriminator 3
+ 161 00bc FFF7FEFF 		bl	display_update
+  50:main.c        ****             gfx_drawLine(0, 0, gfx_width()-1, i, WHITE);
+ 162              		.loc 1 50 0 discriminator 3
+ 163 00c0 BB1D     		adds	r3, r7, #6
+ 164 00c2 1B88     		ldrh	r3, [r3]
+ 165 00c4 0433     		adds	r3, r3, #4
+ 166 00c6 9AB2     		uxth	r2, r3
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 5
+
+
+ 167 00c8 BB1D     		adds	r3, r7, #6
+ 168 00ca 1A80     		strh	r2, [r3]
+ 169              	.L4:
+  50:main.c        ****             gfx_drawLine(0, 0, gfx_width()-1, i, WHITE);
+ 170              		.loc 1 50 0 is_stmt 0 discriminator 1
+ 171 00cc FFF7FEFF 		bl	gfx_height
+ 172 00d0 0300     		movs	r3, r0
+ 173 00d2 1A00     		movs	r2, r3
+ 174 00d4 BB1D     		adds	r3, r7, #6
+ 175 00d6 0021     		movs	r1, #0
+ 176 00d8 5B5E     		ldrsh	r3, [r3, r1]
+ 177 00da 9342     		cmp	r3, r2
+ 178 00dc DDDB     		blt	.L5
+  53:main.c        ****         }    
+  54:main.c        ****      
+  55:main.c        ****         CyDelay(3000);
+ 179              		.loc 1 55 0 is_stmt 1
+ 180 00de C04B     		ldr	r3, .L54
+ 181 00e0 1800     		movs	r0, r3
+ 182 00e2 FFF7FEFF 		bl	CyDelay
+  56:main.c        ****         display_clear();    
+ 183              		.loc 1 56 0
+ 184 00e6 FFF7FEFF 		bl	display_clear
+  57:main.c        ****         display_update();    
+ 185              		.loc 1 57 0
+ 186 00ea FFF7FEFF 		bl	display_update
+  58:main.c        **** 
+  59:main.c        ****         // text settings
+  60:main.c        ****         gfx_setTextSize(1);
+ 187              		.loc 1 60 0
+ 188 00ee 0120     		movs	r0, #1
+ 189 00f0 FFF7FEFF 		bl	gfx_setTextSize
+  61:main.c        ****         gfx_setTextColor(WHITE);
+ 190              		.loc 1 61 0
+ 191 00f4 0120     		movs	r0, #1
+ 192 00f6 FFF7FEFF 		bl	gfx_setTextColor
+  62:main.c        ****         gfx_setCursor(0,0);
+ 193              		.loc 1 62 0
+ 194 00fa 0021     		movs	r1, #0
+ 195 00fc 0020     		movs	r0, #0
+ 196 00fe FFF7FEFF 		bl	gfx_setCursor
+  63:main.c        **** 
+  64:main.c        ****         // text display
+  65:main.c        ****         for( i = 0 ; i < 168 ; i++){
+ 197              		.loc 1 65 0
+ 198 0102 BB1D     		adds	r3, r7, #6
+ 199 0104 0022     		movs	r2, #0
+ 200 0106 1A80     		strh	r2, [r3]
+ 201 0108 14E0     		b	.L6
+ 202              	.L9:
+  66:main.c        ****             if( i == '\n' ) 
+ 203              		.loc 1 66 0
+ 204 010a BB1D     		adds	r3, r7, #6
+ 205 010c 0022     		movs	r2, #0
+ 206 010e 9B5E     		ldrsh	r3, [r3, r2]
+ 207 0110 0A2B     		cmp	r3, #10
+ 208 0112 06D0     		beq	.L53
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 6
+
+
+  67:main.c        ****                 continue;
+  68:main.c        ****             gfx_write(i);
+ 209              		.loc 1 68 0
+ 210 0114 BB1D     		adds	r3, r7, #6
+ 211 0116 1B88     		ldrh	r3, [r3]
+ 212 0118 DBB2     		uxtb	r3, r3
+ 213 011a 1800     		movs	r0, r3
+ 214 011c FFF7FEFF 		bl	gfx_write
+ 215 0120 00E0     		b	.L8
+ 216              	.L53:
+  67:main.c        ****                 continue;
+ 217              		.loc 1 67 0
+ 218 0122 C046     		nop
+ 219              	.L8:
+  65:main.c        ****             if( i == '\n' ) 
+ 220              		.loc 1 65 0 discriminator 2
+ 221 0124 BB1D     		adds	r3, r7, #6
+ 222 0126 0022     		movs	r2, #0
+ 223 0128 9B5E     		ldrsh	r3, [r3, r2]
+ 224 012a 9BB2     		uxth	r3, r3
+ 225 012c 0133     		adds	r3, r3, #1
+ 226 012e 9AB2     		uxth	r2, r3
+ 227 0130 BB1D     		adds	r3, r7, #6
+ 228 0132 1A80     		strh	r2, [r3]
+ 229              	.L6:
+  65:main.c        ****             if( i == '\n' ) 
+ 230              		.loc 1 65 0 is_stmt 0 discriminator 1
+ 231 0134 BB1D     		adds	r3, r7, #6
+ 232 0136 0022     		movs	r2, #0
+ 233 0138 9B5E     		ldrsh	r3, [r3, r2]
+ 234 013a A72B     		cmp	r3, #167
+ 235 013c E5DD     		ble	.L9
+  69:main.c        ****           }    
+  70:main.c        ****         display_update(); 
+ 236              		.loc 1 70 0 is_stmt 1
+ 237 013e FFF7FEFF 		bl	display_update
+  71:main.c        ****         
+  72:main.c        ****         CyDelay(3000);
+ 238              		.loc 1 72 0
+ 239 0142 A74B     		ldr	r3, .L54
+ 240 0144 1800     		movs	r0, r3
+ 241 0146 FFF7FEFF 		bl	CyDelay
+  73:main.c        ****         display_clear();    
+ 242              		.loc 1 73 0
+ 243 014a FFF7FEFF 		bl	display_clear
+  74:main.c        ****         display_update();    
+ 244              		.loc 1 74 0
+ 245 014e FFF7FEFF 		bl	display_update
+  75:main.c        ****         
+  76:main.c        ****         // cursor
+  77:main.c        ****         gfx_setCursor( 0, 0 );
+ 246              		.loc 1 77 0
+ 247 0152 0021     		movs	r1, #0
+ 248 0154 0020     		movs	r0, #0
+ 249 0156 FFF7FEFF 		bl	gfx_setCursor
+  78:main.c        ****         
+  79:main.c        ****         // text sizes
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 7
+
+
+  80:main.c        ****         gfx_setTextSize(2);
+ 250              		.loc 1 80 0
+ 251 015a 0220     		movs	r0, #2
+ 252 015c FFF7FEFF 		bl	gfx_setTextSize
+  81:main.c        ****         gfx_write( '8' );
+ 253              		.loc 1 81 0
+ 254 0160 3820     		movs	r0, #56
+ 255 0162 FFF7FEFF 		bl	gfx_write
+  82:main.c        ****         gfx_setTextSize(3);
+ 256              		.loc 1 82 0
+ 257 0166 0320     		movs	r0, #3
+ 258 0168 FFF7FEFF 		bl	gfx_setTextSize
+  83:main.c        ****         gfx_write( '8' );
+ 259              		.loc 1 83 0
+ 260 016c 3820     		movs	r0, #56
+ 261 016e FFF7FEFF 		bl	gfx_write
+  84:main.c        ****         gfx_setTextSize(4);
+ 262              		.loc 1 84 0
+ 263 0172 0420     		movs	r0, #4
+ 264 0174 FFF7FEFF 		bl	gfx_setTextSize
+  85:main.c        ****         gfx_write( '8' );
+ 265              		.loc 1 85 0
+ 266 0178 3820     		movs	r0, #56
+ 267 017a FFF7FEFF 		bl	gfx_write
+  86:main.c        ****         display_update(); 
+ 268              		.loc 1 86 0
+ 269 017e FFF7FEFF 		bl	display_update
+  87:main.c        ****         
+  88:main.c        ****         CyDelay(3000);
+ 270              		.loc 1 88 0
+ 271 0182 974B     		ldr	r3, .L54
+ 272 0184 1800     		movs	r0, r3
+ 273 0186 FFF7FEFF 		bl	CyDelay
+  89:main.c        ****         display_clear();    
+ 274              		.loc 1 89 0
+ 275 018a FFF7FEFF 		bl	display_clear
+  90:main.c        ****         display_update();    
+ 276              		.loc 1 90 0
+ 277 018e FFF7FEFF 		bl	display_update
+  91:main.c        **** 
+  92:main.c        ****         // line printing
+  93:main.c        ****         gfx_setTextSize(1);
+ 278              		.loc 1 93 0
+ 279 0192 0120     		movs	r0, #1
+ 280 0194 FFF7FEFF 		bl	gfx_setTextSize
+  94:main.c        ****         gfx_setTextColor(WHITE);
+ 281              		.loc 1 94 0
+ 282 0198 0120     		movs	r0, #1
+ 283 019a FFF7FEFF 		bl	gfx_setTextColor
+  95:main.c        ****         gfx_setCursor(0,0);
+ 284              		.loc 1 95 0
+ 285 019e 0021     		movs	r1, #0
+ 286 01a0 0020     		movs	r0, #0
+ 287 01a2 FFF7FEFF 		bl	gfx_setCursor
+  96:main.c        ****         gfx_println("test line 1 ...");
+ 288              		.loc 1 96 0
+ 289 01a6 8F4B     		ldr	r3, .L54+4
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 8
+
+
+ 290 01a8 1800     		movs	r0, r3
+ 291 01aa FFF7FEFF 		bl	gfx_println
+  97:main.c        ****         gfx_println("2nd line ...");
+ 292              		.loc 1 97 0
+ 293 01ae 8E4B     		ldr	r3, .L54+8
+ 294 01b0 1800     		movs	r0, r3
+ 295 01b2 FFF7FEFF 		bl	gfx_println
+  98:main.c        ****         display_update();    
+ 296              		.loc 1 98 0
+ 297 01b6 FFF7FEFF 		bl	display_update
+  99:main.c        **** 
+ 100:main.c        ****         CyDelay(3000);
+ 298              		.loc 1 100 0
+ 299 01ba 894B     		ldr	r3, .L54
+ 300 01bc 1800     		movs	r0, r3
+ 301 01be FFF7FEFF 		bl	CyDelay
+ 101:main.c        ****         display_clear();    
+ 302              		.loc 1 101 0
+ 303 01c2 FFF7FEFF 		bl	display_clear
+ 102:main.c        ****         display_update();    
+ 304              		.loc 1 102 0
+ 305 01c6 FFF7FEFF 		bl	display_update
+ 103:main.c        **** 
+ 104:main.c        ****         
+ 105:main.c        ****         // scrolling
+ 106:main.c        ****         gfx_setTextSize(1);
+ 306              		.loc 1 106 0
+ 307 01ca 0120     		movs	r0, #1
+ 308 01cc FFF7FEFF 		bl	gfx_setTextSize
+ 107:main.c        ****         gfx_setTextColor(WHITE);
+ 309              		.loc 1 107 0
+ 310 01d0 0120     		movs	r0, #1
+ 311 01d2 FFF7FEFF 		bl	gfx_setTextColor
+ 108:main.c        ****         gfx_setCursor(0,0);
+ 312              		.loc 1 108 0
+ 313 01d6 0021     		movs	r1, #0
+ 314 01d8 0020     		movs	r0, #0
+ 315 01da FFF7FEFF 		bl	gfx_setCursor
+ 109:main.c        **** 
+ 110:main.c        ****         for( i = 1 ; i < 16 ; i++ ){
+ 316              		.loc 1 110 0
+ 317 01de BB1D     		adds	r3, r7, #6
+ 318 01e0 0122     		movs	r2, #1
+ 319 01e2 1A80     		strh	r2, [r3]
+ 320 01e4 0BE0     		b	.L10
+ 321              	.L11:
+ 111:main.c        ****             gfx_println("scroll");
+ 322              		.loc 1 111 0 discriminator 3
+ 323 01e6 814B     		ldr	r3, .L54+12
+ 324 01e8 1800     		movs	r0, r3
+ 325 01ea FFF7FEFF 		bl	gfx_println
+ 110:main.c        ****             gfx_println("scroll");
+ 326              		.loc 1 110 0 discriminator 3
+ 327 01ee BB1D     		adds	r3, r7, #6
+ 328 01f0 0022     		movs	r2, #0
+ 329 01f2 9B5E     		ldrsh	r3, [r3, r2]
+ 330 01f4 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 9
+
+
+ 331 01f6 0133     		adds	r3, r3, #1
+ 332 01f8 9AB2     		uxth	r2, r3
+ 333 01fa BB1D     		adds	r3, r7, #6
+ 334 01fc 1A80     		strh	r2, [r3]
+ 335              	.L10:
+ 110:main.c        ****             gfx_println("scroll");
+ 336              		.loc 1 110 0 is_stmt 0 discriminator 1
+ 337 01fe BB1D     		adds	r3, r7, #6
+ 338 0200 0022     		movs	r2, #0
+ 339 0202 9B5E     		ldrsh	r3, [r3, r2]
+ 340 0204 0F2B     		cmp	r3, #15
+ 341 0206 EEDD     		ble	.L11
+ 112:main.c        ****         
+ 113:main.c        ****         }
+ 114:main.c        ****         display_update();    
+ 342              		.loc 1 114 0 is_stmt 1
+ 343 0208 FFF7FEFF 		bl	display_update
+ 115:main.c        ****         
+ 116:main.c        ****         
+ 117:main.c        ****         
+ 118:main.c        ****         display_scroll(SCROLL_PAGE_0,SCROLL_PAGE_7,SCROLL_RIGHT,SCROLL_SPEED_7);
+ 344              		.loc 1 118 0
+ 345 020c 0723     		movs	r3, #7
+ 346 020e 2622     		movs	r2, #38
+ 347 0210 0721     		movs	r1, #7
+ 348 0212 0020     		movs	r0, #0
+ 349 0214 FFF7FEFF 		bl	display_scroll
+ 119:main.c        ****         CyDelay(2000);
+ 350              		.loc 1 119 0
+ 351 0218 FA23     		movs	r3, #250
+ 352 021a DB00     		lsls	r3, r3, #3
+ 353 021c 1800     		movs	r0, r3
+ 354 021e FFF7FEFF 		bl	CyDelay
+ 120:main.c        ****         display_stopscroll();
+ 355              		.loc 1 120 0
+ 356 0222 FFF7FEFF 		bl	display_stopscroll
+ 121:main.c        ****         display_scroll(SCROLL_PAGE_2,SCROLL_PAGE_4,SCROLL_LEFT,SCROLL_SPEED_3);
+ 357              		.loc 1 121 0
+ 358 0226 0623     		movs	r3, #6
+ 359 0228 2A22     		movs	r2, #42
+ 360 022a 0421     		movs	r1, #4
+ 361 022c 0220     		movs	r0, #2
+ 362 022e FFF7FEFF 		bl	display_scroll
+ 122:main.c        ****         CyDelay(2000);
+ 363              		.loc 1 122 0
+ 364 0232 FA23     		movs	r3, #250
+ 365 0234 DB00     		lsls	r3, r3, #3
+ 366 0236 1800     		movs	r0, r3
+ 367 0238 FFF7FEFF 		bl	CyDelay
+ 123:main.c        ****         display_stopscroll();
+ 368              		.loc 1 123 0
+ 369 023c FFF7FEFF 		bl	display_stopscroll
+ 124:main.c        ****         
+ 125:main.c        ****         
+ 126:main.c        **** 
+ 127:main.c        ****         CyDelay(3000);
+ 370              		.loc 1 127 0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 10
+
+
+ 371 0240 674B     		ldr	r3, .L54
+ 372 0242 1800     		movs	r0, r3
+ 373 0244 FFF7FEFF 		bl	CyDelay
+ 128:main.c        ****         display_clear();    
+ 374              		.loc 1 128 0
+ 375 0248 FFF7FEFF 		bl	display_clear
+ 129:main.c        ****         display_update();    
+ 376              		.loc 1 129 0
+ 377 024c FFF7FEFF 		bl	display_update
+ 130:main.c        ****         
+ 131:main.c        ****         
+ 132:main.c        ****         // rectangles
+ 133:main.c        ****         for( i = 0 ; i < gfx_height()/2 ; i += 2 ){
+ 378              		.loc 1 133 0
+ 379 0250 BB1D     		adds	r3, r7, #6
+ 380 0252 0022     		movs	r2, #0
+ 381 0254 1A80     		strh	r2, [r3]
+ 382 0256 29E0     		b	.L12
+ 383              	.L14:
+ 134:main.c        ****             gfx_drawRect(i, i, gfx_width()-2*i, gfx_height()-2*i, WHITE);
+ 384              		.loc 1 134 0 discriminator 3
+ 385 0258 FFF7FEFF 		bl	gfx_width
+ 386 025c 0300     		movs	r3, r0
+ 387 025e 9AB2     		uxth	r2, r3
+ 388 0260 BB1D     		adds	r3, r7, #6
+ 389 0262 1B88     		ldrh	r3, [r3]
+ 390 0264 DB18     		adds	r3, r3, r3
+ 391 0266 9BB2     		uxth	r3, r3
+ 392 0268 D31A     		subs	r3, r2, r3
+ 393 026a 9BB2     		uxth	r3, r3
+ 394 026c 1CB2     		sxth	r4, r3
+ 395 026e FFF7FEFF 		bl	gfx_height
+ 396 0272 0300     		movs	r3, r0
+ 397 0274 9AB2     		uxth	r2, r3
+ 398 0276 BB1D     		adds	r3, r7, #6
+ 399 0278 1B88     		ldrh	r3, [r3]
+ 400 027a DB18     		adds	r3, r3, r3
+ 401 027c 9BB2     		uxth	r3, r3
+ 402 027e D31A     		subs	r3, r2, r3
+ 403 0280 9BB2     		uxth	r3, r3
+ 404 0282 1AB2     		sxth	r2, r3
+ 405 0284 BB1D     		adds	r3, r7, #6
+ 406 0286 0021     		movs	r1, #0
+ 407 0288 595E     		ldrsh	r1, [r3, r1]
+ 408 028a BB1D     		adds	r3, r7, #6
+ 409 028c 0020     		movs	r0, #0
+ 410 028e 185E     		ldrsh	r0, [r3, r0]
+ 411 0290 0123     		movs	r3, #1
+ 412 0292 0093     		str	r3, [sp]
+ 413 0294 1300     		movs	r3, r2
+ 414 0296 2200     		movs	r2, r4
+ 415 0298 FFF7FEFF 		bl	gfx_drawRect
+ 135:main.c        ****             display_update();   
+ 416              		.loc 1 135 0 discriminator 3
+ 417 029c FFF7FEFF 		bl	display_update
+ 133:main.c        ****             gfx_drawRect(i, i, gfx_width()-2*i, gfx_height()-2*i, WHITE);
+ 418              		.loc 1 133 0 discriminator 3
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 11
+
+
+ 419 02a0 BB1D     		adds	r3, r7, #6
+ 420 02a2 1B88     		ldrh	r3, [r3]
+ 421 02a4 0233     		adds	r3, r3, #2
+ 422 02a6 9AB2     		uxth	r2, r3
+ 423 02a8 BB1D     		adds	r3, r7, #6
+ 424 02aa 1A80     		strh	r2, [r3]
+ 425              	.L12:
+ 133:main.c        ****             gfx_drawRect(i, i, gfx_width()-2*i, gfx_height()-2*i, WHITE);
+ 426              		.loc 1 133 0 is_stmt 0 discriminator 1
+ 427 02ac FFF7FEFF 		bl	gfx_height
+ 428 02b0 031E     		subs	r3, r0, #0
+ 429 02b2 00DA     		bge	.L13
+ 430 02b4 0133     		adds	r3, r3, #1
+ 431              	.L13:
+ 432 02b6 5B10     		asrs	r3, r3, #1
+ 433 02b8 1BB2     		sxth	r3, r3
+ 434 02ba BA1D     		adds	r2, r7, #6
+ 435 02bc 0021     		movs	r1, #0
+ 436 02be 525E     		ldrsh	r2, [r2, r1]
+ 437 02c0 9A42     		cmp	r2, r3
+ 438 02c2 C9DB     		blt	.L14
+ 136:main.c        ****         }
+ 137:main.c        ****         
+ 138:main.c        ****         CyDelay(3000);
+ 439              		.loc 1 138 0 is_stmt 1
+ 440 02c4 464B     		ldr	r3, .L54
+ 441 02c6 1800     		movs	r0, r3
+ 442 02c8 FFF7FEFF 		bl	CyDelay
+ 139:main.c        ****         display_clear();    
+ 443              		.loc 1 139 0
+ 444 02cc FFF7FEFF 		bl	display_clear
+ 140:main.c        ****         display_update();    
+ 445              		.loc 1 140 0
+ 446 02d0 FFF7FEFF 		bl	display_update
+ 141:main.c        **** 
+ 142:main.c        ****         // filled rectangles
+ 143:main.c        ****         uint8_t color = 1;
+ 447              		.loc 1 143 0
+ 448 02d4 7B1D     		adds	r3, r7, #5
+ 449 02d6 0122     		movs	r2, #1
+ 450 02d8 1A70     		strb	r2, [r3]
+ 144:main.c        ****         for( i = 0 ; i < gfx_height()/2 ; i += 3 ){
+ 451              		.loc 1 144 0
+ 452 02da BB1D     		adds	r3, r7, #6
+ 453 02dc 0022     		movs	r2, #0
+ 454 02de 1A80     		strh	r2, [r3]
+ 455 02e0 33E0     		b	.L15
+ 456              	.L17:
+ 145:main.c        ****             // alternate colors
+ 146:main.c        ****             gfx_fillRect(i, i, gfx_width()-i*2, gfx_height()-i*2, color%2);
+ 457              		.loc 1 146 0 discriminator 3
+ 458 02e2 FFF7FEFF 		bl	gfx_width
+ 459 02e6 0300     		movs	r3, r0
+ 460 02e8 9AB2     		uxth	r2, r3
+ 461 02ea BB1D     		adds	r3, r7, #6
+ 462 02ec 1B88     		ldrh	r3, [r3]
+ 463 02ee DB18     		adds	r3, r3, r3
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 12
+
+
+ 464 02f0 9BB2     		uxth	r3, r3
+ 465 02f2 D31A     		subs	r3, r2, r3
+ 466 02f4 9BB2     		uxth	r3, r3
+ 467 02f6 1CB2     		sxth	r4, r3
+ 468 02f8 FFF7FEFF 		bl	gfx_height
+ 469 02fc 0300     		movs	r3, r0
+ 470 02fe 9AB2     		uxth	r2, r3
+ 471 0300 BB1D     		adds	r3, r7, #6
+ 472 0302 1B88     		ldrh	r3, [r3]
+ 473 0304 DB18     		adds	r3, r3, r3
+ 474 0306 9BB2     		uxth	r3, r3
+ 475 0308 D31A     		subs	r3, r2, r3
+ 476 030a 9BB2     		uxth	r3, r3
+ 477 030c 1DB2     		sxth	r5, r3
+ 478 030e 7B1D     		adds	r3, r7, #5
+ 479 0310 1B78     		ldrb	r3, [r3]
+ 480 0312 9BB2     		uxth	r3, r3
+ 481 0314 0122     		movs	r2, #1
+ 482 0316 1340     		ands	r3, r2
+ 483 0318 9BB2     		uxth	r3, r3
+ 484 031a BA1D     		adds	r2, r7, #6
+ 485 031c 0021     		movs	r1, #0
+ 486 031e 515E     		ldrsh	r1, [r2, r1]
+ 487 0320 BA1D     		adds	r2, r7, #6
+ 488 0322 0020     		movs	r0, #0
+ 489 0324 105E     		ldrsh	r0, [r2, r0]
+ 490 0326 0093     		str	r3, [sp]
+ 491 0328 2B00     		movs	r3, r5
+ 492 032a 2200     		movs	r2, r4
+ 493 032c FFF7FEFF 		bl	gfx_fillRect
+ 147:main.c        ****             display_update();    
+ 494              		.loc 1 147 0 discriminator 3
+ 495 0330 FFF7FEFF 		bl	display_update
+ 148:main.c        ****             color++;
+ 496              		.loc 1 148 0 discriminator 3
+ 497 0334 7B1D     		adds	r3, r7, #5
+ 498 0336 1A78     		ldrb	r2, [r3]
+ 499 0338 7B1D     		adds	r3, r7, #5
+ 500 033a 0132     		adds	r2, r2, #1
+ 501 033c 1A70     		strb	r2, [r3]
+ 144:main.c        ****             // alternate colors
+ 502              		.loc 1 144 0 discriminator 3
+ 503 033e BB1D     		adds	r3, r7, #6
+ 504 0340 1B88     		ldrh	r3, [r3]
+ 505 0342 0333     		adds	r3, r3, #3
+ 506 0344 9AB2     		uxth	r2, r3
+ 507 0346 BB1D     		adds	r3, r7, #6
+ 508 0348 1A80     		strh	r2, [r3]
+ 509              	.L15:
+ 144:main.c        ****             // alternate colors
+ 510              		.loc 1 144 0 is_stmt 0 discriminator 1
+ 511 034a FFF7FEFF 		bl	gfx_height
+ 512 034e 031E     		subs	r3, r0, #0
+ 513 0350 00DA     		bge	.L16
+ 514 0352 0133     		adds	r3, r3, #1
+ 515              	.L16:
+ 516 0354 5B10     		asrs	r3, r3, #1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 13
+
+
+ 517 0356 1BB2     		sxth	r3, r3
+ 518 0358 BA1D     		adds	r2, r7, #6
+ 519 035a 0021     		movs	r1, #0
+ 520 035c 525E     		ldrsh	r2, [r2, r1]
+ 521 035e 9A42     		cmp	r2, r3
+ 522 0360 BFDB     		blt	.L17
+ 149:main.c        ****         }    
+ 150:main.c        **** 
+ 151:main.c        ****         CyDelay(3000);
+ 523              		.loc 1 151 0 is_stmt 1
+ 524 0362 1F4B     		ldr	r3, .L54
+ 525 0364 1800     		movs	r0, r3
+ 526 0366 FFF7FEFF 		bl	CyDelay
+ 152:main.c        ****         display_clear();    
+ 527              		.loc 1 152 0
+ 528 036a FFF7FEFF 		bl	display_clear
+ 153:main.c        ****         display_update();    
+ 529              		.loc 1 153 0
+ 530 036e FFF7FEFF 		bl	display_update
+ 154:main.c        ****         
+ 155:main.c        ****         // circles
+ 156:main.c        ****         for( i = 0 ; i < gfx_height() ; i += 2 ){
+ 531              		.loc 1 156 0
+ 532 0372 BB1D     		adds	r3, r7, #6
+ 533 0374 0022     		movs	r2, #0
+ 534 0376 1A80     		strh	r2, [r3]
+ 535 0378 1CE0     		b	.L18
+ 536              	.L21:
+ 157:main.c        ****             gfx_drawCircle( gfx_width()/2, gfx_height()/2, i, WHITE );
+ 537              		.loc 1 157 0 discriminator 3
+ 538 037a FFF7FEFF 		bl	gfx_width
+ 539 037e 031E     		subs	r3, r0, #0
+ 540 0380 00DA     		bge	.L19
+ 541 0382 0133     		adds	r3, r3, #1
+ 542              	.L19:
+ 543 0384 5B10     		asrs	r3, r3, #1
+ 544 0386 1CB2     		sxth	r4, r3
+ 545 0388 FFF7FEFF 		bl	gfx_height
+ 546 038c 031E     		subs	r3, r0, #0
+ 547 038e 00DA     		bge	.L20
+ 548 0390 0133     		adds	r3, r3, #1
+ 549              	.L20:
+ 550 0392 5B10     		asrs	r3, r3, #1
+ 551 0394 19B2     		sxth	r1, r3
+ 552 0396 BB1D     		adds	r3, r7, #6
+ 553 0398 0022     		movs	r2, #0
+ 554 039a 9A5E     		ldrsh	r2, [r3, r2]
+ 555 039c 0123     		movs	r3, #1
+ 556 039e 2000     		movs	r0, r4
+ 557 03a0 FFF7FEFF 		bl	gfx_drawCircle
+ 158:main.c        ****             display_update();    
+ 558              		.loc 1 158 0 discriminator 3
+ 559 03a4 FFF7FEFF 		bl	display_update
+ 156:main.c        ****             gfx_drawCircle( gfx_width()/2, gfx_height()/2, i, WHITE );
+ 560              		.loc 1 156 0 discriminator 3
+ 561 03a8 BB1D     		adds	r3, r7, #6
+ 562 03aa 1B88     		ldrh	r3, [r3]
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 14
+
+
+ 563 03ac 0233     		adds	r3, r3, #2
+ 564 03ae 9AB2     		uxth	r2, r3
+ 565 03b0 BB1D     		adds	r3, r7, #6
+ 566 03b2 1A80     		strh	r2, [r3]
+ 567              	.L18:
+ 156:main.c        ****             gfx_drawCircle( gfx_width()/2, gfx_height()/2, i, WHITE );
+ 568              		.loc 1 156 0 is_stmt 0 discriminator 1
+ 569 03b4 FFF7FEFF 		bl	gfx_height
+ 570 03b8 0300     		movs	r3, r0
+ 571 03ba 1A00     		movs	r2, r3
+ 572 03bc BB1D     		adds	r3, r7, #6
+ 573 03be 0021     		movs	r1, #0
+ 574 03c0 5B5E     		ldrsh	r3, [r3, r1]
+ 575 03c2 9342     		cmp	r3, r2
+ 576 03c4 D9DB     		blt	.L21
+ 159:main.c        ****         }    
+ 160:main.c        **** 
+ 161:main.c        ****         CyDelay(3000);
+ 577              		.loc 1 161 0 is_stmt 1
+ 578 03c6 064B     		ldr	r3, .L54
+ 579 03c8 1800     		movs	r0, r3
+ 580 03ca FFF7FEFF 		bl	CyDelay
+ 162:main.c        ****         display_clear();    
+ 581              		.loc 1 162 0
+ 582 03ce FFF7FEFF 		bl	display_clear
+ 163:main.c        ****         display_update();    
+ 583              		.loc 1 163 0
+ 584 03d2 FFF7FEFF 		bl	display_update
+ 164:main.c        ****         
+ 165:main.c        ****         
+ 166:main.c        ****     #define MIN(x, y) (((x) < (y)) ? (x) : (y))
+ 167:main.c        ****         
+ 168:main.c        ****         // triangles
+ 169:main.c        ****         for( i = 0 ; i < MIN(gfx_width(),gfx_height())/2; i+=5) {
+ 585              		.loc 1 169 0
+ 586 03d6 BB1D     		adds	r3, r7, #6
+ 587 03d8 0022     		movs	r2, #0
+ 588 03da 1A80     		strh	r2, [r3]
+ 589 03dc 64E0     		b	.L22
+ 590              	.L55:
+ 591 03de C046     		.align	2
+ 592              	.L54:
+ 593 03e0 B80B0000 		.word	3000
+ 594 03e4 00000000 		.word	.LC0
+ 595 03e8 10000000 		.word	.LC2
+ 596 03ec 20000000 		.word	.LC4
+ 597              	.L33:
+ 170:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 598              		.loc 1 170 0 discriminator 7
+ 599 03f0 FFF7FEFF 		bl	gfx_width
+ 600 03f4 031E     		subs	r3, r0, #0
+ 601 03f6 00DA     		bge	.L23
+ 602 03f8 0133     		adds	r3, r3, #1
+ 603              	.L23:
+ 604 03fa 5B10     		asrs	r3, r3, #1
+ 605 03fc 1DB2     		sxth	r5, r3
+ 606 03fe FFF7FEFF 		bl	gfx_height
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 15
+
+
+ 607 0402 031E     		subs	r3, r0, #0
+ 608 0404 00DA     		bge	.L24
+ 609 0406 0133     		adds	r3, r3, #1
+ 610              	.L24:
+ 611 0408 5B10     		asrs	r3, r3, #1
+ 612 040a 1BB2     		sxth	r3, r3
+ 613 040c 9AB2     		uxth	r2, r3
+ 614 040e BB1D     		adds	r3, r7, #6
+ 615 0410 1B88     		ldrh	r3, [r3]
+ 616 0412 D31A     		subs	r3, r2, r3
+ 617 0414 9BB2     		uxth	r3, r3
+ 618 0416 1EB2     		sxth	r6, r3
+ 171:main.c        ****                              gfx_width()/2-i, gfx_height()/2+i,
+ 619              		.loc 1 171 0 discriminator 7
+ 620 0418 FFF7FEFF 		bl	gfx_width
+ 621 041c 031E     		subs	r3, r0, #0
+ 170:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 622              		.loc 1 170 0 discriminator 7
+ 623 041e 00DA     		bge	.L25
+ 624 0420 0133     		adds	r3, r3, #1
+ 625              	.L25:
+ 626 0422 5B10     		asrs	r3, r3, #1
+ 627 0424 1BB2     		sxth	r3, r3
+ 628 0426 9AB2     		uxth	r2, r3
+ 629 0428 BB1D     		adds	r3, r7, #6
+ 630 042a 1B88     		ldrh	r3, [r3]
+ 631 042c D31A     		subs	r3, r2, r3
+ 632 042e 9BB2     		uxth	r3, r3
+ 633 0430 1BB2     		sxth	r3, r3
+ 634 0432 9846     		mov	r8, r3
+ 635              		.loc 1 171 0 discriminator 7
+ 636 0434 FFF7FEFF 		bl	gfx_height
+ 637 0438 031E     		subs	r3, r0, #0
+ 170:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 638              		.loc 1 170 0 discriminator 7
+ 639 043a 00DA     		bge	.L26
+ 640 043c 0133     		adds	r3, r3, #1
+ 641              	.L26:
+ 642 043e 5B10     		asrs	r3, r3, #1
+ 643 0440 1BB2     		sxth	r3, r3
+ 644 0442 9AB2     		uxth	r2, r3
+ 645 0444 BB1D     		adds	r3, r7, #6
+ 646 0446 1B88     		ldrh	r3, [r3]
+ 647 0448 D318     		adds	r3, r2, r3
+ 648 044a 9BB2     		uxth	r3, r3
+ 649 044c 1BB2     		sxth	r3, r3
+ 650 044e 9946     		mov	r9, r3
+ 172:main.c        ****                              gfx_width()/2+i, gfx_height()/2+i, WHITE);
+ 651              		.loc 1 172 0 discriminator 7
+ 652 0450 FFF7FEFF 		bl	gfx_width
+ 653 0454 031E     		subs	r3, r0, #0
+ 170:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 654              		.loc 1 170 0 discriminator 7
+ 655 0456 00DA     		bge	.L27
+ 656 0458 0133     		adds	r3, r3, #1
+ 657              	.L27:
+ 658 045a 5B10     		asrs	r3, r3, #1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 16
+
+
+ 659 045c 1BB2     		sxth	r3, r3
+ 660 045e 9AB2     		uxth	r2, r3
+ 661 0460 BB1D     		adds	r3, r7, #6
+ 662 0462 1B88     		ldrh	r3, [r3]
+ 663 0464 D318     		adds	r3, r2, r3
+ 664 0466 9BB2     		uxth	r3, r3
+ 665 0468 1CB2     		sxth	r4, r3
+ 666              		.loc 1 172 0 discriminator 7
+ 667 046a FFF7FEFF 		bl	gfx_height
+ 668 046e 031E     		subs	r3, r0, #0
+ 170:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 669              		.loc 1 170 0 discriminator 7
+ 670 0470 00DA     		bge	.L28
+ 671 0472 0133     		adds	r3, r3, #1
+ 672              	.L28:
+ 673 0474 5B10     		asrs	r3, r3, #1
+ 674 0476 1BB2     		sxth	r3, r3
+ 675 0478 9AB2     		uxth	r2, r3
+ 676 047a BB1D     		adds	r3, r7, #6
+ 677 047c 1B88     		ldrh	r3, [r3]
+ 678 047e D318     		adds	r3, r2, r3
+ 679 0480 9BB2     		uxth	r3, r3
+ 680 0482 1BB2     		sxth	r3, r3
+ 681 0484 0122     		movs	r2, #1
+ 682 0486 0292     		str	r2, [sp, #8]
+ 683 0488 0193     		str	r3, [sp, #4]
+ 684 048a 0094     		str	r4, [sp]
+ 685 048c 4B46     		mov	r3, r9
+ 686 048e 4246     		mov	r2, r8
+ 687 0490 3100     		movs	r1, r6
+ 688 0492 2800     		movs	r0, r5
+ 689 0494 FFF7FEFF 		bl	gfx_drawTriangle
+ 173:main.c        ****             display_update();    
+ 690              		.loc 1 173 0 discriminator 7
+ 691 0498 FFF7FEFF 		bl	display_update
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 692              		.loc 1 169 0 discriminator 7
+ 693 049c BB1D     		adds	r3, r7, #6
+ 694 049e 1B88     		ldrh	r3, [r3]
+ 695 04a0 0533     		adds	r3, r3, #5
+ 696 04a2 9AB2     		uxth	r2, r3
+ 697 04a4 BB1D     		adds	r3, r7, #6
+ 698 04a6 1A80     		strh	r2, [r3]
+ 699              	.L22:
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 700              		.loc 1 169 0 is_stmt 0 discriminator 1
+ 701 04a8 BB1D     		adds	r3, r7, #6
+ 702 04aa 0024     		movs	r4, #0
+ 703 04ac 1C5F     		ldrsh	r4, [r3, r4]
+ 704 04ae FFF7FEFF 		bl	gfx_width
+ 705 04b2 0300     		movs	r3, r0
+ 706 04b4 1D00     		movs	r5, r3
+ 707 04b6 FFF7FEFF 		bl	gfx_height
+ 708 04ba 0300     		movs	r3, r0
+ 709 04bc 9D42     		cmp	r5, r3
+ 710 04be 06DA     		bge	.L29
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 17
+
+
+ 711              		.loc 1 169 0 discriminator 3
+ 712 04c0 FFF7FEFF 		bl	gfx_width
+ 713 04c4 031E     		subs	r3, r0, #0
+ 714 04c6 00DA     		bge	.L30
+ 715 04c8 0133     		adds	r3, r3, #1
+ 716              	.L30:
+ 717 04ca 5B10     		asrs	r3, r3, #1
+ 718 04cc 05E0     		b	.L31
+ 719              	.L29:
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 720              		.loc 1 169 0 discriminator 4
+ 721 04ce FFF7FEFF 		bl	gfx_height
+ 722 04d2 031E     		subs	r3, r0, #0
+ 723 04d4 00DA     		bge	.L32
+ 724 04d6 0133     		adds	r3, r3, #1
+ 725              	.L32:
+ 726 04d8 5B10     		asrs	r3, r3, #1
+ 727              	.L31:
+ 169:main.c        ****             gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 728              		.loc 1 169 0 discriminator 6
+ 729 04da 9C42     		cmp	r4, r3
+ 730 04dc 00DA     		bge	.LCB610
+ 731 04de 87E7     		b	.L33	@long jump
+ 732              	.LCB610:
+ 174:main.c        ****         }    
+ 175:main.c        **** 
+ 176:main.c        ****         
+ 177:main.c        ****         CyDelay(3000);
+ 733              		.loc 1 177 0 is_stmt 1
+ 734 04e0 774B     		ldr	r3, .L56
+ 735 04e2 1800     		movs	r0, r3
+ 736 04e4 FFF7FEFF 		bl	CyDelay
+ 178:main.c        ****         display_clear();    
+ 737              		.loc 1 178 0
+ 738 04e8 FFF7FEFF 		bl	display_clear
+ 179:main.c        ****         display_update();    
+ 739              		.loc 1 179 0
+ 740 04ec FFF7FEFF 		bl	display_update
+ 180:main.c        ****        
+ 181:main.c        ****         // rotation
+ 182:main.c        ****         int16_t j = 0;
+ 741              		.loc 1 182 0
+ 742 04f0 BB1C     		adds	r3, r7, #2
+ 743 04f2 0022     		movs	r2, #0
+ 744 04f4 1A80     		strh	r2, [r3]
+ 183:main.c        ****         for( j = 0 ; j < 4 ; j++ ){
+ 745              		.loc 1 183 0
+ 746 04f6 BB1C     		adds	r3, r7, #2
+ 747 04f8 0022     		movs	r2, #0
+ 748 04fa 1A80     		strh	r2, [r3]
+ 749 04fc 8CE0     		b	.L34
+ 750              	.L47:
+ 184:main.c        ****             gfx_setRotation(j);
+ 751              		.loc 1 184 0
+ 752 04fe BB1C     		adds	r3, r7, #2
+ 753 0500 1B88     		ldrh	r3, [r3]
+ 754 0502 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 18
+
+
+ 755 0504 1800     		movs	r0, r3
+ 756 0506 FFF7FEFF 		bl	gfx_setRotation
+ 185:main.c        ****             for( i = 0 ; i < MIN(gfx_width(),gfx_height())/2; i+=5) {
+ 757              		.loc 1 185 0
+ 758 050a BB1D     		adds	r3, r7, #6
+ 759 050c 0022     		movs	r2, #0
+ 760 050e 1A80     		strh	r2, [r3]
+ 761 0510 5EE0     		b	.L35
+ 762              	.L46:
+ 186:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 763              		.loc 1 186 0 discriminator 7
+ 764 0512 FFF7FEFF 		bl	gfx_width
+ 765 0516 031E     		subs	r3, r0, #0
+ 766 0518 00DA     		bge	.L36
+ 767 051a 0133     		adds	r3, r3, #1
+ 768              	.L36:
+ 769 051c 5B10     		asrs	r3, r3, #1
+ 770 051e 1DB2     		sxth	r5, r3
+ 771 0520 FFF7FEFF 		bl	gfx_height
+ 772 0524 031E     		subs	r3, r0, #0
+ 773 0526 00DA     		bge	.L37
+ 774 0528 0133     		adds	r3, r3, #1
+ 775              	.L37:
+ 776 052a 5B10     		asrs	r3, r3, #1
+ 777 052c 1BB2     		sxth	r3, r3
+ 778 052e 9AB2     		uxth	r2, r3
+ 779 0530 BB1D     		adds	r3, r7, #6
+ 780 0532 1B88     		ldrh	r3, [r3]
+ 781 0534 D31A     		subs	r3, r2, r3
+ 782 0536 9BB2     		uxth	r3, r3
+ 783 0538 1EB2     		sxth	r6, r3
+ 187:main.c        ****                                  gfx_width()/2-i, gfx_height()/2+i,
+ 784              		.loc 1 187 0 discriminator 7
+ 785 053a FFF7FEFF 		bl	gfx_width
+ 786 053e 031E     		subs	r3, r0, #0
+ 186:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 787              		.loc 1 186 0 discriminator 7
+ 788 0540 00DA     		bge	.L38
+ 789 0542 0133     		adds	r3, r3, #1
+ 790              	.L38:
+ 791 0544 5B10     		asrs	r3, r3, #1
+ 792 0546 1BB2     		sxth	r3, r3
+ 793 0548 9AB2     		uxth	r2, r3
+ 794 054a BB1D     		adds	r3, r7, #6
+ 795 054c 1B88     		ldrh	r3, [r3]
+ 796 054e D31A     		subs	r3, r2, r3
+ 797 0550 9BB2     		uxth	r3, r3
+ 798 0552 1BB2     		sxth	r3, r3
+ 799 0554 9846     		mov	r8, r3
+ 800              		.loc 1 187 0 discriminator 7
+ 801 0556 FFF7FEFF 		bl	gfx_height
+ 802 055a 031E     		subs	r3, r0, #0
+ 186:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 803              		.loc 1 186 0 discriminator 7
+ 804 055c 00DA     		bge	.L39
+ 805 055e 0133     		adds	r3, r3, #1
+ 806              	.L39:
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 19
+
+
+ 807 0560 5B10     		asrs	r3, r3, #1
+ 808 0562 1BB2     		sxth	r3, r3
+ 809 0564 9AB2     		uxth	r2, r3
+ 810 0566 BB1D     		adds	r3, r7, #6
+ 811 0568 1B88     		ldrh	r3, [r3]
+ 812 056a D318     		adds	r3, r2, r3
+ 813 056c 9BB2     		uxth	r3, r3
+ 814 056e 1BB2     		sxth	r3, r3
+ 815 0570 9946     		mov	r9, r3
+ 188:main.c        ****                                  gfx_width()/2+i, gfx_height()/2+i, WHITE);
+ 816              		.loc 1 188 0 discriminator 7
+ 817 0572 FFF7FEFF 		bl	gfx_width
+ 818 0576 031E     		subs	r3, r0, #0
+ 186:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 819              		.loc 1 186 0 discriminator 7
+ 820 0578 00DA     		bge	.L40
+ 821 057a 0133     		adds	r3, r3, #1
+ 822              	.L40:
+ 823 057c 5B10     		asrs	r3, r3, #1
+ 824 057e 1BB2     		sxth	r3, r3
+ 825 0580 9AB2     		uxth	r2, r3
+ 826 0582 BB1D     		adds	r3, r7, #6
+ 827 0584 1B88     		ldrh	r3, [r3]
+ 828 0586 D318     		adds	r3, r2, r3
+ 829 0588 9BB2     		uxth	r3, r3
+ 830 058a 1CB2     		sxth	r4, r3
+ 831              		.loc 1 188 0 discriminator 7
+ 832 058c FFF7FEFF 		bl	gfx_height
+ 833 0590 031E     		subs	r3, r0, #0
+ 186:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 834              		.loc 1 186 0 discriminator 7
+ 835 0592 00DA     		bge	.L41
+ 836 0594 0133     		adds	r3, r3, #1
+ 837              	.L41:
+ 838 0596 5B10     		asrs	r3, r3, #1
+ 839 0598 1BB2     		sxth	r3, r3
+ 840 059a 9AB2     		uxth	r2, r3
+ 841 059c BB1D     		adds	r3, r7, #6
+ 842 059e 1B88     		ldrh	r3, [r3]
+ 843 05a0 D318     		adds	r3, r2, r3
+ 844 05a2 9BB2     		uxth	r3, r3
+ 845 05a4 1BB2     		sxth	r3, r3
+ 846 05a6 0122     		movs	r2, #1
+ 847 05a8 0292     		str	r2, [sp, #8]
+ 848 05aa 0193     		str	r3, [sp, #4]
+ 849 05ac 0094     		str	r4, [sp]
+ 850 05ae 4B46     		mov	r3, r9
+ 851 05b0 4246     		mov	r2, r8
+ 852 05b2 3100     		movs	r1, r6
+ 853 05b4 2800     		movs	r0, r5
+ 854 05b6 FFF7FEFF 		bl	gfx_drawTriangle
+ 189:main.c        ****                 display_update(); 
+ 855              		.loc 1 189 0 discriminator 7
+ 856 05ba FFF7FEFF 		bl	display_update
+ 190:main.c        ****                 CyDelay(200);
+ 857              		.loc 1 190 0 discriminator 7
+ 858 05be C820     		movs	r0, #200
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 20
+
+
+ 859 05c0 FFF7FEFF 		bl	CyDelay
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 860              		.loc 1 185 0 discriminator 7
+ 861 05c4 BB1D     		adds	r3, r7, #6
+ 862 05c6 1B88     		ldrh	r3, [r3]
+ 863 05c8 0533     		adds	r3, r3, #5
+ 864 05ca 9AB2     		uxth	r2, r3
+ 865 05cc BB1D     		adds	r3, r7, #6
+ 866 05ce 1A80     		strh	r2, [r3]
+ 867              	.L35:
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 868              		.loc 1 185 0 is_stmt 0 discriminator 1
+ 869 05d0 BB1D     		adds	r3, r7, #6
+ 870 05d2 0024     		movs	r4, #0
+ 871 05d4 1C5F     		ldrsh	r4, [r3, r4]
+ 872 05d6 FFF7FEFF 		bl	gfx_width
+ 873 05da 0300     		movs	r3, r0
+ 874 05dc 1D00     		movs	r5, r3
+ 875 05de FFF7FEFF 		bl	gfx_height
+ 876 05e2 0300     		movs	r3, r0
+ 877 05e4 9D42     		cmp	r5, r3
+ 878 05e6 06DA     		bge	.L42
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 879              		.loc 1 185 0 discriminator 3
+ 880 05e8 FFF7FEFF 		bl	gfx_width
+ 881 05ec 031E     		subs	r3, r0, #0
+ 882 05ee 00DA     		bge	.L43
+ 883 05f0 0133     		adds	r3, r3, #1
+ 884              	.L43:
+ 885 05f2 5B10     		asrs	r3, r3, #1
+ 886 05f4 05E0     		b	.L44
+ 887              	.L42:
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 888              		.loc 1 185 0 discriminator 4
+ 889 05f6 FFF7FEFF 		bl	gfx_height
+ 890 05fa 031E     		subs	r3, r0, #0
+ 891 05fc 00DA     		bge	.L45
+ 892 05fe 0133     		adds	r3, r3, #1
+ 893              	.L45:
+ 894 0600 5B10     		asrs	r3, r3, #1
+ 895              	.L44:
+ 185:main.c        ****                 gfx_drawTriangle(gfx_width()/2, gfx_height()/2-i,
+ 896              		.loc 1 185 0 discriminator 6
+ 897 0602 9C42     		cmp	r4, r3
+ 898 0604 00DA     		bge	.LCB776
+ 899 0606 84E7     		b	.L46	@long jump
+ 900              	.LCB776:
+ 183:main.c        ****             gfx_setRotation(j);
+ 901              		.loc 1 183 0 is_stmt 1 discriminator 2
+ 902 0608 BB1C     		adds	r3, r7, #2
+ 903 060a 0022     		movs	r2, #0
+ 904 060c 9B5E     		ldrsh	r3, [r3, r2]
+ 905 060e 9BB2     		uxth	r3, r3
+ 906 0610 0133     		adds	r3, r3, #1
+ 907 0612 9AB2     		uxth	r2, r3
+ 908 0614 BB1C     		adds	r3, r7, #2
+ 909 0616 1A80     		strh	r2, [r3]
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 21
+
+
+ 910              	.L34:
+ 183:main.c        ****             gfx_setRotation(j);
+ 911              		.loc 1 183 0 is_stmt 0 discriminator 1
+ 912 0618 BB1C     		adds	r3, r7, #2
+ 913 061a 0022     		movs	r2, #0
+ 914 061c 9B5E     		ldrsh	r3, [r3, r2]
+ 915 061e 032B     		cmp	r3, #3
+ 916 0620 00DC     		bgt	.LCB789
+ 917 0622 6CE7     		b	.L47	@long jump
+ 918              	.LCB789:
+ 191:main.c        ****             }    
+ 192:main.c        ****         }
+ 193:main.c        ****         
+ 194:main.c        ****         CyDelay(3000);
+ 919              		.loc 1 194 0 is_stmt 1
+ 920 0624 264B     		ldr	r3, .L56
+ 921 0626 1800     		movs	r0, r3
+ 922 0628 FFF7FEFF 		bl	CyDelay
+ 195:main.c        ****        
+ 196:main.c        ****         // invert and dim
+ 197:main.c        ****         display_invert(1);
+ 923              		.loc 1 197 0
+ 924 062c 0120     		movs	r0, #1
+ 925 062e FFF7FEFF 		bl	display_invert
+ 198:main.c        ****         CyDelay(1000);
+ 926              		.loc 1 198 0
+ 927 0632 FA23     		movs	r3, #250
+ 928 0634 9B00     		lsls	r3, r3, #2
+ 929 0636 1800     		movs	r0, r3
+ 930 0638 FFF7FEFF 		bl	CyDelay
+ 199:main.c        ****         
+ 200:main.c        ****         for( i = 256 ; i >= 0 ; i-- ){
+ 931              		.loc 1 200 0
+ 932 063c BB1D     		adds	r3, r7, #6
+ 933 063e 8022     		movs	r2, #128
+ 934 0640 5200     		lsls	r2, r2, #1
+ 935 0642 1A80     		strh	r2, [r3]
+ 936 0644 10E0     		b	.L48
+ 937              	.L49:
+ 201:main.c        ****             display_contrast(i); 
+ 938              		.loc 1 201 0 discriminator 3
+ 939 0646 BB1D     		adds	r3, r7, #6
+ 940 0648 1B88     		ldrh	r3, [r3]
+ 941 064a DBB2     		uxtb	r3, r3
+ 942 064c 1800     		movs	r0, r3
+ 943 064e FFF7FEFF 		bl	display_contrast
+ 202:main.c        ****             CyDelay(10);
+ 944              		.loc 1 202 0 discriminator 3
+ 945 0652 0A20     		movs	r0, #10
+ 946 0654 FFF7FEFF 		bl	CyDelay
+ 200:main.c        ****             display_contrast(i); 
+ 947              		.loc 1 200 0 discriminator 3
+ 948 0658 BB1D     		adds	r3, r7, #6
+ 949 065a 0022     		movs	r2, #0
+ 950 065c 9B5E     		ldrsh	r3, [r3, r2]
+ 951 065e 9BB2     		uxth	r3, r3
+ 952 0660 013B     		subs	r3, r3, #1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 22
+
+
+ 953 0662 9AB2     		uxth	r2, r3
+ 954 0664 BB1D     		adds	r3, r7, #6
+ 955 0666 1A80     		strh	r2, [r3]
+ 956              	.L48:
+ 200:main.c        ****             display_contrast(i); 
+ 957              		.loc 1 200 0 is_stmt 0 discriminator 1
+ 958 0668 BB1D     		adds	r3, r7, #6
+ 959 066a 0022     		movs	r2, #0
+ 960 066c 9B5E     		ldrsh	r3, [r3, r2]
+ 961 066e 002B     		cmp	r3, #0
+ 962 0670 E9DA     		bge	.L49
+ 203:main.c        ****         }
+ 204:main.c        ****         
+ 205:main.c        ****         
+ 206:main.c        ****         
+ 207:main.c        ****         display_invert(0);
+ 963              		.loc 1 207 0 is_stmt 1
+ 964 0672 0020     		movs	r0, #0
+ 965 0674 FFF7FEFF 		bl	display_invert
+ 208:main.c        ****         CyDelay(1000);
+ 966              		.loc 1 208 0
+ 967 0678 FA23     		movs	r3, #250
+ 968 067a 9B00     		lsls	r3, r3, #2
+ 969 067c 1800     		movs	r0, r3
+ 970 067e FFF7FEFF 		bl	CyDelay
+ 209:main.c        ****         for( i = 0 ; i < 256 ; i++ ){
+ 971              		.loc 1 209 0
+ 972 0682 BB1D     		adds	r3, r7, #6
+ 973 0684 0022     		movs	r2, #0
+ 974 0686 1A80     		strh	r2, [r3]
+ 975 0688 10E0     		b	.L50
+ 976              	.L51:
+ 210:main.c        ****             display_contrast(i); 
+ 977              		.loc 1 210 0 discriminator 3
+ 978 068a BB1D     		adds	r3, r7, #6
+ 979 068c 1B88     		ldrh	r3, [r3]
+ 980 068e DBB2     		uxtb	r3, r3
+ 981 0690 1800     		movs	r0, r3
+ 982 0692 FFF7FEFF 		bl	display_contrast
+ 211:main.c        ****             CyDelay(10);
+ 983              		.loc 1 211 0 discriminator 3
+ 984 0696 0A20     		movs	r0, #10
+ 985 0698 FFF7FEFF 		bl	CyDelay
+ 209:main.c        ****         for( i = 0 ; i < 256 ; i++ ){
+ 986              		.loc 1 209 0 discriminator 3
+ 987 069c BB1D     		adds	r3, r7, #6
+ 988 069e 0022     		movs	r2, #0
+ 989 06a0 9B5E     		ldrsh	r3, [r3, r2]
+ 990 06a2 9BB2     		uxth	r3, r3
+ 991 06a4 0133     		adds	r3, r3, #1
+ 992 06a6 9AB2     		uxth	r2, r3
+ 993 06a8 BB1D     		adds	r3, r7, #6
+ 994 06aa 1A80     		strh	r2, [r3]
+ 995              	.L50:
+ 209:main.c        ****         for( i = 0 ; i < 256 ; i++ ){
+ 996              		.loc 1 209 0 is_stmt 0 discriminator 1
+ 997 06ac BB1D     		adds	r3, r7, #6
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 23
+
+
+ 998 06ae 0022     		movs	r2, #0
+ 999 06b0 9B5E     		ldrsh	r3, [r3, r2]
+ 1000 06b2 FF2B     		cmp	r3, #255
+ 1001 06b4 E9DD     		ble	.L51
+ 212:main.c        ****         }
+ 213:main.c        ****         
+ 214:main.c        ****     
+ 215:main.c        ****         CyDelay(3000);
+ 1002              		.loc 1 215 0 is_stmt 1
+ 1003 06b6 024B     		ldr	r3, .L56
+ 1004 06b8 1800     		movs	r0, r3
+ 1005 06ba FFF7FEFF 		bl	CyDelay
+ 1006              	.LBE2:
+ 216:main.c        **** 
+ 217:main.c        ****     
+ 218:main.c        ****     
+ 219:main.c        ****     
+ 220:main.c        ****     }
+ 1007              		.loc 1 220 0
+ 1008 06be ABE4     		b	.L52
+ 1009              	.L57:
+ 1010              		.align	2
+ 1011              	.L56:
+ 1012 06c0 B80B0000 		.word	3000
+ 1013              		.cfi_endproc
+ 1014              	.LFE33:
+ 1015              		.size	main, .-main
+ 1016              		.text
+ 1017              	.Letext0:
+ 1018              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1019              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1020              		.file 4 "ssd1306.h"
+ 1021              		.section	.debug_info,"",%progbits
+ 1022              	.Ldebug_info0:
+ 1023 0000 90010000 		.4byte	0x190
+ 1024 0004 0400     		.2byte	0x4
+ 1025 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1026 000a 04       		.byte	0x4
+ 1027 000b 01       		.uleb128 0x1
+ 1028 000c 6A000000 		.4byte	.LASF37
+ 1029 0010 0C       		.byte	0xc
+ 1030 0011 98020000 		.4byte	.LASF38
+ 1031 0015 C4010000 		.4byte	.LASF39
+ 1032 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1033 001d 00000000 		.4byte	0
+ 1034 0021 00000000 		.4byte	.Ldebug_line0
+ 1035 0025 02       		.uleb128 0x2
+ 1036 0026 01       		.byte	0x1
+ 1037 0027 06       		.byte	0x6
+ 1038 0028 32020000 		.4byte	.LASF0
+ 1039 002c 03       		.uleb128 0x3
+ 1040 002d 00000000 		.4byte	.LASF2
+ 1041 0031 02       		.byte	0x2
+ 1042 0032 1D       		.byte	0x1d
+ 1043 0033 37000000 		.4byte	0x37
+ 1044 0037 02       		.uleb128 0x2
+ 1045 0038 01       		.byte	0x1
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 24
+
+
+ 1046 0039 08       		.byte	0x8
+ 1047 003a 28000000 		.4byte	.LASF1
+ 1048 003e 03       		.uleb128 0x3
+ 1049 003f 0A000000 		.4byte	.LASF3
+ 1050 0043 02       		.byte	0x2
+ 1051 0044 29       		.byte	0x29
+ 1052 0045 49000000 		.4byte	0x49
+ 1053 0049 02       		.uleb128 0x2
+ 1054 004a 02       		.byte	0x2
+ 1055 004b 05       		.byte	0x5
+ 1056 004c 07020000 		.4byte	.LASF4
+ 1057 0050 02       		.uleb128 0x2
+ 1058 0051 02       		.byte	0x2
+ 1059 0052 07       		.byte	0x7
+ 1060 0053 48000000 		.4byte	.LASF5
+ 1061 0057 02       		.uleb128 0x2
+ 1062 0058 04       		.byte	0x4
+ 1063 0059 05       		.byte	0x5
+ 1064 005a 1D020000 		.4byte	.LASF6
+ 1065 005e 02       		.uleb128 0x2
+ 1066 005f 04       		.byte	0x4
+ 1067 0060 07       		.byte	0x7
+ 1068 0061 36000000 		.4byte	.LASF7
+ 1069 0065 02       		.uleb128 0x2
+ 1070 0066 08       		.byte	0x8
+ 1071 0067 05       		.byte	0x5
+ 1072 0068 B6010000 		.4byte	.LASF8
+ 1073 006c 02       		.uleb128 0x2
+ 1074 006d 08       		.byte	0x8
+ 1075 006e 07       		.byte	0x7
+ 1076 006f 79010000 		.4byte	.LASF9
+ 1077 0073 04       		.uleb128 0x4
+ 1078 0074 04       		.byte	0x4
+ 1079 0075 05       		.byte	0x5
+ 1080 0076 696E7400 		.ascii	"int\000"
+ 1081 007a 02       		.uleb128 0x2
+ 1082 007b 04       		.byte	0x4
+ 1083 007c 07       		.byte	0x7
+ 1084 007d 6C010000 		.4byte	.LASF10
+ 1085 0081 03       		.uleb128 0x3
+ 1086 0082 90010000 		.4byte	.LASF11
+ 1087 0086 03       		.byte	0x3
+ 1088 0087 18       		.byte	0x18
+ 1089 0088 2C000000 		.4byte	0x2c
+ 1090 008c 03       		.uleb128 0x3
+ 1091 008d A5010000 		.4byte	.LASF12
+ 1092 0091 03       		.byte	0x3
+ 1093 0092 20       		.byte	0x20
+ 1094 0093 3E000000 		.4byte	0x3e
+ 1095 0097 02       		.uleb128 0x2
+ 1096 0098 04       		.byte	0x4
+ 1097 0099 04       		.byte	0x4
+ 1098 009a 22000000 		.4byte	.LASF13
+ 1099 009e 02       		.uleb128 0x2
+ 1100 009f 08       		.byte	0x8
+ 1101 00a0 04       		.byte	0x4
+ 1102 00a1 0C010000 		.4byte	.LASF14
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 25
+
+
+ 1103 00a5 02       		.uleb128 0x2
+ 1104 00a6 01       		.byte	0x1
+ 1105 00a7 08       		.byte	0x8
+ 1106 00a8 02020000 		.4byte	.LASF15
+ 1107 00ac 02       		.uleb128 0x2
+ 1108 00ad 08       		.byte	0x8
+ 1109 00ae 04       		.byte	0x4
+ 1110 00af 26020000 		.4byte	.LASF16
+ 1111 00b3 02       		.uleb128 0x2
+ 1112 00b4 04       		.byte	0x4
+ 1113 00b5 07       		.byte	0x7
+ 1114 00b6 AD010000 		.4byte	.LASF17
+ 1115 00ba 05       		.uleb128 0x5
+ 1116 00bb 01       		.byte	0x1
+ 1117 00bc 37000000 		.4byte	0x37
+ 1118 00c0 04       		.byte	0x4
+ 1119 00c1 19       		.byte	0x19
+ 1120 00c2 D3000000 		.4byte	0xd3
+ 1121 00c6 06       		.uleb128 0x6
+ 1122 00c7 98010000 		.4byte	.LASF18
+ 1123 00cb 26       		.byte	0x26
+ 1124 00cc 06       		.uleb128 0x6
+ 1125 00cd 11020000 		.4byte	.LASF19
+ 1126 00d1 2A       		.byte	0x2a
+ 1127 00d2 00       		.byte	0
+ 1128 00d3 05       		.uleb128 0x5
+ 1129 00d4 01       		.byte	0x1
+ 1130 00d5 37000000 		.4byte	0x37
+ 1131 00d9 04       		.byte	0x4
+ 1132 00da 1E       		.byte	0x1e
+ 1133 00db 10010000 		.4byte	0x110
+ 1134 00df 06       		.uleb128 0x6
+ 1135 00e0 3E020000 		.4byte	.LASF20
+ 1136 00e4 03       		.byte	0x3
+ 1137 00e5 06       		.uleb128 0x6
+ 1138 00e6 4D020000 		.4byte	.LASF21
+ 1139 00ea 02       		.byte	0x2
+ 1140 00eb 06       		.uleb128 0x6
+ 1141 00ec 5C020000 		.4byte	.LASF22
+ 1142 00f0 01       		.byte	0x1
+ 1143 00f1 06       		.uleb128 0x6
+ 1144 00f2 6B020000 		.4byte	.LASF23
+ 1145 00f6 06       		.byte	0x6
+ 1146 00f7 06       		.uleb128 0x6
+ 1147 00f8 7A020000 		.4byte	.LASF24
+ 1148 00fc 00       		.byte	0
+ 1149 00fd 06       		.uleb128 0x6
+ 1150 00fe 89020000 		.4byte	.LASF25
+ 1151 0102 05       		.byte	0x5
+ 1152 0103 06       		.uleb128 0x6
+ 1153 0104 5B000000 		.4byte	.LASF26
+ 1154 0108 04       		.byte	0x4
+ 1155 0109 06       		.uleb128 0x6
+ 1156 010a 9F020000 		.4byte	.LASF27
+ 1157 010e 07       		.byte	0x7
+ 1158 010f 00       		.byte	0
+ 1159 0110 05       		.uleb128 0x5
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 26
+
+
+ 1160 0111 01       		.byte	0x1
+ 1161 0112 37000000 		.4byte	0x37
+ 1162 0116 04       		.byte	0x4
+ 1163 0117 29       		.byte	0x29
+ 1164 0118 4D010000 		.4byte	0x14d
+ 1165 011c 06       		.uleb128 0x6
+ 1166 011d FE000000 		.4byte	.LASF28
+ 1167 0121 00       		.byte	0
+ 1168 0122 06       		.uleb128 0x6
+ 1169 0123 14000000 		.4byte	.LASF29
+ 1170 0127 01       		.byte	0x1
+ 1171 0128 06       		.uleb128 0x6
+ 1172 0129 13010000 		.4byte	.LASF30
+ 1173 012d 02       		.byte	0x2
+ 1174 012e 06       		.uleb128 0x6
+ 1175 012f 21010000 		.4byte	.LASF31
+ 1176 0133 03       		.byte	0x3
+ 1177 0134 06       		.uleb128 0x6
+ 1178 0135 2F010000 		.4byte	.LASF32
+ 1179 0139 04       		.byte	0x4
+ 1180 013a 06       		.uleb128 0x6
+ 1181 013b 3D010000 		.4byte	.LASF33
+ 1182 013f 05       		.byte	0x5
+ 1183 0140 06       		.uleb128 0x6
+ 1184 0141 4B010000 		.4byte	.LASF34
+ 1185 0145 06       		.byte	0x6
+ 1186 0146 06       		.uleb128 0x6
+ 1187 0147 59010000 		.4byte	.LASF35
+ 1188 014b 07       		.byte	0x7
+ 1189 014c 00       		.byte	0
+ 1190 014d 07       		.uleb128 0x7
+ 1191 014e 67010000 		.4byte	.LASF40
+ 1192 0152 01       		.byte	0x1
+ 1193 0153 13       		.byte	0x13
+ 1194 0154 73000000 		.4byte	0x73
+ 1195 0158 00000000 		.4byte	.LFB33
+ 1196 015c C4060000 		.4byte	.LFE33-.LFB33
+ 1197 0160 01       		.uleb128 0x1
+ 1198 0161 9C       		.byte	0x9c
+ 1199 0162 08       		.uleb128 0x8
+ 1200 0163 18000000 		.4byte	.LBB2
+ 1201 0167 A6060000 		.4byte	.LBE2-.LBB2
+ 1202 016b 09       		.uleb128 0x9
+ 1203 016c 6900     		.ascii	"i\000"
+ 1204 016e 01       		.byte	0x1
+ 1205 016f 2D       		.byte	0x2d
+ 1206 0170 8C000000 		.4byte	0x8c
+ 1207 0174 02       		.uleb128 0x2
+ 1208 0175 91       		.byte	0x91
+ 1209 0176 5E       		.sleb128 -34
+ 1210 0177 0A       		.uleb128 0xa
+ 1211 0178 F8000000 		.4byte	.LASF36
+ 1212 017c 01       		.byte	0x1
+ 1213 017d 8F       		.byte	0x8f
+ 1214 017e 81000000 		.4byte	0x81
+ 1215 0182 02       		.uleb128 0x2
+ 1216 0183 91       		.byte	0x91
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 27
+
+
+ 1217 0184 5D       		.sleb128 -35
+ 1218 0185 09       		.uleb128 0x9
+ 1219 0186 6A00     		.ascii	"j\000"
+ 1220 0188 01       		.byte	0x1
+ 1221 0189 B6       		.byte	0xb6
+ 1222 018a 8C000000 		.4byte	0x8c
+ 1223 018e 02       		.uleb128 0x2
+ 1224 018f 91       		.byte	0x91
+ 1225 0190 5A       		.sleb128 -38
+ 1226 0191 00       		.byte	0
+ 1227 0192 00       		.byte	0
+ 1228 0193 00       		.byte	0
+ 1229              		.section	.debug_abbrev,"",%progbits
+ 1230              	.Ldebug_abbrev0:
+ 1231 0000 01       		.uleb128 0x1
+ 1232 0001 11       		.uleb128 0x11
+ 1233 0002 01       		.byte	0x1
+ 1234 0003 25       		.uleb128 0x25
+ 1235 0004 0E       		.uleb128 0xe
+ 1236 0005 13       		.uleb128 0x13
+ 1237 0006 0B       		.uleb128 0xb
+ 1238 0007 03       		.uleb128 0x3
+ 1239 0008 0E       		.uleb128 0xe
+ 1240 0009 1B       		.uleb128 0x1b
+ 1241 000a 0E       		.uleb128 0xe
+ 1242 000b 55       		.uleb128 0x55
+ 1243 000c 17       		.uleb128 0x17
+ 1244 000d 11       		.uleb128 0x11
+ 1245 000e 01       		.uleb128 0x1
+ 1246 000f 10       		.uleb128 0x10
+ 1247 0010 17       		.uleb128 0x17
+ 1248 0011 00       		.byte	0
+ 1249 0012 00       		.byte	0
+ 1250 0013 02       		.uleb128 0x2
+ 1251 0014 24       		.uleb128 0x24
+ 1252 0015 00       		.byte	0
+ 1253 0016 0B       		.uleb128 0xb
+ 1254 0017 0B       		.uleb128 0xb
+ 1255 0018 3E       		.uleb128 0x3e
+ 1256 0019 0B       		.uleb128 0xb
+ 1257 001a 03       		.uleb128 0x3
+ 1258 001b 0E       		.uleb128 0xe
+ 1259 001c 00       		.byte	0
+ 1260 001d 00       		.byte	0
+ 1261 001e 03       		.uleb128 0x3
+ 1262 001f 16       		.uleb128 0x16
+ 1263 0020 00       		.byte	0
+ 1264 0021 03       		.uleb128 0x3
+ 1265 0022 0E       		.uleb128 0xe
+ 1266 0023 3A       		.uleb128 0x3a
+ 1267 0024 0B       		.uleb128 0xb
+ 1268 0025 3B       		.uleb128 0x3b
+ 1269 0026 0B       		.uleb128 0xb
+ 1270 0027 49       		.uleb128 0x49
+ 1271 0028 13       		.uleb128 0x13
+ 1272 0029 00       		.byte	0
+ 1273 002a 00       		.byte	0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 28
+
+
+ 1274 002b 04       		.uleb128 0x4
+ 1275 002c 24       		.uleb128 0x24
+ 1276 002d 00       		.byte	0
+ 1277 002e 0B       		.uleb128 0xb
+ 1278 002f 0B       		.uleb128 0xb
+ 1279 0030 3E       		.uleb128 0x3e
+ 1280 0031 0B       		.uleb128 0xb
+ 1281 0032 03       		.uleb128 0x3
+ 1282 0033 08       		.uleb128 0x8
+ 1283 0034 00       		.byte	0
+ 1284 0035 00       		.byte	0
+ 1285 0036 05       		.uleb128 0x5
+ 1286 0037 04       		.uleb128 0x4
+ 1287 0038 01       		.byte	0x1
+ 1288 0039 0B       		.uleb128 0xb
+ 1289 003a 0B       		.uleb128 0xb
+ 1290 003b 49       		.uleb128 0x49
+ 1291 003c 13       		.uleb128 0x13
+ 1292 003d 3A       		.uleb128 0x3a
+ 1293 003e 0B       		.uleb128 0xb
+ 1294 003f 3B       		.uleb128 0x3b
+ 1295 0040 0B       		.uleb128 0xb
+ 1296 0041 01       		.uleb128 0x1
+ 1297 0042 13       		.uleb128 0x13
+ 1298 0043 00       		.byte	0
+ 1299 0044 00       		.byte	0
+ 1300 0045 06       		.uleb128 0x6
+ 1301 0046 28       		.uleb128 0x28
+ 1302 0047 00       		.byte	0
+ 1303 0048 03       		.uleb128 0x3
+ 1304 0049 0E       		.uleb128 0xe
+ 1305 004a 1C       		.uleb128 0x1c
+ 1306 004b 0B       		.uleb128 0xb
+ 1307 004c 00       		.byte	0
+ 1308 004d 00       		.byte	0
+ 1309 004e 07       		.uleb128 0x7
+ 1310 004f 2E       		.uleb128 0x2e
+ 1311 0050 01       		.byte	0x1
+ 1312 0051 3F       		.uleb128 0x3f
+ 1313 0052 19       		.uleb128 0x19
+ 1314 0053 03       		.uleb128 0x3
+ 1315 0054 0E       		.uleb128 0xe
+ 1316 0055 3A       		.uleb128 0x3a
+ 1317 0056 0B       		.uleb128 0xb
+ 1318 0057 3B       		.uleb128 0x3b
+ 1319 0058 0B       		.uleb128 0xb
+ 1320 0059 49       		.uleb128 0x49
+ 1321 005a 13       		.uleb128 0x13
+ 1322 005b 11       		.uleb128 0x11
+ 1323 005c 01       		.uleb128 0x1
+ 1324 005d 12       		.uleb128 0x12
+ 1325 005e 06       		.uleb128 0x6
+ 1326 005f 40       		.uleb128 0x40
+ 1327 0060 18       		.uleb128 0x18
+ 1328 0061 9642     		.uleb128 0x2116
+ 1329 0063 19       		.uleb128 0x19
+ 1330 0064 00       		.byte	0
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 29
+
+
+ 1331 0065 00       		.byte	0
+ 1332 0066 08       		.uleb128 0x8
+ 1333 0067 0B       		.uleb128 0xb
+ 1334 0068 01       		.byte	0x1
+ 1335 0069 11       		.uleb128 0x11
+ 1336 006a 01       		.uleb128 0x1
+ 1337 006b 12       		.uleb128 0x12
+ 1338 006c 06       		.uleb128 0x6
+ 1339 006d 00       		.byte	0
+ 1340 006e 00       		.byte	0
+ 1341 006f 09       		.uleb128 0x9
+ 1342 0070 34       		.uleb128 0x34
+ 1343 0071 00       		.byte	0
+ 1344 0072 03       		.uleb128 0x3
+ 1345 0073 08       		.uleb128 0x8
+ 1346 0074 3A       		.uleb128 0x3a
+ 1347 0075 0B       		.uleb128 0xb
+ 1348 0076 3B       		.uleb128 0x3b
+ 1349 0077 0B       		.uleb128 0xb
+ 1350 0078 49       		.uleb128 0x49
+ 1351 0079 13       		.uleb128 0x13
+ 1352 007a 02       		.uleb128 0x2
+ 1353 007b 18       		.uleb128 0x18
+ 1354 007c 00       		.byte	0
+ 1355 007d 00       		.byte	0
+ 1356 007e 0A       		.uleb128 0xa
+ 1357 007f 34       		.uleb128 0x34
+ 1358 0080 00       		.byte	0
+ 1359 0081 03       		.uleb128 0x3
+ 1360 0082 0E       		.uleb128 0xe
+ 1361 0083 3A       		.uleb128 0x3a
+ 1362 0084 0B       		.uleb128 0xb
+ 1363 0085 3B       		.uleb128 0x3b
+ 1364 0086 0B       		.uleb128 0xb
+ 1365 0087 49       		.uleb128 0x49
+ 1366 0088 13       		.uleb128 0x13
+ 1367 0089 02       		.uleb128 0x2
+ 1368 008a 18       		.uleb128 0x18
+ 1369 008b 00       		.byte	0
+ 1370 008c 00       		.byte	0
+ 1371 008d 00       		.byte	0
+ 1372              		.section	.debug_aranges,"",%progbits
+ 1373 0000 1C000000 		.4byte	0x1c
+ 1374 0004 0200     		.2byte	0x2
+ 1375 0006 00000000 		.4byte	.Ldebug_info0
+ 1376 000a 04       		.byte	0x4
+ 1377 000b 00       		.byte	0
+ 1378 000c 0000     		.2byte	0
+ 1379 000e 0000     		.2byte	0
+ 1380 0010 00000000 		.4byte	.LFB33
+ 1381 0014 C4060000 		.4byte	.LFE33-.LFB33
+ 1382 0018 00000000 		.4byte	0
+ 1383 001c 00000000 		.4byte	0
+ 1384              		.section	.debug_ranges,"",%progbits
+ 1385              	.Ldebug_ranges0:
+ 1386 0000 00000000 		.4byte	.LFB33
+ 1387 0004 C4060000 		.4byte	.LFE33
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 30
+
+
+ 1388 0008 00000000 		.4byte	0
+ 1389 000c 00000000 		.4byte	0
+ 1390              		.section	.debug_line,"",%progbits
+ 1391              	.Ldebug_line0:
+ 1392 0000 0B030000 		.section	.debug_str,"MS",%progbits,1
+ 1392      02002701 
+ 1392      00000201 
+ 1392      FB0E0D00 
+ 1392      01010101 
+ 1393              	.LASF2:
+ 1394 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1394      6E74385F 
+ 1394      7400
+ 1395              	.LASF3:
+ 1396 000a 5F5F696E 		.ascii	"__int16_t\000"
+ 1396      7431365F 
+ 1396      7400
+ 1397              	.LASF29:
+ 1398 0014 5343524F 		.ascii	"SCROLL_PAGE_1\000"
+ 1398      4C4C5F50 
+ 1398      4147455F 
+ 1398      3100
+ 1399              	.LASF13:
+ 1400 0022 666C6F61 		.ascii	"float\000"
+ 1400      7400
+ 1401              	.LASF1:
+ 1402 0028 756E7369 		.ascii	"unsigned char\000"
+ 1402      676E6564 
+ 1402      20636861 
+ 1402      7200
+ 1403              	.LASF7:
+ 1404 0036 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1404      20756E73 
+ 1404      69676E65 
+ 1404      6420696E 
+ 1404      7400
+ 1405              	.LASF5:
+ 1406 0048 73686F72 		.ascii	"short unsigned int\000"
+ 1406      7420756E 
+ 1406      7369676E 
+ 1406      65642069 
+ 1406      6E7400
+ 1407              	.LASF26:
+ 1408 005b 5343524F 		.ascii	"SCROLL_SPEED_6\000"
+ 1408      4C4C5F53 
+ 1408      50454544 
+ 1408      5F3600
+ 1409              	.LASF37:
+ 1410 006a 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1410      43313120 
+ 1410      352E342E 
+ 1410      31203230 
+ 1410      31363036 
+ 1411 009d 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1411      20726576 
+ 1411      6973696F 
+ 1411      6E203233 
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 31
+
+
+ 1411      37373135 
+ 1412 00d0 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1412      66756E63 
+ 1412      74696F6E 
+ 1412      2D736563 
+ 1412      74696F6E 
+ 1413              	.LASF36:
+ 1414 00f8 636F6C6F 		.ascii	"color\000"
+ 1414      7200
+ 1415              	.LASF28:
+ 1416 00fe 5343524F 		.ascii	"SCROLL_PAGE_0\000"
+ 1416      4C4C5F50 
+ 1416      4147455F 
+ 1416      3000
+ 1417              	.LASF14:
+ 1418 010c 646F7562 		.ascii	"double\000"
+ 1418      6C6500
+ 1419              	.LASF30:
+ 1420 0113 5343524F 		.ascii	"SCROLL_PAGE_2\000"
+ 1420      4C4C5F50 
+ 1420      4147455F 
+ 1420      3200
+ 1421              	.LASF31:
+ 1422 0121 5343524F 		.ascii	"SCROLL_PAGE_3\000"
+ 1422      4C4C5F50 
+ 1422      4147455F 
+ 1422      3300
+ 1423              	.LASF32:
+ 1424 012f 5343524F 		.ascii	"SCROLL_PAGE_4\000"
+ 1424      4C4C5F50 
+ 1424      4147455F 
+ 1424      3400
+ 1425              	.LASF33:
+ 1426 013d 5343524F 		.ascii	"SCROLL_PAGE_5\000"
+ 1426      4C4C5F50 
+ 1426      4147455F 
+ 1426      3500
+ 1427              	.LASF34:
+ 1428 014b 5343524F 		.ascii	"SCROLL_PAGE_6\000"
+ 1428      4C4C5F50 
+ 1428      4147455F 
+ 1428      3600
+ 1429              	.LASF35:
+ 1430 0159 5343524F 		.ascii	"SCROLL_PAGE_7\000"
+ 1430      4C4C5F50 
+ 1430      4147455F 
+ 1430      3700
+ 1431              	.LASF40:
+ 1432 0167 6D61696E 		.ascii	"main\000"
+ 1432      00
+ 1433              	.LASF10:
+ 1434 016c 756E7369 		.ascii	"unsigned int\000"
+ 1434      676E6564 
+ 1434      20696E74 
+ 1434      00
+ 1435              	.LASF9:
+ 1436 0179 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 32
+
+
+ 1436      206C6F6E 
+ 1436      6720756E 
+ 1436      7369676E 
+ 1436      65642069 
+ 1437              	.LASF11:
+ 1438 0190 75696E74 		.ascii	"uint8_t\000"
+ 1438      385F7400 
+ 1439              	.LASF18:
+ 1440 0198 5343524F 		.ascii	"SCROLL_RIGHT\000"
+ 1440      4C4C5F52 
+ 1440      49474854 
+ 1440      00
+ 1441              	.LASF12:
+ 1442 01a5 696E7431 		.ascii	"int16_t\000"
+ 1442      365F7400 
+ 1443              	.LASF17:
+ 1444 01ad 73697A65 		.ascii	"sizetype\000"
+ 1444      74797065 
+ 1444      00
+ 1445              	.LASF8:
+ 1446 01b6 6C6F6E67 		.ascii	"long long int\000"
+ 1446      206C6F6E 
+ 1446      6720696E 
+ 1446      7400
+ 1447              	.LASF39:
+ 1448 01c4 443A5C4E 		.ascii	"D:\\Nico\\Archivos\\lib_psoc\\Cypress-PSOC-OLED-mas"
+ 1448      69636F5C 
+ 1448      41726368 
+ 1448      69766F73 
+ 1448      5C6C6962 
+ 1449 01f3 7465725C 		.ascii	"ter\\OLED.cydsn\000"
+ 1449      4F4C4544 
+ 1449      2E637964 
+ 1449      736E00
+ 1450              	.LASF15:
+ 1451 0202 63686172 		.ascii	"char\000"
+ 1451      00
+ 1452              	.LASF4:
+ 1453 0207 73686F72 		.ascii	"short int\000"
+ 1453      7420696E 
+ 1453      7400
+ 1454              	.LASF19:
+ 1455 0211 5343524F 		.ascii	"SCROLL_LEFT\000"
+ 1455      4C4C5F4C 
+ 1455      45465400 
+ 1456              	.LASF6:
+ 1457 021d 6C6F6E67 		.ascii	"long int\000"
+ 1457      20696E74 
+ 1457      00
+ 1458              	.LASF16:
+ 1459 0226 6C6F6E67 		.ascii	"long double\000"
+ 1459      20646F75 
+ 1459      626C6500 
+ 1460              	.LASF0:
+ 1461 0232 7369676E 		.ascii	"signed char\000"
+ 1461      65642063 
+ 1461      68617200 
+ARM GAS  C:\Users\jdrd3\AppData\Local\Temp\ccKr1Vjq.s 			page 33
+
+
+ 1462              	.LASF20:
+ 1463 023e 5343524F 		.ascii	"SCROLL_SPEED_0\000"
+ 1463      4C4C5F53 
+ 1463      50454544 
+ 1463      5F3000
+ 1464              	.LASF21:
+ 1465 024d 5343524F 		.ascii	"SCROLL_SPEED_1\000"
+ 1465      4C4C5F53 
+ 1465      50454544 
+ 1465      5F3100
+ 1466              	.LASF22:
+ 1467 025c 5343524F 		.ascii	"SCROLL_SPEED_2\000"
+ 1467      4C4C5F53 
+ 1467      50454544 
+ 1467      5F3200
+ 1468              	.LASF23:
+ 1469 026b 5343524F 		.ascii	"SCROLL_SPEED_3\000"
+ 1469      4C4C5F53 
+ 1469      50454544 
+ 1469      5F3300
+ 1470              	.LASF24:
+ 1471 027a 5343524F 		.ascii	"SCROLL_SPEED_4\000"
+ 1471      4C4C5F53 
+ 1471      50454544 
+ 1471      5F3400
+ 1472              	.LASF25:
+ 1473 0289 5343524F 		.ascii	"SCROLL_SPEED_5\000"
+ 1473      4C4C5F53 
+ 1473      50454544 
+ 1473      5F3500
+ 1474              	.LASF38:
+ 1475 0298 6D61696E 		.ascii	"main.c\000"
+ 1475      2E6300
+ 1476              	.LASF27:
+ 1477 029f 5343524F 		.ascii	"SCROLL_SPEED_7\000"
+ 1477      4C4C5F53 
+ 1477      50454544 
+ 1477      5F3700
+ 1478              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
